@@ -8,6 +8,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import ArtworkCreateContainer from './artwork/artwork_create_container';
+import './app.css'
 
 const App = () => (
   <div>
