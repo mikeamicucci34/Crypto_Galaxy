@@ -14,7 +14,9 @@ class Profile extends React.Component {
     componentWillMount() {
         console.log(this.props.currentUser.id)
     }
-
+    componentDidMount(){
+        this.props.fetchUser(this.props.currentUser.id);
+    }
     componentWillReceiveProps(newState) {
  
     }
@@ -23,6 +25,7 @@ class Profile extends React.Component {
             return (
                 <div>
                     <h2>All of This User's Tweets</h2>
+                    <h1>{this.props.user.handle}</h1>
                 </div>
             );
         
