@@ -44,7 +44,7 @@ class LoginForm extends React.Component {
         };
 
         this.props.login(user).then(() => {
-            this.props.history.push(`./tweets`)
+            this.props.history.push(`./profile`)
         });;
     }
 
