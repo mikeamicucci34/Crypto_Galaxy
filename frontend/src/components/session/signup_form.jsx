@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './signup.css'
+import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     constructor(props) {
@@ -62,37 +64,41 @@ class SignupForm extends React.Component {
     render() {
         return (
             <div className="signup-form-container">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="signup-form">
+                <form className="form" onSubmit={this.handleSubmit}>
                         <br />
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
+                            className="login-input"
                         />
                         <br />
                         <input type="text"
                             value={this.state.handle}
                             onChange={this.update('handle')}
                             placeholder="Handle"
+                            className="login-input"
                         />
                         <br />
                         <input type="password"
                             value={this.state.password}
                             onChange={this.update('password')}
                             placeholder="Password"
+                            className="login-input"
                         />
                         <br />
                         <input type="password"
                             value={this.state.password2}
                             onChange={this.update('password2')}
                             placeholder="Confirm Password"
+                            className="login-input"
                         />
                         <br />
-                        <input type="submit" value="Submit" />
+                        <input type="submit" value="Submit" className="login-button" />
                         {this.renderErrors()}
-                    </div>
+                        
                 </form>
+                <div className="footer"></div>
             </div>
         );
     }
