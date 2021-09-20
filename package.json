@@ -7,7 +7,10 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
+<<<<<<< HEAD
+=======
     "server:debug": "nodemon --inspect app.js",
+>>>>>>> 165e9519fe9dedf7468a6d9e07fdd04ed8a3e341
     "frontend-install": "npm install --prefix frontend",
     "frontend": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run frontend\""
