@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
-const keys = require('../../config/keys');
+const keys = require('../../config/keys_dev');
 const passport = require('passport');
 
 const validateRegisterInput = require('../../validation/register');
@@ -64,6 +64,13 @@ router.get('/:id', (req, res) => {
         })
         .catch(err => res.status(404).json({ nouserfound: 'No user found with that ID' }))
 })
+
+router.get("/", (req, res) => {
+    User.all()
+        .sort({ date: -1 })
+        .then(offers => res.json(offers))
+        .catch(err => res.status(404).json({ nooffersfound: "No offers found" }));
+});
 
 
 
