@@ -3,6 +3,8 @@ import * as APIUtil from '../util/artwork_api_util';
 export const RECEIVE_ARTWORK = "RECEIVE_ARTWORK";
 export const RECEIVE_ARTWORKS = "RECEIVE_ARTWORKS";
 export const REMOVE_ARTWORK = "REMOVE_ARTWORK"
+export const RECEIVE_USER_ARTWORKS = "RECEIVE_USER_ARTWORKS"
+
 
 export const receiveArtwork = artwork => ({
     type: RECEIVE_ARTWORK,
@@ -18,6 +20,11 @@ export const removeArtwork = artworkId => ({
     type: REMOVE_ARTWORK,
     artworkId
 })
+
+export const receiveUserArtworks = artworks => ({
+  type: RECEIVE_USER_ARTWORKS,
+  artworks
+});
 
 export const fetchArtwork = artworkId => dispatch => (
     APIUtil.fetchArtwork(artworkId).then((artwork) => (
@@ -46,6 +53,12 @@ export const updateArtwork = (artworkData) => dispatch => (
 export const deleteArtwork = (artworkId) => dispatch => (
     APIUtil.deleteArtwork(artworkId).then(() => (
         dispatch((removeArtwork(artworkId)))
+    ))
+);
+
+export const getUserArtwork = (userId) => dispatch => (
+    APIUtil.getUserArtwork(userId).then((artworks) => (
+        dispatch((receiveUserArtworks(artworks)))
     ))
 );
 
