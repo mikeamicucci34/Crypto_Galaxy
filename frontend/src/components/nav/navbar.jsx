@@ -1,5 +1,3 @@
-// src/components/nav/navbar.js
-
 import React from 'react';
 import { Link } from 'react-router-dom'
 import './navbar.css'
@@ -16,20 +14,19 @@ class NavBar extends React.Component {
         this.props.logout();
     }
 
-    // Selectively render links dependent on whether the user is logged in
     getLinks() {
         if (this.props.loggedIn) {
             return (
-                <div>
-                    <Link to={'/profile'}>Profile</Link>
-                    <button onClick={this.logoutUser}>Logout</button>
+                <div className="links">
+                    <Link className="navbar-link" to={'/profile'}>Profile</Link>
+                    <button className="logout-button"  onClick={this.logoutUser}>Logout</button>
                 </div>
             );
         } else {
             return (
-                <div>
-                    <Link to={'/signup'}>Signup</Link>
-                    <Link to={'/login'}>Login</Link>
+                <div className="links">
+                    <Link className="navbar-link" to={'/signup'}>Signup</Link>
+                    <Link className="navbar-link" to={'/login'}>Login</Link>
                 </div>
             );
         }
@@ -37,8 +34,8 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>Crypto Galaxy</h1>
+            <div className="nav-bar">
+                <div className="logo"></div>
                 {this.getLinks()}
             </div>
         );
