@@ -42,7 +42,7 @@ class SignupForm extends React.Component {
         };
 
         this.props.signup(user, this.props.history).then(() => {
-            this.props.history.push(`./tweets`)
+            this.props.history.push(`./profile`)
         });
     }
 
