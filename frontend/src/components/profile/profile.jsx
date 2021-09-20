@@ -1,6 +1,5 @@
-// src/components/profile/profile.js
-
 import React from 'react';
+import './profile.css'
 
 class Profile extends React.Component {
     constructor(props) {

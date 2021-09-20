@@ -1,9 +1,7 @@
-// src/components/session/signup_form.js
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './signup.css'
-import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
     constructor(props) {
