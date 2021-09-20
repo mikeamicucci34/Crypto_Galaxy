@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Profile from './profile.jsx';
+import { fetchUser } from "../../actions/user_actions";
 
 const mapStateToProps = (state) => {
     debugger;
