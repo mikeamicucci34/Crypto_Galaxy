@@ -16,7 +16,9 @@ class Profile extends React.Component {
         }
     }
     componentDidMount(){
+        if (this.props.currentUser){
         this.props.fetchUser(this.props.currentUser.id);
+        }
     }
     componentWillReceiveProps(newState) {
  
