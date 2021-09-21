@@ -1,0 +1,130 @@
+.artwork_component{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.artwork__returnLink{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+.artwork__createComponent{
+    display: flex;
+    align-items: flex-start;
+    font-size: 36px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.artwork__createComponentUploadWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.artwork__createComponentUploadOuterWrapper{
+    display: flex;
+    gap: 50px;
+}
+
+.artwork__createComponentUploadWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.artwork__createComponentUpload h3{
+    display: flex;
+    align-items: flex-start;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.artwork__createComponentUploadButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    border: 2px dashed rgba(4, 4, 5, 0.1);
+    border-radius: 16px;
+}
+
+.artwork__createComponentUploadButton button{
+    border-color: transparent;
+    color: rgb(0, 102, 255);
+    background: rgba(0, 102, 255, 0.15);
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.artwork__createComponentSubmissionField{
+    display: flex;
+    border-width: 0px 0px 2px;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-left-color: initial;
+    border-image: initial;
+    min-height: 48px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    border-bottom-color: rgba(4, 4, 5, 0.07);
+    border-style: solid;
+    transition: all 0.12s ease-in-out 0s;
+    outline: none;
+}
+
+.artwork__createComponentSubmissionField input{
+    outline: none;
+    border: none;
+}
+
+.artwork__createComponentSubmissionFields{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+
+.artwork__previewComponent{
+    display: flex;
+    flex-direction: column;
+}
+
+.artwork__createComponentSubmissionButton{
+    margin-top: 20px;
+}
+
+.artwork__createComponentSubmissionButton input {
+    border-color: rgb(0, 102, 255);
+    color: rgb(255, 255, 255);
+    background: rgb(0, 102, 255);
+    padding-left: 26.4px;
+    padding-right: 26.4px;
+    min-width: 192px;
+    border: 1px solid transparent;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.artwork__previewComponentText{
+    display: flex;
+    align-items: center;
+    height: 300px;
+    width: 220px;
+    border-radius: 16px;
+    border: 1px solid rgba(4, 4, 5, 0.1);
+}
+
+.artwork__previewComponentText p{
+    margin: 20px;
+    font-size: 15px;
+    color: gray;
+}
