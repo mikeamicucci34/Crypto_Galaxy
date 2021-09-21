@@ -9,21 +9,20 @@ class NavBar extends React.Component {
         this.getLinks = this.getLinks.bind(this);
     }
 
-
-    // componentDidUpdate(){
-    //     if (!this.props.session.user){
-    //     this.forceUpdate()}
-    // }
-
     logoutUser(e) {
         e.preventDefault();
         this.props.logout();
     }
 
-
+    rerender(){
+        this.forceUpdate()
+    }
  
 
     getLinks() {
+        
+        if(this.props.loggedIn && !this.props.session.user.id) this.rerender()
+        
         
         if (this.props.loggedIn ) {
             
