@@ -33,6 +33,21 @@ router.get("/:id", (req, res) => {
     );
 });
 
+router.delete("/:id", (req, res) => {
+  Artwork.deleteOne({ _id: req.params.id }).then((artwork) => res.json(artwork)).catch((err) => res.status(404).json({deleteerror: "No nft found"}))
+})
+
+
+router.patch("/:id", (req, res) => {
+  try {
+    const artworkUpdate = Artwork.updateOne({ _id: req.params.id },
+      { $set: { title: req.body.title, description: req.body.description, price: req.body.price } });
+    res.json(artworkUpdate);
+  } catch {
+    res.json({msg:err})
+  }
+})
+
 
 // router.post('/',
 //     passport.authenticate('jwt', { session: false }),
