@@ -9,16 +9,27 @@ class NavBar extends React.Component {
         this.getLinks = this.getLinks.bind(this);
     }
 
+
+    // componentDidUpdate(){
+    //     if (!this.props.session.user){
+    //     this.forceUpdate()}
+    // }
+
     logoutUser(e) {
         e.preventDefault();
         this.props.logout();
     }
 
+
+ 
+
     getLinks() {
-        if (this.props.loggedIn) {
+        
+        if (this.props.loggedIn ) {
+            
             return (
                 <div className="links">
-                    <Link className="navbar-link" to={'/profile'}>Profile</Link>
+                    <Link className="navbar-link" to={`/user/${this.props.session.user.id}`}>Profile</Link>
                     <button className="logout-button"  onClick={this.logoutUser}>Logout</button>
                 </div>
             );
