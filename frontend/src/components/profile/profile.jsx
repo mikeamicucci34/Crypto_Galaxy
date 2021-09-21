@@ -12,10 +12,10 @@ class Profile extends React.Component {
 
     
     componentDidMount(){
-        if (this.props.currentUser){
-        this.props.fetchUser(this.props.currentUser.id);
+        if (this.props.currentUser !== 0){
+            this.props.fetchUser(this.props.currentUser.id);
         }
-        this.setState({user: this.props.user})
+            this.setState({user: this.props.user})
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -56,7 +56,7 @@ class Profile extends React.Component {
                     </div>
         } else if(this.state.toggle === "edit") {
             bio = <form className="user-bio" onSubmit={(e)=>this.submitBio(e)}>
-                        <textarea placeholder='Biography' onChange={this.update('bio')}></textarea>
+                        <textarea className="login-input" placeholder='Biography' onChange={this.update('bio')}></textarea>
                         <button className="login-button">Submit</button>
                   </form>
         }

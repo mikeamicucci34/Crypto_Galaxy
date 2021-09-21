@@ -8,6 +8,7 @@ import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import ArtworkCreateContainer from './artwork/artwork_create_container';
 import ArtworksContainer from './artwork/artwork_container'
+import { Route } from 'react-router-dom';
 
 import './app.css'
 
@@ -15,12 +16,12 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
+      <Route exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/create_artwork" component={ArtworkCreateContainer} />
       <ProtectedRoute exact path="/Artworks" component={ArtworksContainer} />
-      <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+      <ProtectedRoute exact path="/user/:userId" component={ProfileContainer} />
     </Switch>
   </div>
 );
