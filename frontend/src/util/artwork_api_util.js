@@ -18,7 +18,8 @@ export const updateArtwork = (artworkData) => {
 };
 
 export const deleteArtwork = (artworkId) => {
-    return axios.destroy(`/api/artworks/${artworkId}`, );
+   
+    return axios.delete(`/api/artworks/${artworkId}`, );
 };
 
 export const getUserArtwork = (userId) => {

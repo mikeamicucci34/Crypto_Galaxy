@@ -9,27 +9,34 @@ class Artwork extends React.Component {
     this.state = {
       artworks: [],
     };
+      
   }
 
   componentDidMount() {
     this.props.fetchArtworks();
   }
 
-  componentDidUpdate(prevProps) {
+      componentDidUpdate(prevProps) {
+        
       if (this.props.artworks.length !== prevProps.artworks.length) {
                   this.setState({ artworks: this.props.artworks });
         }
-  }
+      }
+      
+      refresh() {
+            this.props.fetchArtworks()
+      }
 
   render() {
     if (this.state.artworks.length === 0) {
       return <div>There are no Tweets</div>;
     } else {
+          
       return (
         <div>
           <h2>All Artworks</h2>
           {this.state.artworks.map((artwork) => (
-            <Artbox key={artwork._id} title={artwork.title} description={artwork.description} price={artwork.price} />
+                <Artbox key={artwork._id} title={artwork.title} description={artwork.description} price={artwork.price} deleteArtwork={this.props.deleteArtwork} artworkId={artwork._id} refresh={ this.refresh.bind(this)}/>
           ))}
         </div>
       );

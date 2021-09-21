@@ -7,7 +7,8 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import ArtworkCreateContainer from './artwork/artwork_create_container';
-import ArtworksContainer from './artwork/artwork_container'
+import ArtworksContainer from './artwork/artwork_container';
+import ArtworksUpdateContainer from './artwork/artwork_update_container'
 import './app.css'
 
 const App = () => (
@@ -18,6 +19,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/create_artwork" component={ArtworkCreateContainer} />
+      <ProtectedRoute exact path="/update_artwork/:artworkId" component={ArtworksUpdateContainer} />
       <ProtectedRoute exact path="/Artworks" component={ArtworksContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
     </Switch>
