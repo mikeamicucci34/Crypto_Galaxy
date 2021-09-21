@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const ArtworkSchema = new Schema({
     title: {
         type: String,
-        required: false
+        required: true
     },
     description: {
         type: String,
-        required: false
+        required: true
     },
     price: {
-        type: String,
-        required: false
+        type: Number,
+        required: true
     }
     // img: {
     //     type: Buffer,
