@@ -14,14 +14,11 @@ const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
-
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <AuthRoute exact path="/create_artwork" component={ArtworkCreateContainer}/>
-
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
-
     </Switch>
   </div>
 );

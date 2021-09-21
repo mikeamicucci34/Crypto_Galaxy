@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Profile from './profile.jsx';
-import { fetchUser } from "../../actions/user_actions";
+import { fetchUser, updateUser } from "../../actions/user_actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUser: userId => dispatch(fetchUser(userId))
+        fetchUser: userId => dispatch(fetchUser(userId)),
+        updateUser: user => dispatch(updateUser(user))
     };
 };
 

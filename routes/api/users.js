@@ -72,6 +72,26 @@ router.get("/", (req, res) => {
         .catch(err => res.status(404).json({ nooffersfound: "No offers found" }));
 });
 
+router.patch("/:id", (req, res) => {
+    User.findOne({ email: req.body.email }, (err, user) => {
+        if (err) {
+            return res.status(400).json(err);
+        } else {
+            user.update({ bio: req.body.bio }, (err, docs) => {
+                if (err) {
+                    return res.status(400).json(err);
+                } else {
+                    return res.json({
+                        id: user.id,
+                        handle: user.handle,
+                        email: user.email,
+                        bio: user.bio,
+                    });
+                }
+            });
+        }
+    });
+});
 
 
 router.post('/login', (req, res) => {
