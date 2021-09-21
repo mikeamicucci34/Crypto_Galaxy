@@ -5,7 +5,7 @@ import { fetchUser, updateUser } from "../../actions/user_actions";
 const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
-        user: state.users.user || {handle: ''}
+        user: state.users.user
     };
 };
 
