@@ -9,8 +9,11 @@ const mSTP = state => ({
     newArtwork: state.artworks.new
 });
 
-const mDTP = dispatch => ({
-    createArtwork: (artworkData) => dispatch(createArtwork(artworkData))
-})
+const mDTP = dispatch => {
+    debugger
+    return {
+        createArtwork: (artworkData) => dispatch(createArtwork(artworkData))
+    }
+}
 
 export default connect(mSTP, mDTP)(ArtworkCreate);

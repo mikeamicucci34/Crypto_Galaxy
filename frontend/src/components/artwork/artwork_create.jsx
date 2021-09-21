@@ -9,9 +9,9 @@ export default class ArtworkCreate extends Component {
 
       this.state = {
           title: "",
-          description: "",
-          price: "",
-          newArtwork: ""
+          // description: "",
+          // price: "",
+          // newArtwork: ""
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,10 +28,11 @@ export default class ArtworkCreate extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     let artwork = {
       title: this.state.title,
-      description: this.state.description,
-      price: this.state.price
+      // description: this.state.description,
+      // price: this.state.price
     };
 
     this.props.createArtwork(artwork); 

@@ -38,11 +38,14 @@ export const fetchArtworks = () => dispatch => (
     ))
 );
 
-export const createArtwork = (artworkData) => dispatch => (
-    APIUtil.createArtwork(artworkData).then((artwork) => (
-        dispatch((receiveArtwork(artwork)))
-    ))
-);
+export const createArtwork = (artworkData) => dispatch => {
+    debugger
+    return (
+        
+        APIUtil.createArtwork(artworkData).then((artwork) => (dispatch((receiveArtwork(artwork)))))
+    
+    )
+}
 
 export const updateArtwork = (artworkData) => dispatch => (
     APIUtil.updateArtwork(artworkData).then((artwork) => (

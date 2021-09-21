@@ -25,7 +25,7 @@ class Profile extends React.Component {
     }
 
     render() {
-        debugger;
+        
             return (
                 <div>
                     <h2>All of This User's Tweets</h2>
