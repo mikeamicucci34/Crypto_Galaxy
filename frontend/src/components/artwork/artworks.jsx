@@ -15,8 +15,10 @@ class Artwork extends React.Component {
     this.props.fetchArtworks();
   }
 
-  componentDidUpdate(newState) {
-    this.setState({ artworks: newState.artworks });
+  componentDidUpdate(prevProps) {
+      if (this.props.artworks.length !== prevProps.artworks.length) {
+                  this.setState({ artworks: this.props.artworks });
+        }
   }
 
   render() {
@@ -27,7 +29,7 @@ class Artwork extends React.Component {
         <div>
           <h2>All Artworks</h2>
           {this.state.artworks.map((artwork) => (
-            <Artbox key={artwork._id} text={artwork.title} />
+            <Artbox key={artwork._id} title={artwork.title} description={artwork.description} price={artwork.price} />
           ))}
         </div>
       );

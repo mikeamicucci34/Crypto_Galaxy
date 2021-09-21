@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const validateArtworkCreate = require('../../validation/artwork_create');
 const Artwork = require('../../models/Artwork'); 
-const { default: artworks } = require('../../frontend/src/components/artwork/artworks');
+
 
 
 router.get("/", (req, res) => {
@@ -50,4 +50,7 @@ router.post('/',
   
       newArtwork.save().then(artwork => res.json(artwork));
     }
-  );
+);
+  
+
+module.exports = router
