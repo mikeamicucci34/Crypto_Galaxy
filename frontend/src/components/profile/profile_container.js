@@ -3,7 +3,9 @@ import Profile from './profile.jsx';
 import { fetchUser, updateUser } from "../../actions/user_actions";
 
 const mapStateToProps = (state) => {
+    debugger;
     return {
+
         currentUser: state.session.user,
         user: state.users.user
     };
