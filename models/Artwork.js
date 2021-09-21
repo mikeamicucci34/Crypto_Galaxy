@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ArtworkSchema = new Schema({
+    // user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'users'
+    // },
     title: {
         type: String,
         required: true
@@ -13,11 +17,11 @@ const ArtworkSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    artworkImage: { 
+        type: String,
+        // required: true
     }
-    // img: {
-    //     type: Buffer,
-    //     required: true
-    // }
 }, {
     timestamps: true
 })
