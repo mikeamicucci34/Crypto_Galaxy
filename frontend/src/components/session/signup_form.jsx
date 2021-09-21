@@ -1,54 +1,51 @@
-// src/components/session/login_form.js
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import './signup.css'
 
-class LoginForm extends React.Component {
+class SignupForm extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             email: '',
+            handle: '',
             password: '',
+            password2: '',
             errors: {}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
+        this.clearedErrors = false;
     }
 
-    // Once the user has been authenticated, redirect to the Tweets page
     componentWillReceiveProps(nextProps) {
-        if (nextProps.currentUser === true) {
+        if (nextProps.signedIn === true) {
             this.props.history.push('/profile');
         }
 
-        // Set or clear errors
         this.setState({ errors: nextProps.errors })
     }
 
-    // Handle field updates (called in the render method)
     update(field) {
         return e => this.setState({
             [field]: e.currentTarget.value
         });
     }
 
-    // Handle form submission
     handleSubmit(e) {
         e.preventDefault();
-
         let user = {
             email: this.state.email,
-            password: this.state.password
+            handle: this.state.handle,
+            password: this.state.password,
+            password2: this.state.password2
         };
-
-        this.props.login(user).then(() => {
-            this.props.history.push(`./profile`)
-        });;
+        debugger;
+        this.props.signup(user, this.props.history).then(() => {
+            this.props.history.push(`/profile`)
+        });
     }
 
-    // Render the session errors if there are any
     renderErrors() {
         return (
             <ul>
@@ -63,28 +60,45 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
+            <div className="signup-form-container">
+                <form className="form" onSubmit={this.handleSubmit}>
+                        <br />
                         <input type="text"
                             value={this.state.email}
                             onChange={this.update('email')}
                             placeholder="Email"
+                            className="login-input"
+                        />
+                        <br />
+                        <input type="text"
+                            value={this.state.handle}
+                            onChange={this.update('handle')}
+                            placeholder="Handle"
+                            className="login-input"
                         />
                         <br />
                         <input type="password"
                             value={this.state.password}
                             onChange={this.update('password')}
                             placeholder="Password"
+                            className="login-input"
                         />
                         <br />
-                        <input type="submit" value="Submit" />
+                        <input type="password"
+                            value={this.state.password2}
+                            onChange={this.update('password2')}
+                            placeholder="Confirm Password"
+                            className="login-input"
+                        />
+                        <br />
+                        <input type="submit" value="Submit" className="login-button" />
                         {this.renderErrors()}
-                    </div>
+                        
                 </form>
+                <div className="footer"></div>
             </div>
         );
     }
 }
 
-export default withRouter(LoginForm);
+export default withRouter(SignupForm);

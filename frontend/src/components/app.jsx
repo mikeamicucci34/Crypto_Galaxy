@@ -7,6 +7,8 @@ import MainPage from './main/main_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
+import ArtworkCreateContainer from './artwork/artwork_create_container';
+import './app.css'
 
 const App = () => (
   <div>
@@ -16,6 +18,7 @@ const App = () => (
       <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
+      <AuthRoute exact path="/create_artwork" component={ArtworkCreateContainer}/>
 
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
 
