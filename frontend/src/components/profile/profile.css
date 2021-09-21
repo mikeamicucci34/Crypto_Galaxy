@@ -1,0 +1,12 @@
+
+
+
+#midCard{
+    display: flex;
+    margin-left: 30%;
+    width: 35%;
+    margin-top: 80px;
+    height: 500px;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+}
