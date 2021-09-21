@@ -1,0 +1,39 @@
+/* .wholePage{
+    background-image: url(../../assets/blue.png);
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    width: 1600px;;
+    height: 800px;
+    opacity: .8; 
+} */
+
+
+.headers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 1000px;
+    font-family: Ramabhadra-Regular;
+}
+
+.headers h1{
+    margin-top: 50px;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.headers h2{
+    font-size: 25px;
+    margin-bottom: 300px;
+}
+
+.bottomRocks{
+    background-image: url(../../assets/blue.png);
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    width: 1600px;;
+    height: 800px;
+    opacity: .8; 
+}

@@ -15,10 +15,15 @@ class Profile extends React.Component {
         if (this.props.currentUser){
         this.props.fetchUser(this.props.currentUser.id);
         }
+        this.setState({user: this.props.user})
     }
 
-    componentDidUpdate(){
-        this.props.fetchUser(this.props.currentUser.id)
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.user && prevProps.user){
+            if(prevState.bio !== this.props.user.bio && prevState.toggle === 'show'){           
+                    this.props.fetchUser(this.props.user.id)
+            }
+        }
     }
     
     submitBio(e){
