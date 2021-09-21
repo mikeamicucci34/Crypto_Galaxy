@@ -9,7 +9,6 @@ export const fetchArtworks = () => {
 };
 
 export const createArtwork = (artworkData) => {
-    debugger
     return axios.post('/api/artworks', artworkData);
 };
 
