@@ -25,6 +25,7 @@ class LoginForm extends React.Component {
 
         // Set or clear errors
         this.setState({ errors: nextProps.errors })
+        console.log(nextProps);
     }
 
     // Handle field updates (called in the render method)
@@ -44,9 +45,12 @@ class LoginForm extends React.Component {
         };
 
         this.props.login(user).then((res) => {
-            if (res) this.props.history.push(`./profile`);
+            if (res) {
+                this.props.history.push(`./profile`)
+            }
         });;
     }
+    
 
     // Render the session errors if there are any
     renderErrors() {
