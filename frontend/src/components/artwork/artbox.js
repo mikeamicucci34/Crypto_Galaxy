@@ -1,11 +1,12 @@
 import React from 'react'
 
-export default function Artbox() {
+export default function Artbox(props) {
+    
     return (
         <div>
-             <h3>{this.props.title}</h3>
-             {/* <h3>{this.props[1]}</h3>
-             <h3>{this.props[2]}</h3> */}
+             <h3>{props.title}</h3>
+             <h3>{props.description}</h3>
+             <h3>{props.price}</h3>
         </div>
     )
 }
