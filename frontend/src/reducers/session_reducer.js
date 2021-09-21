@@ -8,12 +8,13 @@ const initialState = {
 };
 
 const SessionReducer = (state = initialState, action ) => {
+    debugger;
     switch (action.type) {
       case RECEIVE_CURRENT_USER:
         return {
           ...state,
           isAuthenticated: !!action.currentUser,
-          
+          user: action.currentUser
         };
       case RECEIVE_USER_LOGOUT:
         return {

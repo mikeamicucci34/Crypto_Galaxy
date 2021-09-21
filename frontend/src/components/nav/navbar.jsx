@@ -7,13 +7,12 @@ class NavBar extends React.Component {
         super(props);
         this.logoutUser = this.logoutUser.bind(this);
         this.getLinks = this.getLinks.bind(this);
+        this.state={
+            currentUser:''
+        }
+        
     }
 
-
-    // componentDidUpdate(){
-    //     if (!this.props.session.user){
-    //     this.forceUpdate()}
-    // }
 
     logoutUser(e) {
         e.preventDefault();
@@ -24,7 +23,6 @@ class NavBar extends React.Component {
  
 
     getLinks() {
-        
         if (this.props.loggedIn ) {
             
             return (
