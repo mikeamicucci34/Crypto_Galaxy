@@ -33,13 +33,13 @@ export const fetchArtwork = artworkId => dispatch => (
 );
 
 export const fetchArtworks = () => dispatch => (
-    APIUtil.fetchArtworks().then(() => (
-        dispatch((receiveArtworks()))
+    APIUtil.fetchArtworks().then((artworks) => (
+        dispatch((receiveArtworks(artworks)))
     ))
 );
 
 export const createArtwork = (artworkData) => dispatch => {
-    debugger
+    
     return (
         
         APIUtil.createArtwork(artworkData).then((artwork) => (dispatch((receiveArtwork(artwork)))))

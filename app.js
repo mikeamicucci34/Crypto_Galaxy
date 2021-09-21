@@ -6,8 +6,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const users = require("./routes/api/users");
-const artworks = require('./routes/api/artwork');
-// const tweets = require("./routes/api/tweets");
+
+const artworks = require("./routes/api/artworks");
+
 const path = require('path');
 const bodyParser = require('body-parser');
 require('dotenv').config({ path: './frontend/env' }) //dpible check correct path
@@ -27,6 +28,7 @@ require('./config/passport')(passport);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 app.use("/api/users", users);
 app.use("/api/artworks", artworks);
 

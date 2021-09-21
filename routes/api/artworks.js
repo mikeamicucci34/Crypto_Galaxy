@@ -8,7 +8,6 @@ const Aws = require('aws-sdk')
 require('dotenv').config() //dpible check correct path
 const validateArtworkCreate = require('../../validation/artwork_create');
 const Artwork = require('../../models/Artwork'); 
-// const { default: artworks } = require('../../frontend/src/components/artwork/artworks');
 
 
 router.get("/", (req, res) => {
