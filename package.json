@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/mikeamicucci34/Crypto_Galaxy#readme",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.0.0-rc.1",
     "aws-sdk": "^2.991.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
