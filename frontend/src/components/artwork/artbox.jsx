@@ -1,25 +1,36 @@
 import React from 'react'
 import './artbox.css'
 import { motion } from "framer-motion"
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from 'react-router-dom'
 
-
-export default function Artbox(props) {
+export default class Artbox extends React.Component {
     
-    return (
-        <motion.div 
+
+    handleDelete() {
+        this.props.deleteArtwork(this.props.artworkId)
+        this.props.refresh()
+    }
+    
+    render() {
+
+        return (
+            <motion.div 
             className="art-card"
             whileHover={{ scale: 1.1 }}
             >
-             <div className="nft"></div>
-             <div>
-             <h3>{props.title}</h3>
-             </div>
-             <h3>{props.description}</h3>
-             <h3>{props.price}</h3>
-        </motion.div>
-    )
+                <div className="nft"></div>
+                <div>
+                <h3>{this.props.title}</h3>
+                </div>
+                <h3>{this.props.description}</h3>
+                <h3>{this.props.price}</h3>
+                <button onClick={() => this.handleDelete()}>Delete</button>
+                <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
+            </motion.div>
+        )
+    }
 }
+
 
 
 
