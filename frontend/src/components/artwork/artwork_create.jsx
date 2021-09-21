@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArtBox from './artbox';
+// import ArtBox from './artbox';
 
 export default class ArtworkCreate extends Component {
     constructor(props) {
@@ -7,37 +7,34 @@ export default class ArtworkCreate extends Component {
 
       this.state = {
           title: "",
-          description: "",
-          price: "",
-          newArtwork: ""
+          // description: "",
+          // price: "",
+          // newArtwork: ""
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
-  componentWillReceiveProps(nextProps) {
+  // componentDidUpdate(nextProps) {
       
-      this.setState({newArtwork: [
-          nextProps.newArtwork.title,
-            nextProps.newArtwork.description,
-          nextProps.newArtwork.price,
-      ]
-    });
-  }
+  //     this.setState({newArtwork: nextProps.newArtwork.title,
+  //   });
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
+    debugger
     let artwork = {
       title: this.state.title,
-      description: this.state.description,
-      price: this.state.price
+      // description: this.state.description,
+      // price: this.state.price
     };
 
     this.props.createArtwork(artwork); 
     this.setState({
         title: "",
-        description: "",
-        price: ""
+        // description: "",
+        // price: ""
 
     })
   }
@@ -57,16 +54,16 @@ export default class ArtworkCreate extends Component {
                         onChange={this.update('title')}
                         placeholder="Write your Title..."
                     />
-                    <input type="textarea"
+                    {/* <input type="textarea"
                         value={this.state.description}
                         onChange={this.update('description')}
                         placeholder="Write your Description..."
-                    />
-                    <input type="number"
+                    /> */}
+                    {/* <input type="number"
                         value={this.state.price}
                         onChange={this.update('price')}
                         placeholder="Insert Price..."
-                    />
+                    /> */}
                     <input type="submit" value="Submit" />
                 </div>
             </form>
