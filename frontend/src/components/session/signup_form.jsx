@@ -19,10 +19,7 @@ class SignupForm extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.signedIn === true) {
-            this.props.history.push('/profile');
-        }
-
+       
         this.setState({ errors: nextProps.errors })
     }
 
@@ -42,8 +39,7 @@ class SignupForm extends React.Component {
         };
         this.props.signup(user).then((res) => {
             if (res.type !== "RECEIVE_SESSION_ERRORS") {
-                this.props.login({email: this.state.email, password: this.state.password,})
-                this.props.history.push(`/profile`)}
+                this.props.login({email: this.state.email, password: this.state.password,})}
         });
     }
 
