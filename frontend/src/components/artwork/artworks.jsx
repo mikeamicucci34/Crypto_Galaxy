@@ -10,22 +10,29 @@ class Artwork extends React.Component {
     this.state = {
       artworks: [],
     };
+      
   }
 
   componentDidMount() {
     this.props.fetchArtworks();
   }
 
-  componentDidUpdate(prevProps) {
+      componentDidUpdate(prevProps) {
+        
       if (this.props.artworks.length !== prevProps.artworks.length) {
                   this.setState({ artworks: this.props.artworks });
         }
-  }
+      }
+      
+      refresh() {
+            this.props.fetchArtworks()
+      }
 
   render() {
     if (this.state.artworks.length === 0) {
       return null;
     } else {
+          
       return (
         <div className="arts-container">
           <div className="artwork-grid">
