@@ -1,0 +1,18 @@
+.art-card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    border-radius: 25px;
+    padding: 20px;
+    width: 200px;
+    height: 300px;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.nft{
+    width: 90%;
+    height: 70%;
+    background-color: white;
+}
