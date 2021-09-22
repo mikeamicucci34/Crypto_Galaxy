@@ -45,8 +45,8 @@ class NavBar extends React.Component {
     render() {
         return (
             <div className="nav-bar">
-                <Link to="/">
-                <div className="logo"></div>
+                <Link className="logo" to="/">
+                <h1 className="logo" >Crypto Galaxy</h1>
                 </Link>
                 {this.getLinks()}
             </div>
