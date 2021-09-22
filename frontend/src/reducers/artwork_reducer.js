@@ -12,7 +12,7 @@ const ArtworksReducer = (state = { all: {}, user: {}, new: undefined }, action) 
         case RECEIVE_ARTWORK:
             newState.all = {0: action.artwork.data}
             return newState
-            // debugger
+         
             // return {...state, ...action.artwork.data}
             // return newState.all = action.artwork.data
             // return Object.assign({}, state, action.artwork.data)
