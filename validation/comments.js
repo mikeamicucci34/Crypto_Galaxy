@@ -5,7 +5,7 @@ const validText = require('./valid-text');
 module.exports = function validateComment(data) {
     let errors = {}
 
-    data.body = validText(data.body) ? data.text : "";
+    data.body = validText(data.body) ? data.body : "";
 
     if (!Validator.isLength(data.body, {min: 4, max: 100})){
         errors.body = 'A Comment must be between 4 and 100 chars'

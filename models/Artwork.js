@@ -21,6 +21,10 @@ const ArtworkSchema = new Schema({
     artworkImage: { 
         type: String,
         // required: true
+    },
+    comments: {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
     }
 }, {
     timestamps: true
