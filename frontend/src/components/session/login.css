@@ -39,7 +39,20 @@
     position: absolute;
     top: 250px;
     z-index: -1;
+    animation: swell 7s ease -1.25s infinite; 
+    transform: translate3d(0,0,0,);
 }
+
+
+
+@keyframes swell {
+    0%, 100% {
+      transform: translate3d(0,-50px,0);
+    }
+    50% {
+      transform: translate3d(0,5px,0);
+    }
+  }
 
 
 .login-input{
