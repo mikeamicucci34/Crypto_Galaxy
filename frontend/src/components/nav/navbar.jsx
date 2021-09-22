@@ -7,6 +7,10 @@ class NavBar extends React.Component {
         super(props);
         this.logoutUser = this.logoutUser.bind(this);
         this.getLinks = this.getLinks.bind(this);
+        this.state={
+            currentUser:''
+        }
+        
     }
 
     logoutUser(e) {
@@ -14,11 +18,17 @@ class NavBar extends React.Component {
         this.props.logout();
     }
 
+    rerender(){
+        this.forceUpdate()
+    }
+ 
+
     getLinks() {
-        if (this.props.loggedIn) {
+        if (this.props.loggedIn ) {
+            
             return (
                 <div className="links">
-                    <Link className="navbar-link" to={'/profile'}>Profile</Link>
+                    <Link className="navbar-link" to={`/user/${this.props.session.user.id}`}>Profile</Link>
                     <button className="logout-button"  onClick={this.logoutUser}>Logout</button>
                 </div>
             );
@@ -35,7 +45,9 @@ class NavBar extends React.Component {
     render() {
         return (
             <div className="nav-bar">
-                <div className="logo"></div>
+                <Link className="logo" to="/">
+                <h1 className="logo" >Crypto Galaxy</h1>
+                </Link>
                 {this.getLinks()}
             </div>
         );

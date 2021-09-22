@@ -8,9 +8,12 @@
 
 .logo{
     margin-left: 20px;
-    width: 215px;
-    height: 88px;
-    background-image: url(../../assets/logo.png);
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 1.5em;
+    background: -webkit-linear-gradient( #b621fe, #1fd1f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 
@@ -24,6 +27,7 @@
     width: 200px;
     margin: 20px;
 }
+
 
 .navbar-link{
     text-align: center;
@@ -45,7 +49,6 @@
     background-image: linear-gradient(to right, #b621fe, #1fd1f9);
     color: white;
     border: none;
-    font: 16px times ;
 }
 
 .logout-button:hover{

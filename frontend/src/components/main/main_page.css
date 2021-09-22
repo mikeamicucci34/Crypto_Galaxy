@@ -1,0 +1,76 @@
+/* .wholePage{
+    background-image: url(../../assets/blue.png);
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    width: 1600px;;
+    height: 800px;
+    opacity: .8; 
+} */
+
+
+.landing-page{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Ramabhadra-Regular;
+    gap: 30px;
+    margin-top: 100px;
+}
+
+.landing-page h1{
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.landing-page h2{
+    font-size: 25px;
+}
+
+.landing{
+    display: flex;
+    flex-direction: column;
+}
+
+.all-art{
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    height: 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    color: white;
+    border: none;
+    width: 20%;
+    height: 15%;
+}
+
+.all-art-link{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    text-align: center;
+}
+
+.all-art:hover{
+    cursor: pointer;
+}
+
+.bottomRocks{
+    background-image: url(../../assets/blue.png);
+    background-repeat: no-repeat;
+    background-size: 100% 600px;
+    width: 1600px;
+    height: 500px;
+    
+    opacity: .8; 
+    z-index: -1;
+    margin-bottom: 0;
+    /* align-self: flex-end; */
+}
+
+/* .wholePage{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+} */
+

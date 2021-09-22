@@ -2,33 +2,49 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const multer = require('multer')           
+const Aws = require('aws-sdk')
+const multerS3 = require('multer-s3')
+// const fs = require('fs');
+// const fileType = require('file-type');
+// const multiparty = require('multiparty');                
+// require('dotenv').config({ path: '../.env' }) //dpible check correct path
+require('dotenv').config() //dpible check correct path
 const validateArtworkCreate = require('../../validation/artwork_create');
 const Artwork = require('../../models/Artwork'); 
-
 
 
 router.get("/", (req, res) => {
   Artwork.find()
     .sort({ date: -1 })
     .then((artworks) => res.json(artworks))
-    .catch((err) => res.status(404).json({ noartworkfound: "No tweets found" }));
+    .catch((err) => res.status(404).json({ noartworkfound: "No artwork found" }));
 });
 
-router.get("/user/:user_id", (req, res) => {
-  Artwork.find({ user: req.params.user_id })
-    .then((artworks) => res.json(artworks))
-    .catch((err) =>
-      res.status(404).json({ noartworkfound: "No tweets found from that user" })
-    );
-});
+
+router.get('/user/:userId', (req, res)=> {
+  Artwork.find({user: req.params.userId})
+  .sort({date: -1})
+  .then(artworks => res.json(artworks))
+  .catch(err=> res.status(404).json({noArtsFound: 'This user did not share any arts yet'}))
+})
+
+// router.get("/user/:userId", (req, res) => {
+//   Artwork.find({ user: req.params.userId })
+//     .then((artworks) => res.json(artworks))
+//     .catch((err) =>
+//       res.status(404).json({ noartworkfound: "No artworks found from that user" })
+//     );
+// });
 
 router.get("/:id", (req, res) => {
   Artwork.findById(req.params.id)
     .then((artwork) => res.json(artwork))
     .catch((err) =>
-      res.status(404).json({ noartworkfound: "No tweet found with that ID" })
+      res.status(404).json({ noartworkfound: "No artwork found with that ID" })
     );
 });
+
 
 router.delete("/:id", (req, res) => {
   Artwork.deleteOne({ _id: req.params.id }).then((artwork) => res.json(artwork)).catch((err) => res.status(404).json({deleteerror: "No nft found"}))
@@ -59,27 +75,137 @@ router.patch("/:id", (req, res) => {
   })
 })
 
+// const multerMemoryStorage = multer.memoryStorage();
+// const multerUploadInMemory = multer({
+//     storage: multerMemoryStorage
+// });
 
-router.post('/',
-    passport.authenticate('jwt', { session: false }),
-    (req, res) => {
-      const { errors, isValid } = validateArtworkCreate(req.body);
-  
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
-  
-      const newArtwork = new Artwork({
-        title: req.body.title,
-        // user: req.user.id,
-        description: req.body.description,
-        price: req.body.price
-        
-      });
-  
-      newArtwork.save().then(artwork => res.json(artwork));
+// router.post('/',multerUploadInMemory.single("artworkImage"),async(req, res)=>{
+//     debugger;
+//     try{
+
+//         if(!req.file || !req.file.buffer){
+//             throw new Error("File or buffer not found");
+//         }
+
+//         const uploadResult = await S3.upload({
+//                     Bucket: process.env.AWS_BUCKET_NAME,     
+//                     Key: req.file.originalname,   
+//                     // Key: "WhateverKeynameYouWantToGive",
+//                     Body: req.file.buffer,
+//                     ACL: 'public-read'
+//                 }).promise();
+
+//         console.log(`Upload Successful!`);
+
+//         res.send({
+//             message: "file uploaded"
+//         })
+
+
+
+//     }catch(e){
+//         console.error(`ERROR: ${e.message}`);
+
+//         res.status(500).send({
+//             message: e.message
+//         })
+//     }
+
+// });
+
+
+//aws upload
+
+const storage = multer.memoryStorage({
+    destination: function (req, file, cb) {
+        cb(null, '')
     }
-);
-  
+})
+
+const filefilter = (req, file, cb) => {
+    const allowedMimes = [
+      'image/jpeg',
+      'image/pjpeg',
+      'image/png',
+      'image/gif',
+    ];
+    // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+    if (allowedMimes.includes(file.mimetype)) {
+
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+
+const upload = multer({ storage: storage, fileFilter: filefilter });
+
+// attempt using s3 multer package
+
+const s3 = new Aws.S3({
+    accessKeyId:process.env.AWS_ACCESS_KEY_ID,              
+    secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       
+})
+
+// const upload = multer({
+//   storage: multerS3({
+//     s3: s3,
+//     bucket: process.env.AWS_BUCKET_NAME,
+//     metadata: function (req, file, cb) {
+//       cb(null, {fieldName: file.fieldname});
+//     },
+//     key: function (req, file, cb) {
+//       cb(null, Date.now().toString())
+//     },
+//     ACL: "public-read-write",
+//     contentType: multerS3.AUTO_CONTENT_TYPE,
+//   })
+// })
+
+
+
+router.post('/', upload.single('artworkImage'), (req, res) => {
+
+    console.log(req.file)
+
+    const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,     
+        Key: req.body.title,               
+        Body: req.file.buffer,                    
+        ACL: "public-read-write",                 
+        ContentType: "image/jpeg"                 
+    };
+
+    s3.upload(params,(error,data)=>{
+        if(error){
+            res.status(500).json(err); 
+        }
+
+
+    const artwork = new Artwork({
+            title: req.body.title,
+            description: req.body.description,
+            price: req.body.price,
+            artworkImage: data.Location,
+            user: req.body.user
+        });
+        artwork.save()
+            .then(result => {
+                res.status(200).send({
+                    _id: result._id,
+                    title: result.title,
+                    description: result.description,
+                    price: result.price,
+                    artworkImage: data.Location,
+                    user: result.user
+                })
+            })
+            .catch(err => {
+                res.json(err); 
+          })
+    })
+})
 
 module.exports = router
+

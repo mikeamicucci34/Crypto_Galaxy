@@ -26,11 +26,13 @@ export const receiveUserArtworks = artworks => ({
   artworks
 });
 
-export const fetchArtwork = artworkId => dispatch => (
-    APIUtil.fetchArtwork(artworkId).then((artwork) => (
+export const fetchArtwork = artworkId => dispatch => {
+    
+    return (
+        APIUtil.fetchArtwork(artworkId).then((artwork) => (
         dispatch((receiveArtwork(artwork)))
-    ))
-);
+    )))
+};
 
 export const fetchArtworks = () => dispatch => (
     APIUtil.fetchArtworks().then((artworks) => (
@@ -61,7 +63,7 @@ export const deleteArtwork = (artworkId) => dispatch => (
 
 export const getUserArtwork = (userId) => dispatch => (
     APIUtil.getUserArtwork(userId).then((artworks) => (
-        dispatch((receiveUserArtworks(artworks)))
-    ))
+        dispatch((receiveUserArtworks(artworks)))  
+    )).catch(err => console.log(err))
 );
 

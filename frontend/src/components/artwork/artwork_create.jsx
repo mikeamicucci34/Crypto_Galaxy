@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ArtBox from './artbox';
 import { Link } from 'react-router-dom';
 import './artwork_create.css'
 
@@ -9,14 +8,25 @@ export default class ArtworkCreate extends Component {
 
       this.state = this.props.artwork
 
+      // this.state = {
+      //   title: "",
+      //   description: "",
+      //   price: "",
+      //   artworkImage: null,
+      //   file: null
+      // }
+
       this.handleSubmit = this.handleSubmit.bind(this);
+      // this.handleImageUpload = this.handleImageUpload.bind(this)
   } 
+
 
   // componentWillReceiveProps(nextProps) {
   //         this.setState({newArtwork: {
   //         title: nextProps.newArtwork.title,
   //         description: nextProps.newArtwork.description,
-  //         price: nextProps.newArtwork.price
+  //         price: nextProps.newArtwork.price,
+  //         artworkImage: nextProps.newArtwork.artworkImage
   //     }
   //   });
   // }
@@ -24,17 +34,33 @@ export default class ArtworkCreate extends Component {
   handleSubmit(e) {
     e.preventDefault();
     
-    let artwork = {
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price
-    };
+    // let artwork = {
+    //   // title: this.state.title,
+    //   // description: this.state.description,
+    //   // price: this.state.price,
+    //   // how to send image in post request, not a string
+    //   // artworkImage: this.state.artworkImage
+    // };
 
-    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+    
+
+    
+    let artwork = new FormData() 
+      artwork.append('title', this.state.title)
+      artwork.append('description', this.state.description)
+      artwork.append('price', this.state.price)
+      artwork.append('artworkImage', this.state.artworkImage[0])
+
+      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+    
+    // this.props.submitArtwork(artwork); 
+    
     this.setState({
         title: "",
         description: "",
-        price: ""
+        price: "",
+        artworkImage: null,
+        file: null
     })
   }
 
@@ -43,29 +69,34 @@ export default class ArtworkCreate extends Component {
       [field]: e.currentTarget.value,
   })}
 
+  // artworkChange(e) {
+  //   if (e.target.files.length !== 0) {
+  //     return (e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })
+  //   }
+  // }
+
+
   render() {
-  
+
     return (
       <>
-      <div className="artwork__returnLink">
-              <Link to='/'>
-                Return back to user profile
-              </Link>
-      </div>
       <div className='artwork_component'>
             <div className="artwork__createComponent">
               <h2>{this.props.formType}</h2>
             </div>
         <div className="artwork__createComponentUploadOuterWrapper">
           <div className="artwork__createComponentUploadWrapper">
-            <div className="artwork__createComponentUpload">
-              <h3>Upload File</h3>
-              <div className="artwork__createComponentUploadButton">
-                <p> PNG, GIF, WEBP, MP4 or MP3. Max 100mb. </p>
-                <button>Choose File</button>
+              <form onSubmit={this.handleSubmit} encType="multipart/form-data">
+              <div className="artwork__createComponentUpload">
+                  <h3>Upload File</h3>
+                <div className="artwork__createComponentUploadButton">
+                  <p> .image, .jpeg, .png, .gif Max 100mb. </p>
+                  
+                    <input type='file' name="artworkImage" 
+                        onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
+                        multiple={false}/> 
+                </div>
               </div>
-            </div>
-              <form onSubmit={this.handleSubmit} >
                   <div className="artwork__createComponentSubmissionFields">
                     <div className="artwork__createComponentSubmissionTitle">
                       <p>Title</p>
@@ -107,12 +138,15 @@ export default class ArtworkCreate extends Component {
             <div className="artwork__previewComponent">
               <h3>Preview</h3>
               <div className="artwork__previewComponentText">
-                <p>Upload file or preview your brand new NFT</p>
+                {(this.state.file) ? <img src={this.state.file} />
+                  :
+                 <p>Upload file to preview your brand new NFT</p>
+                }
               </div>
             </div>
           </div>
         </div>
-        <ArtBox artwork={ this.state.newArtwork }/>
+
       </>
     )
   }

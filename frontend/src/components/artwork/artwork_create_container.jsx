@@ -11,13 +11,13 @@ const mSTP = state => ({
         title: "",
         description: "",
         price: "",
-        newArtwork: ""
+        newArtwork: "",
+        artworkImage: null
     },
     formType: 'Create Artwork'
 });
 
 const mDTP = dispatch => {
-    
     return {
         submitArtwork: (artworkData) => dispatch(createArtwork(artworkData))
     }

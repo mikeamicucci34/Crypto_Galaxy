@@ -9,7 +9,6 @@ export const fetchArtworks = () => {
 };
 
 export const createArtwork = (artworkData) => {
-   
     return axios.post('/api/artworks', artworkData);
 };
 
@@ -23,5 +22,5 @@ export const deleteArtwork = (artworkId) => {
 };
 
 export const getUserArtwork = (userId) => {
-    return axios.get(`/api/artworks/user/${userId}`, );
+    return axios.get(`/api/artworks/user/${userId}`);
 };

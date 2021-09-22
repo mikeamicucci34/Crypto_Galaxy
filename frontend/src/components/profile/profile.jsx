@@ -10,22 +10,32 @@ class Profile extends React.Component {
         }
     }
 
-    
-    componentDidMount(){
-        if (this.props.currentUser){
-        this.props.fetchUser(this.props.currentUser.id);
-        }
+    componentWillMount(){
+        this.props.getUserArtwork(this.props.currentUser.id)
     }
 
-    componentDidUpdate(){
-        this.props.fetchUser(this.props.currentUser.id)
+    
+    componentDidMount(){
+        if (this.props.currentUser !== 0){
+            this.props.fetchUser(this.props.currentUser.id);
+            
+        }
+            this.setState({user: this.props.user})
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(this.props.user && prevProps.user){
+            if(prevState.bio !== this.props.user.bio && prevState.toggle === 'show'){           
+                    this.props.fetchUser(this.props.user.id)
+            }
+        }
     }
     
     submitBio(e){
         e.preventDefault();
         let user= {
             email: this.props.user.email,
-            handle: this.state.bio,
+            handle: this.state.handle,
             bio: this.state.bio,
             id: this.props.user._id
         }
@@ -41,25 +51,28 @@ class Profile extends React.Component {
         }
     }
     render() {
-        if (!this.props.user) return null;
-        console.log(this.state.toggle);
+        if (!this.props.user) return null
+        console.log(this.state);
         let bio;
         if(this.state.toggle === "show"){
-            bio = <div>
+            bio = <div className="user-bio">
                         <div>{this.props.user.bio}</div>
-                        <button onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
+                        <button className="login-button" onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
                     </div>
         } else if(this.state.toggle === "edit") {
-            bio = <form onSubmit={(e)=>this.submitBio(e)}>
-                        <textarea placeholder='Biography' onChange={this.update('bio')}></textarea>
-                        <button>Submit</button>
+            bio = <form className="user-bio" onSubmit={(e)=>this.submitBio(e)}>
+                        <textarea className="login-input" placeholder='Biography' onChange={this.update('bio')}></textarea>
+                        <button className="login-button">Submit</button>
                   </form>
         }
         
             return (
                 <div id="midCard">
-                    <h1>Username: {this.props.user.handle}</h1>
+                    <div className="profilePic"></div>
+                    <div className="user-info">
+                    <h1>{this.props.user.handle}</h1>
                     {bio}
+                    </div>
                 </div>
             );
         

@@ -21,8 +21,10 @@ class EditArtWork extends React.Component {
 
 const mSTP = (state, ownProps) => {
       return {
-            artwork: state.artworks.new,
-            formType: 'Update Artwork'}
+            artwork: state.artworks.all[0],
+            formType: 'Update Artwork'
+      }
+      
 }
 
 const mDTP = (dispatch) => ({
