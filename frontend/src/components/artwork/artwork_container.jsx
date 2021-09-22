@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { fetchArtworks } from "../../actions/artwork_actions";
-import Artwork from "./artworks";
+import { deleteArtwork, fetchArtworks } from "../../actions/artwork_actions";
+import Artworks from "./artworks";
 
 const mapStateToProps = (state) => {
   return {
@@ -10,8 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchArtworks: () => dispatch(fetchArtworks()),
+        fetchArtworks: () => dispatch(fetchArtworks()),
+        deleteArtwork: (artworkId) => dispatch(deleteArtwork(artworkId))
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Artwork);
+export default connect(mapStateToProps, mapDispatchToProps)(Artworks);

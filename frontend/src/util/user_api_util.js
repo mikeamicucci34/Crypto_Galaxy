@@ -8,3 +8,6 @@ export const getUsers = () => {
     return axios.get("/api/users");
 };
 
+export const editUser = (user) => {
+    return axios.patch(`/api/users/${user.id}`,user)
+}

@@ -1,41 +1,40 @@
 import React, { Component } from 'react'
-// import ArtBox from './artbox';
+import ArtBox from './artbox';
+import { Link } from 'react-router-dom';
+import './artwork_create.css'
 
 export default class ArtworkCreate extends Component {
     constructor(props) {
       super(props);
 
-      this.state = {
-          title: "",
-          // description: "",
-          // price: "",
-          // newArtwork: ""
-      }
+      this.state = this.props.artwork
 
       this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
-  // componentDidUpdate(nextProps) {
-      
-  //     this.setState({newArtwork: nextProps.newArtwork.title,
+  // componentWillReceiveProps(nextProps) {
+  //         this.setState({newArtwork: {
+  //         title: nextProps.newArtwork.title,
+  //         description: nextProps.newArtwork.description,
+  //         price: nextProps.newArtwork.price
+  //     }
   //   });
   // }
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger
+    
     let artwork = {
       title: this.state.title,
-      // description: this.state.description,
-      // price: this.state.price
+      description: this.state.description,
+      price: this.state.price
     };
 
-    this.props.createArtwork(artwork); 
+    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
     this.setState({
         title: "",
-        // description: "",
-        // price: ""
-
+        description: "",
+        price: ""
     })
   }
 
@@ -45,31 +44,76 @@ export default class ArtworkCreate extends Component {
   })}
 
   render() {
+  
     return (
-        <div>
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <input type="text"
-                        value={this.state.title}
-                        onChange={this.update('title')}
-                        placeholder="Write your Title..."
-                    />
-                    {/* <input type="textarea"
-                        value={this.state.description}
-                        onChange={this.update('description')}
-                        placeholder="Write your Description..."
-                    /> */}
-                    {/* <input type="number"
-                        value={this.state.price}
-                        onChange={this.update('price')}
-                        placeholder="Insert Price..."
-                    /> */}
-                    <input type="submit" value="Submit" />
-                </div>
-            </form>
-            <br />
-            {/* <ArtBox props={this.state.newArtwork}/> */}
+      <>
+      <div className="artwork__returnLink">
+              <Link to='/'>
+                Return back to user profile
+              </Link>
+      </div>
+      <div className='artwork_component'>
+            <div className="artwork__createComponent">
+              <h2>{this.props.formType}</h2>
+            </div>
+        <div className="artwork__createComponentUploadOuterWrapper">
+          <div className="artwork__createComponentUploadWrapper">
+            <div className="artwork__createComponentUpload">
+              <h3>Upload File</h3>
+              <div className="artwork__createComponentUploadButton">
+                <p> PNG, GIF, WEBP, MP4 or MP3. Max 100mb. </p>
+                <button>Choose File</button>
+              </div>
+            </div>
+              <form onSubmit={this.handleSubmit} >
+                  <div className="artwork__createComponentSubmissionFields">
+                    <div className="artwork__createComponentSubmissionTitle">
+                      <p>Title</p>
+                    </div>
+                    <div className="artwork__createComponentSubmissionField">
+                        <input type="text"
+                            value={this.state.title}
+                            onChange={this.update('title')}
+                            placeholder="Write your Title..."
+                        />
+                      </div>
+                      <div className="artwork__createComponentSubmissionDescription">
+                        <p>Description</p>
+                      </div>
+                      <div className="artwork__createComponentSubmissionField">
+                        <input type="textarea"
+                            value={this.state.description}
+                            onChange={this.update('description')}
+                            placeholder="Write your Description..."
+                        />
+                      </div>
+                      <div className="artwork__createComponentSubmissionPrice">
+                        <p>Price</p>
+                      </div>
+                      <div className="artwork__createComponentSubmissionField">
+                        <input type="number"
+                            value={this.state.price}
+                            onChange={this.update('price')}
+                            placeholder="Insert Price..."
+                        />
+                      </div>
+                      <div className="artwork__createComponentSubmissionButton">
+                        <input type="submit" value={this.props.formType} />
+                      </div>
+                  </div>
+              </form>
+              <br />
+            </div>
+            <div className="artwork__previewComponent">
+              <h3>Preview</h3>
+              <div className="artwork__previewComponentText">
+                <p>Upload file or preview your brand new NFT</p>
+              </div>
+            </div>
+          </div>
         </div>
+        <ArtBox artwork={ this.state.newArtwork }/>
+      </>
     )
   }
 }

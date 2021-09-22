@@ -9,16 +9,17 @@ export const fetchArtworks = () => {
 };
 
 export const createArtwork = (artworkData) => {
-    debugger
+   
     return axios.post('/api/artworks', artworkData);
 };
 
 export const updateArtwork = (artworkData) => {
-    return axios.update(`/api/artworks/${artworkData.id}`, artworkData);
+    return axios.patch(`/api/artworks/${artworkData.id}`, artworkData);
 };
 
 export const deleteArtwork = (artworkId) => {
-    return axios.destroy(`/api/artworks/${artworkId}`, );
+   
+    return axios.delete(`/api/artworks/${artworkId}`, );
 };
 
 export const getUserArtwork = (userId) => {

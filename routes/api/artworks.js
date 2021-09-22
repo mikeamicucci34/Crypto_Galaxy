@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const validateArtworkCreate = require('../../validation/artwork_create');
 const Artwork = require('../../models/Artwork'); 
-const { default: artworks } = require('../../frontend/src/components/artwork/artworks');
+
 
 
 router.get("/", (req, res) => {
@@ -30,6 +30,35 @@ router.get("/:id", (req, res) => {
     );
 });
 
+router.delete("/:id", (req, res) => {
+  Artwork.deleteOne({ _id: req.params.id }).then((artwork) => res.json(artwork)).catch((err) => res.status(404).json({deleteerror: "No nft found"}))
+})
+
+
+router.patch("/:id", (req, res) => {
+  Artwork.findOne({ id: req.body.id }, (err, artwork) => {
+    if (err) {
+      return res.status(400).json(err)
+    } else {
+      artwork.update({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price
+      }, (err, docs) => {
+        if (err) {
+          return res.status(400).json(err);
+        } else {
+          return res.json({
+            title: artwork.title,
+            description: artwork.description,
+            price: artwork.price
+          })
+        }
+      });
+    }
+  })
+})
+
 
 router.post('/',
     passport.authenticate('jwt', { session: false }),
@@ -50,4 +79,7 @@ router.post('/',
   
       newArtwork.save().then(artwork => res.json(artwork));
     }
-  );
+);
+  
+
+module.exports = router

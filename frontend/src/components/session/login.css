@@ -66,3 +66,13 @@
 .login-button:hover{
     cursor: pointer;
 }
+
+.errors{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+
+}
