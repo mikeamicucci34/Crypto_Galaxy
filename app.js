@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const users = require("./routes/api/users");
-
+const likes = require("./routes/api/likes");
 const artworks = require("./routes/api/artworks");
 
 const comments = require('./routes/api/comments')
@@ -33,7 +33,10 @@ app.use(express.json());
 
 app.use("/api/users", users);
 app.use("/api/artworks", artworks);
+
+app.use("/api/likes", likes);
 app.use('/api/comments', comments)
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));

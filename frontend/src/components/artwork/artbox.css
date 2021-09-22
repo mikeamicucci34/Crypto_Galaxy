@@ -44,3 +44,7 @@
 .like:focus{
     outline: none;
 }
+
+.fireIcon{
+    color: orange
+}
