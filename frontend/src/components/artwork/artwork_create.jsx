@@ -49,6 +49,7 @@ export default class ArtworkCreate extends Component {
       artwork.append('title', this.state.title)
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
+      artwork.append('user', this.state.user)
       artwork.append('artworkImage', this.state.artworkImage[0])
 
       this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
@@ -59,6 +60,7 @@ export default class ArtworkCreate extends Component {
         title: "",
         description: "",
         price: "",
+        user: this.props.userId,
         artworkImage: null,
         file: null
     })
@@ -77,6 +79,7 @@ export default class ArtworkCreate extends Component {
 
 
   render() {
+    debugger; 
 
     return (
       <>
@@ -136,11 +139,11 @@ export default class ArtworkCreate extends Component {
               <br />
             </div>
             <div className="artwork__previewComponent">
-              <h3>Preview</h3>
+              <h3>Artwork Preview</h3>
               <div className="artwork__previewComponentText">
                 {(this.state.file) ? <img src={this.state.file} />
                   :
-                 <p>Upload file to preview your brand new NFT</p>
+                 <p>Upload file to preview your artwork</p>
                 }
               </div>
             </div>
