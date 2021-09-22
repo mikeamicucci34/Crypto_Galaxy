@@ -8,9 +8,12 @@
 
 .logo{
     margin-left: 20px;
-    width: 215px;
-    height: 88px;
-    background-image: url(../../assets/logo.png);
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 1.5em;
+    background: -webkit-linear-gradient( #b621fe, #1fd1f9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 
