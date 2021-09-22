@@ -21,13 +21,21 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ noartworkfound: "No artwork found" }));
 });
 
-router.get("/user/:user_id", (req, res) => {
-  Artwork.find({ user: req.params.user_id })
-    .then((artworks) => res.json(artworks))
-    .catch((err) =>
-      res.status(404).json({ noartworkfound: "No artworks found from that user" })
-    );
-});
+
+router.get('/user/:userId', (req, res)=> {
+  Artwork.find({user: req.params.userId})
+  .sort({date: -1})
+  .then(artworks => res.json(artworks))
+  .catch(err=> res.status(404).json({noArtsFound: 'This user did not share any arts yet'}))
+})
+
+// router.get("/user/:userId", (req, res) => {
+//   Artwork.find({ user: req.params.userId })
+//     .then((artworks) => res.json(artworks))
+//     .catch((err) =>
+//       res.status(404).json({ noartworkfound: "No artworks found from that user" })
+//     );
+// });
 
 router.get("/:id", (req, res) => {
   Artwork.findById(req.params.id)
@@ -111,14 +119,20 @@ router.patch("/:id", (req, res) => {
 
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {
-        debugger;
         cb(null, '')
     }
 })
 
 const filefilter = (req, file, cb) => {
-    debugger; 
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+    const allowedMimes = [
+      'image/jpeg',
+      'image/pjpeg',
+      'image/png',
+      'image/gif',
+    ];
+    // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+    if (allowedMimes.includes(file.mimetype)) {
+
         cb(null, true)
     } else {
         cb(null, false)
@@ -152,30 +166,29 @@ const s3 = new Aws.S3({
 
 
 router.post('/', upload.single('artworkImage'), (req, res) => {
-    debugger;
+
     console.log(req.file)
 
     const params = {
-        Bucket: process.env.AWS_BUCKET_NAME,      // bucket that we made earlier
-        Key: req.body.title,               // Name of the image
-        Body: req.file.buffer,                    // Body which will contain the image in buffer format
-        ACL: "public-read-write",                 // defining the permissions to get the public link
-        ContentType: "image/jpeg"                 // Necessary to define the image content-type to view the photo in the browser with the link
+        Bucket: process.env.AWS_BUCKET_NAME,     
+        Key: req.body.title,               
+        Body: req.file.buffer,                    
+        ACL: "public-read-write",                 
+        ContentType: "image/jpeg"                 
     };
 
     s3.upload(params,(error,data)=>{
-    // s3.upload((error,data)=>{
         if(error){
-            res.status(500).send({"err":error})  // if we get any error while uploading error message will be returned.
+            res.status(500).json(error); 
         }
 
-            // console.log(data)                      // this will give the information about the object in which photo is stored 
-     debugger;
+
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            artworkImage: data.Location
+            artworkImage: data.Location,
+            user: req.body.user
         });
         artwork.save()
             .then(result => {
@@ -185,10 +198,11 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
                     description: result.description,
                     price: result.price,
                     artworkImage: data.Location,
+                    user: result.user
                 })
             })
             .catch(err => {
-                res.send({ message: err })
+                res.json(err); 
           })
     })
 })
