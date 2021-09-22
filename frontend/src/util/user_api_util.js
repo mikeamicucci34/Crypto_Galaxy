@@ -11,3 +11,4 @@ export const getUsers = () => {
 export const editUser = (user) => {
     return axios.patch(`/api/users/${user.id}`,user)
 }
+

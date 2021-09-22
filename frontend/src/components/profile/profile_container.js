@@ -4,6 +4,7 @@ import { fetchUser, updateUser } from "../../actions/user_actions";
 import { getUserArtwork } from '../../actions/artwork_actions.js';
 
 const mapStateToProps = (state) => {
+    debugger;
     return {
         currentUser: state.session.user,
         user: state.users.user,

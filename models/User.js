@@ -21,10 +21,10 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     },
-    // userImage: { 
-    //     type: String,
-    //     // required: true
-    // },
+    userImage: { 
+        type: String,
+        // required: true
+    },
 }, {
     timestamps: true
 })
