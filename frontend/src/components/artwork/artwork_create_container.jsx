@@ -11,7 +11,8 @@ const mSTP = state => ({
         title: "",
         description: "",
         price: "",
-        newArtwork: ""
+        newArtwork: "",
+        artworkImage: null
     },
     formType: 'Create Artwork'
 });

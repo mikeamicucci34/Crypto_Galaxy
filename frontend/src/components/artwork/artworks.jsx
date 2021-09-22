@@ -36,9 +36,12 @@ class Artwork extends React.Component {
       return (
         <div className="arts-container">
           <div className="artwork-grid">
-            {this.state.artworks.map((artwork) => (
-              <Artbox key={artwork._id} title={artwork.title} description={artwork.description} price={artwork.price} />
-            ))}
+           {this.state.artworks.map((artwork) => (
+                <Artbox key={artwork._id} title={artwork.title} description={artwork.description} 
+                  price={artwork.price} deleteArtwork={this.props.deleteArtwork} 
+                  artworkId={artwork._id} refresh={ this.refresh.bind(this)}
+                  artworkImage={artwork.artworkImage}/>
+           ))}
           </div>
         </div>
       );
