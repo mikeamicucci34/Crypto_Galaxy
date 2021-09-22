@@ -179,7 +179,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
 
     s3.upload(params,(error,data)=>{
         if(error){
-            res.status(500).json(err); 
+            res.status(500).json(error); 
         }
 
 

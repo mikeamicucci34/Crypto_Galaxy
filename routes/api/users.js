@@ -5,6 +5,10 @@ const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys_dev');
 const passport = require('passport');
+const multer = require('multer')           
+const Aws = require('aws-sdk')
+const multerS3 = require('multer-s3')
+require('dotenv').config()
 
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
@@ -134,5 +138,77 @@ router.post('/login', (req, res) => {
                 })
         })
 })
+
+// aws for user pro pic upload
+
+// const storage = multer.memoryStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, '')
+//     }
+// })
+
+// const filefilter = (req, file, cb) => {
+//     const allowedMimes = [
+//       'image/jpeg',
+//       'image/pjpeg',
+//       'image/png',
+//       'image/gif',
+//     ];
+//     // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+//     if (allowedMimes.includes(file.mimetype)) {
+
+//         cb(null, true)
+//     } else {
+//         cb(null, false)
+//     }
+// }
+
+// const upload = multer({ storage: storage, fileFilter: filefilter });
+
+// const s3 = new Aws.S3({
+//     accessKeyId:process.env.AWS_ACCESS_KEY_ID,              
+//     secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       
+// })
+
+// router.post('/', upload.single('userImage'), (req, res) => {
+
+//     const params = {
+//         Bucket: process.env.AWS_BUCKET_NAME,     
+//         Key: req.body.title,               
+//         Body: req.file.buffer,                    
+//         ACL: "public-read-write",                 
+//         ContentType: "image/jpeg"                 
+//     };
+
+//     s3.upload(params,(error,data)=>{
+//         if(error){
+//             res.status(500).json(err); 
+//         }
+
+
+//     const artwork = new Artwork({
+//             title: req.body.title,
+//             description: req.body.description,
+//             price: req.body.price,
+//             artworkImage: data.Location,
+//             user: req.body.user
+//         });
+//         artwork.save()
+//             .then(result => {
+//                 res.status(200).send({
+//                     _id: result._id,
+//                     title: result.title,
+//                     description: result.description,
+//                     price: result.price,
+//                     artworkImage: data.Location,
+//                     user: result.user
+//                 })
+//             })
+//             .catch(err => {
+//                 res.json(err); 
+//           })
+//     })
+// })
+
 
 module.exports = router;

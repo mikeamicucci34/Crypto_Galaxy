@@ -1,5 +1,6 @@
 import React from 'react';
 import './profile.css'
+import { Link } from 'react-router-dom'
 
 class Profile extends React.Component {
     constructor(props) {
@@ -58,6 +59,9 @@ class Profile extends React.Component {
             bio = <div className="user-bio">
                         <div>{this.props.user.bio}</div>
                         <button className="login-button" onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
+                        <Link to={`/create_artwork`}>
+                            <button>Create Artwork</button>
+                        </Link>
                     </div>
         } else if(this.state.toggle === "edit") {
             bio = <form className="user-bio" onSubmit={(e)=>this.submitBio(e)}>
