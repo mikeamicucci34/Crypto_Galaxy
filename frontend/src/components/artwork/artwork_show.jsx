@@ -11,13 +11,13 @@ class ArtworkShow extends React.Component {
       }
       componentDidMount() {
             // debugger
-            this.props.fetchArtwork(this.props.match.params.artworkId)
+            this.props.fetchArtworks()
       }
 
       
 
       render() {
-            // debugger
+            debugger
             if (this.props.artwork.length === 0) return null
             return (
                   <div>
