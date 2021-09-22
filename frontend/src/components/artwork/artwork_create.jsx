@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArtBox from './artbox';
+import ArtBox from './artbox'
 import { Link } from 'react-router-dom';
 import './artwork_create.css'
 
@@ -35,7 +35,7 @@ export default class ArtworkCreate extends Component {
     //   // artworkImage: this.state.artworkImage
     // };
 
-    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+    
 
     
     let artwork = new FormData() 
@@ -43,8 +43,10 @@ export default class ArtworkCreate extends Component {
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
       artwork.append('artworkImage', this.state.artworkImage[0])
+
+      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
     
-    this.props.createArtwork(artwork); 
+    // this.props.submitArtwork(artwork); 
     
     this.setState({
         title: "",
