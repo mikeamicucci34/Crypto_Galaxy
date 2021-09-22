@@ -7,31 +7,22 @@ export default class ArtworkCreate extends Component {
     constructor(props) {
       super(props);
 
-      this.state = {
-          title: "",
-          description: "",
-          price: "",
-          artworkImage: null,
-          newArtwork: ""
-      }
+      this.state = this.props.artwork
 
       this.handleSubmit = this.handleSubmit.bind(this);
       // this.handleImageUpload = this.handleImageUpload.bind(this)
   } 
 
-  componentDidMount() {
 
-  }
-
-  componentWillReceiveProps(nextProps) {
-          this.setState({newArtwork: {
-          title: nextProps.newArtwork.title,
-          description: nextProps.newArtwork.description,
-          price: nextProps.newArtwork.price,
-          artworkImage: nextProps.newArtwork.artworkImage
-      }
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //         this.setState({newArtwork: {
+  //         title: nextProps.newArtwork.title,
+  //         description: nextProps.newArtwork.description,
+  //         price: nextProps.newArtwork.price,
+  //         artworkImage: nextProps.newArtwork.artworkImage
+  //     }
+  //   });
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -44,12 +35,17 @@ export default class ArtworkCreate extends Component {
     //   // artworkImage: this.state.artworkImage
     // };
 
+    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+
+    
     let artwork = new FormData() 
       artwork.append('title', this.state.title)
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
       artwork.append('artworkImage', this.state.artworkImage[0])
+    
     this.props.createArtwork(artwork); 
+    
     this.setState({
         title: "",
         description: "",
@@ -79,7 +75,7 @@ export default class ArtworkCreate extends Component {
       </div>
       <div className='artwork_component'>
             <div className="artwork__createComponent">
-              <h2>Create a collectible</h2>
+              <h2>{this.props.formType}</h2>
             </div>
         <div className="artwork__createComponentUploadOuterWrapper">
           <div className="artwork__createComponentUploadWrapper">
@@ -123,7 +119,7 @@ export default class ArtworkCreate extends Component {
                         />
                       </div>
                       <div className="artwork__createComponentSubmissionButton">
-                        <input type="submit" value="Create Item" />
+                        <input type="submit" value={this.props.formType} />
                       </div>
                   </div>
               </form>

@@ -6,13 +6,19 @@ import ArtworkCreate from './artwork_create';
 
 const mSTP = state => ({
     loggedIn: state.session.isAuthenticated,
-    newArtwork: state.artworks.new
+    newArtwork: state.artworks.new,
+    artwork: {
+        title: "",
+        description: "",
+        price: "",
+        newArtwork: ""
+    },
+    formType: 'Create Artwork'
 });
 
 const mDTP = dispatch => {
-    
     return {
-        createArtwork: (artworkData) => dispatch(createArtwork(artworkData))
+        submitArtwork: (artworkData) => dispatch(createArtwork(artworkData))
     }
 }
 

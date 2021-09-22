@@ -4,9 +4,14 @@ import { logout } from '../../actions/session_actions';
 
 import NavBar from './navbar.jsx';
 
-const mapStateToProps = state => ({
-    loggedIn: state.session.isAuthenticated
-});
+const mapStateToProps = state =>{
+    return {
+        loggedIn: state.session.isAuthenticated,
+        session: state.session
+    }   
+}
+
+
 
 export default connect(
     mapStateToProps,
