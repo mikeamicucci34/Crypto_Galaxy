@@ -25,6 +25,7 @@
     margin: 20px;
 }
 
+
 .navbar-link{
     text-align: center;
     padding-top: 8px;
@@ -45,7 +46,6 @@
     background-image: linear-gradient(to right, #b621fe, #1fd1f9);
     color: white;
     border: none;
-    font: 16px times ;
 }
 
 .logout-button:hover{

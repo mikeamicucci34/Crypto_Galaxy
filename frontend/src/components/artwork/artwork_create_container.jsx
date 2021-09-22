@@ -17,7 +17,6 @@ const mSTP = state => ({
 });
 
 const mDTP = dispatch => {
-    
     return {
         submitArtwork: (artworkData) => dispatch(createArtwork(artworkData))
     }
