@@ -16,9 +16,11 @@ class NewComment extends React.Component {
     }
 
     handleSubmit(){
-        this.props.createComment(this.state)
+        this.props.createComment(this.state).then(res =>
+            this.props.refresh()
+        )
+        
         this.setState({body: ''})
-        this.props.refresh()
     }
 
 
