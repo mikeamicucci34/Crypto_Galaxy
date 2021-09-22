@@ -77,6 +77,7 @@ router.get("/", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
+    debugger; 
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) {
             return res.status(400).json(err);
@@ -90,6 +91,7 @@ router.patch("/:id", (req, res) => {
                         handle: user.handle,
                         email: user.email,
                         bio: user.bio,
+                        // userImage: user.userImage
                     });
                 }
             });
@@ -154,7 +156,7 @@ router.post('/login', (req, res) => {
 //       'image/png',
 //       'image/gif',
 //     ];
-//     // if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+
 //     if (allowedMimes.includes(file.mimetype)) {
 
 //         cb(null, true)
@@ -174,7 +176,7 @@ router.post('/login', (req, res) => {
 
 //     const params = {
 //         Bucket: process.env.AWS_BUCKET_NAME,     
-//         Key: req.body.title,               
+//         Key: req.body.email,               
 //         Body: req.file.buffer,                    
 //         ACL: "public-read-write",                 
 //         ContentType: "image/jpeg"                 
@@ -182,26 +184,27 @@ router.post('/login', (req, res) => {
 
 //     s3.upload(params,(error,data)=>{
 //         if(error){
-//             res.status(500).json(err); 
+//             res.status(500).json(error); 
 //         }
 
-
-//     const artwork = new Artwork({
-//             title: req.body.title,
-//             description: req.body.description,
-//             price: req.body.price,
-//             artworkImage: data.Location,
-//             user: req.body.user
+//     const user = new User({
+//             handle: req.body.handle,
+//             email: req.body.email,
+//             password: req.body.password,
+//             userImage: data.Location,
+//             bio: req.body.bio,
+//             comments: req.body.comments
 //         });
-//         artwork.save()
+//         user.save()
 //             .then(result => {
 //                 res.status(200).send({
 //                     _id: result._id,
-//                     title: result.title,
-//                     description: result.description,
-//                     price: result.price,
-//                     artworkImage: data.Location,
-//                     user: result.user
+//                     handle: result.handle,
+//                     email: result.email,
+//                     password: result.password,
+//                     userImage: data.Location,
+//                     bio: result.bio,
+//                     comments: result.comments
 //                 })
 //             })
 //             .catch(err => {

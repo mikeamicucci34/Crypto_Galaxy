@@ -75,45 +75,6 @@ router.patch("/:id", (req, res) => {
   })
 })
 
-// const multerMemoryStorage = multer.memoryStorage();
-// const multerUploadInMemory = multer({
-//     storage: multerMemoryStorage
-// });
-
-// router.post('/',multerUploadInMemory.single("artworkImage"),async(req, res)=>{
-//     debugger;
-//     try{
-
-//         if(!req.file || !req.file.buffer){
-//             throw new Error("File or buffer not found");
-//         }
-
-//         const uploadResult = await S3.upload({
-//                     Bucket: process.env.AWS_BUCKET_NAME,     
-//                     Key: req.file.originalname,   
-//                     // Key: "WhateverKeynameYouWantToGive",
-//                     Body: req.file.buffer,
-//                     ACL: 'public-read'
-//                 }).promise();
-
-//         console.log(`Upload Successful!`);
-
-//         res.send({
-//             message: "file uploaded"
-//         })
-
-
-
-//     }catch(e){
-//         console.error(`ERROR: ${e.message}`);
-
-//         res.status(500).send({
-//             message: e.message
-//         })
-//     }
-
-// });
-
 
 //aws upload
 
@@ -148,25 +109,8 @@ const s3 = new Aws.S3({
     secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       
 })
 
-// const upload = multer({
-//   storage: multerS3({
-//     s3: s3,
-//     bucket: process.env.AWS_BUCKET_NAME,
-//     metadata: function (req, file, cb) {
-//       cb(null, {fieldName: file.fieldname});
-//     },
-//     key: function (req, file, cb) {
-//       cb(null, Date.now().toString())
-//     },
-//     ACL: "public-read-write",
-//     contentType: multerS3.AUTO_CONTENT_TYPE,
-//   })
-// })
-
-
 
 router.post('/', upload.single('artworkImage'), (req, res) => {
-
     console.log(req.file)
 
     const params = {
@@ -182,7 +126,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
             res.status(500).json(error); 
         }
 
-
+        // debugger; 
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,

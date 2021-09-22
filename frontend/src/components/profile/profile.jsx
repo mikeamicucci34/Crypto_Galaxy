@@ -85,6 +85,11 @@ class Profile extends React.Component {
                     <h1>{this.props.user.handle}</h1>
                     {bio}
                     </div>
+                    {/* <div>
+                        <input type='file' name="userImage" 
+                            onChange={(e) => this.setState({ userImage: e.target.files })} 
+                            multiple={false}/> 
+                    </div> */}
                 </div>
                 <ul className="user-arts">
                 <motion.div
