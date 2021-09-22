@@ -10,6 +10,7 @@ import ArtworkCreateContainer from './artwork/artwork_create_container';
 import ArtworksContainer from './artwork/artwork_container';
 import {Route} from 'react-router-dom'
 import ArtworkUpdateContainer from './artwork/artwork_update_container'
+import ArtworkShowContainer from './artwork/artwork_show_container'
 import './app.css'
 
 const App = () => (
@@ -20,6 +21,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/create_artwork" component={ArtworkCreateContainer} />
+      <ProtectedRoute exact path="/artworks/:artworkId" component={ArtworkShowContainer} />
       <ProtectedRoute exact path="/user/:userId" component={ProfileContainer} />
       <ProtectedRoute exact path="/update_artwork/:artworkId" component={ArtworkUpdateContainer} />
       <ProtectedRoute exact path="/artworks" component={ArtworksContainer} />
