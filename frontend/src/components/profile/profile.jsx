@@ -10,10 +10,15 @@ class Profile extends React.Component {
         }
     }
 
+    componentWillMount(){
+        this.props.getUserArtwork(this.props.currentUser.id)
+    }
+
     
     componentDidMount(){
         if (this.props.currentUser !== 0){
             this.props.fetchUser(this.props.currentUser.id);
+            
         }
             this.setState({user: this.props.user})
     }

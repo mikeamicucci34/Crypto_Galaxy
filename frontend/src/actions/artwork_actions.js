@@ -63,7 +63,7 @@ export const deleteArtwork = (artworkId) => dispatch => (
 
 export const getUserArtwork = (userId) => dispatch => (
     APIUtil.getUserArtwork(userId).then((artworks) => (
-        dispatch((receiveUserArtworks(artworks)))
-    ))
+        dispatch((receiveUserArtworks(artworks)))  
+    )).catch(err => console.log(err))
 );
 
