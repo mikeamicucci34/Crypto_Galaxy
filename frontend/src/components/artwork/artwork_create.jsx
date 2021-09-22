@@ -6,15 +6,15 @@ export default class ArtworkCreate extends Component {
     constructor(props) {
       super(props);
 
-      // this.state = this.props.artwork
+      this.state = this.props.artwork
 
-      this.state = {
-        title: "",
-        description: "",
-        price: "",
-        artworkImage: null,
-        file: null
-      }
+      // this.state = {
+      //   title: "",
+      //   description: "",
+      //   price: "",
+      //   artworkImage: null,
+      //   file: null
+      // }
 
       this.handleSubmit = this.handleSubmit.bind(this);
       // this.handleImageUpload = this.handleImageUpload.bind(this)
