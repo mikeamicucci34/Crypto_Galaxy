@@ -16,7 +16,6 @@ const ArtworksReducer = (state = { all: {}, user: {}, new: undefined }, action) 
             delete newState.user[action.artworkId]
             return newState
         case RECEIVE_ARTWORKS:
-            debugger
             newState.all = action.artworks.data;
             return newState;
         case RECEIVE_USER_ARTWORKS:

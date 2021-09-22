@@ -9,9 +9,14 @@ export const fetchArtworks = () => {
 };
 
 export const createArtwork = (artworkData) => {
-   
-    return axios.post('/api/artworks', artworkData);
-};
+    // return (axios({
+    //     method: "post",
+    //     url: "/api/artworks",
+    //     data: artworkData,
+    //     headers: { "Content-Type": "multipart/form-data" },
+    // }))
+    return axios.post('/api/artworks', artworkData)
+}
 
 export const updateArtwork = (artworkData) => {
     return axios.update(`/api/artworks/${artworkData.id}`, artworkData);
