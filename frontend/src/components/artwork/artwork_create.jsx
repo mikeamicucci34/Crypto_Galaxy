@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ArtBox from './artbox'
 import { Link } from 'react-router-dom';
 import './artwork_create.css'
 
@@ -7,7 +6,15 @@ export default class ArtworkCreate extends Component {
     constructor(props) {
       super(props);
 
-      this.state = this.props.artwork
+      // this.state = this.props.artwork
+
+      this.state = {
+        title: "",
+        description: "",
+        price: "",
+        artworkImage: null,
+        file: null
+      }
 
       this.handleSubmit = this.handleSubmit.bind(this);
       // this.handleImageUpload = this.handleImageUpload.bind(this)
@@ -52,7 +59,8 @@ export default class ArtworkCreate extends Component {
         title: "",
         description: "",
         price: "",
-        artworkImage: null
+        artworkImage: null,
+        file: null
     })
   }
 
@@ -61,32 +69,32 @@ export default class ArtworkCreate extends Component {
       [field]: e.currentTarget.value,
   })}
 
-  // handleImageUpload(e) {
-    
-  //   return e => this.setState({ artworkImage: e.currentTarget.files})
+  // artworkChange(e) {
+  //   if (e.target.files.length !== 0) {
+  //     return (e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })
+  //   }
   // }
+
 
   render() {
 
     return (
       <>
-      <div className="artwork__returnLink">
-              <Link to='/'>
-                Return back to user profile
-              </Link>
-      </div>
       <div className='artwork_component'>
             <div className="artwork__createComponent">
               <h2>{this.props.formType}</h2>
             </div>
         <div className="artwork__createComponentUploadOuterWrapper">
           <div className="artwork__createComponentUploadWrapper">
-              <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+              <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <div className="artwork__createComponentUpload">
                   <h3>Upload File</h3>
                 <div className="artwork__createComponentUploadButton">
-                  <p> .image, .jpeg, Max 100mb. </p>
-                  <input type='file' name="artworkImage" onChange={(e) => this.setState({ artworkImage: e.target.files })} multiple={false}/>
+                  <p> .image, .jpeg, .png, .gif Max 100mb. </p>
+                  
+                    <input type='file' name="artworkImage" 
+                        onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
+                        multiple={false}/> 
                 </div>
               </div>
                   <div className="artwork__createComponentSubmissionFields">
@@ -130,12 +138,15 @@ export default class ArtworkCreate extends Component {
             <div className="artwork__previewComponent">
               <h3>Preview</h3>
               <div className="artwork__previewComponentText">
-                <p>Upload file or preview your brand new NFT</p>
+                {(this.state.file) ? <img src={this.state.file} />
+                  :
+                 <p>Upload file to preview your brand new NFT</p>
+                }
               </div>
             </div>
           </div>
         </div>
-        <ArtBox artwork={ this.state.newArtwork }/>
+
       </>
     )
   }

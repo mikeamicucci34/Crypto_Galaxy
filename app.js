@@ -9,6 +9,8 @@ const users = require("./routes/api/users");
 
 const artworks = require("./routes/api/artworks");
 
+const comments = require('./routes/api/comments')
+
 const path = require('path');
 const bodyParser = require('body-parser');
 require('dotenv').config({ path: './frontend/env' }) //dpible check correct path
@@ -31,6 +33,7 @@ app.use(express.json());
 
 app.use("/api/users", users);
 app.use("/api/artworks", artworks);
+app.use('/api/comments', comments)
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('frontend/build'));

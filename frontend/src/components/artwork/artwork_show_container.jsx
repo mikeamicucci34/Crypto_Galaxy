@@ -7,7 +7,6 @@ import ArtworkShow from './artwork_show';
 
 
 const mSTP = (state, ownProps) => {
-      
       return {
             
             artwork: Object.values(state.artworks.all).filter(art =>  art._id === ownProps.match.params.artworkId), 
