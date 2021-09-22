@@ -27,7 +27,6 @@ export const receiveUserArtworks = artworks => ({
 });
 
 export const fetchArtwork = artworkId => dispatch => {
-    
     return (
         APIUtil.fetchArtwork(artworkId).then((artwork) => (
         dispatch((receiveArtwork(artwork)))

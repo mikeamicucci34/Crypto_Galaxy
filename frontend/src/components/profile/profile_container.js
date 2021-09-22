@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import Profile from './profile.jsx';
 import { fetchUser, updateUser } from "../../actions/user_actions";
 import { getUserArtwork } from '../../actions/artwork_actions.js';
+import {fetchArtwork, updateArtwork, deleteArtwork} from '../../actions/artwork_actions'
 
 const mapStateToProps = (state) => {
     return {
@@ -15,7 +16,10 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchUser: userId => dispatch(fetchUser(userId)),
         updateUser: user => dispatch(updateUser(user)),
-        getUserArtwork: userId => dispatch(getUserArtwork(userId))
+        getUserArtwork: userId => dispatch(getUserArtwork(userId)),
+        fetchArtwork: artworkId => dispatch(fetchArtwork(artworkId)),
+        updateArtwork: artwork => dispatch(updateArtwork(artwork)),
+        deleteArtwork: artworkId => dispatch(deleteArtwork(artworkId))
     };
 };
 
