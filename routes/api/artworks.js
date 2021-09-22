@@ -111,13 +111,13 @@ router.patch("/:id", (req, res) => {
 
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {
-        debugger;
+        // debugger;
         cb(null, '')
     }
 })
 
 const filefilter = (req, file, cb) => {
-    debugger; 
+     
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
         cb(null, true)
     } else {
@@ -152,7 +152,7 @@ const s3 = new Aws.S3({
 
 
 router.post('/', upload.single('artworkImage'), (req, res) => {
-    debugger;
+    // debugger;
     console.log(req.file)
 
     const params = {
@@ -170,7 +170,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
         }
 
             // console.log(data)                      // this will give the information about the object in which photo is stored 
-     debugger;
+    //  debugger;
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,

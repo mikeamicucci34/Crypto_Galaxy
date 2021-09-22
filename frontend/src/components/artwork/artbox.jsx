@@ -42,8 +42,10 @@ export default class Artbox extends React.Component {
             className="art-card"
             whileHover={{ scale: 1.1 }}
             >
-                <div className="nft"> </div>
-                    <img src={this.props.artworkImage} />
+                
+                    <img className="nft" src={this.props.artworkImage} alt="" />
+                
+                    
                     <div className="title-like">
                     <h3 className="title">{this.props.title}</h3>
                         <button className="like" onClick={()=>this.toggleLike()}>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import ArtBox from './artbox'
 import { Link } from 'react-router-dom';
 import './artwork_create.css'
 
@@ -81,7 +80,7 @@ export default class ArtworkCreate extends Component {
             </div>
         <div className="artwork__createComponentUploadOuterWrapper">
           <div className="artwork__createComponentUploadWrapper">
-              <form onSubmit={this.handleSubmit} enctype="multipart/form-data">
+              <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <div className="artwork__createComponentUpload">
                   <h3>Upload File</h3>
                 <div className="artwork__createComponentUploadButton">
@@ -135,7 +134,6 @@ export default class ArtworkCreate extends Component {
             </div>
           </div>
         </div>
-        <ArtBox artwork={ this.state.newArtwork }/>
       </>
     )
   }
