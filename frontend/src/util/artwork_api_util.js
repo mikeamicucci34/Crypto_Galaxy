@@ -22,5 +22,5 @@ export const deleteArtwork = (artworkId) => {
 };
 
 export const getUserArtwork = (userId) => {
-    return axios.get(`/api/artworks/user/${userId}`, );
+    return axios.get(`/api/artworks/user/${userId}`);
 };

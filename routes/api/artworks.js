@@ -21,13 +21,21 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ noartworkfound: "No artwork found" }));
 });
 
-router.get("/user/:user_id", (req, res) => {
-  Artwork.find({ user: req.params.user_id })
-    .then((artworks) => res.json(artworks))
-    .catch((err) =>
-      res.status(404).json({ noartworkfound: "No artworks found from that user" })
-    );
-});
+
+router.get('/user/:userId', (req, res)=> {
+  Artwork.find({user: req.params.userId})
+  .sort({date: -1})
+  .then(artworks => res.json(artworks))
+  .catch(err=> res.status(404).json({noArtsFound: 'This user did not share any arts yet'}))
+})
+
+// router.get("/user/:userId", (req, res) => {
+//   Artwork.find({ user: req.params.userId })
+//     .then((artworks) => res.json(artworks))
+//     .catch((err) =>
+//       res.status(404).json({ noartworkfound: "No artworks found from that user" })
+//     );
+// });
 
 router.get("/:id", (req, res) => {
   Artwork.findById(req.params.id)
@@ -175,7 +183,8 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            artworkImage: data.Location
+            artworkImage: data.Location,
+            user: req.body.user
         });
         artwork.save()
             .then(result => {
@@ -185,6 +194,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
                     description: result.description,
                     price: result.price,
                     artworkImage: data.Location,
+                    user: result.user
                 })
             })
             .catch(err => {
