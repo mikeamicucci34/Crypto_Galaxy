@@ -6,12 +6,16 @@ import {
 } from '../actions/artwork_actions';
 
 const ArtworksReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
-    Object.freeze(state);
+    // Object.freeze(state);
     let newState = Object.assign({}, state)
     switch (action.type) {
         case RECEIVE_ARTWORK:
-            newState.new = action.artwork.data
-            return newState;
+            newState.all = {0: action.artwork.data}
+            return newState
+            // debugger
+            // return {...state, ...action.artwork.data}
+            // return newState.all = action.artwork.data
+            // return Object.assign({}, state, action.artwork.data)
         case REMOVE_ARTWORK:
             delete newState.user[action.artworkId]
             return newState
