@@ -12,14 +12,14 @@ export default class ArtworkCreate extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
   } 
 
-  componentWillReceiveProps(nextProps) {
-          this.setState({newArtwork: {
-          title: nextProps.newArtwork.title,
-          description: nextProps.newArtwork.description,
-          price: nextProps.newArtwork.price
-      }
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //         this.setState({newArtwork: {
+  //         title: nextProps.newArtwork.title,
+  //         description: nextProps.newArtwork.description,
+  //         price: nextProps.newArtwork.price
+  //     }
+  //   });
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -30,7 +30,7 @@ export default class ArtworkCreate extends Component {
       price: this.state.price
     };
 
-    this.props.submitArtwork(artwork); 
+    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
     this.setState({
         title: "",
         description: "",

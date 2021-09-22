@@ -36,13 +36,27 @@ router.delete("/:id", (req, res) => {
 
 
 router.patch("/:id", (req, res) => {
-  try {
-    const artworkUpdate = Artwork.updateOne({ _id: req.params.id },
-      { $set: { title: req.body.title, description: req.body.description, price: req.body.price } });
-    res.json(artworkUpdate);
-  } catch {
-    res.json({msg:err})
-  }
+  Artwork.findOne({ id: req.body.id }, (err, artwork) => {
+    if (err) {
+      return res.status(400).json(err)
+    } else {
+      artwork.update({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price
+      }, (err, docs) => {
+        if (err) {
+          return res.status(400).json(err);
+        } else {
+          return res.json({
+            title: artwork.title,
+            description: artwork.description,
+            price: artwork.price
+          })
+        }
+      });
+    }
+  })
 })
 
 

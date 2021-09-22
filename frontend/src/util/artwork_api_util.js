@@ -14,7 +14,7 @@ export const createArtwork = (artworkData) => {
 };
 
 export const updateArtwork = (artworkData) => {
-    return axios.update(`/api/artworks/${artworkData.id}`, artworkData);
+    return axios.patch(`/api/artworks/${artworkData.id}`, artworkData);
 };
 
 export const deleteArtwork = (artworkId) => {

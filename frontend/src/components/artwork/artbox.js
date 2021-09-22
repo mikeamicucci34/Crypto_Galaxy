@@ -17,7 +17,7 @@ export default class Artbox extends React.Component {
                 <h3>{this.props.description}</h3>
                 <h3>{this.props.price}</h3>
                 <button onClick={() => this.handleDelete()}>Delete</button>
-                <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
+                <Link to={`./update_artwork/${this.props.artworkId}`}>Edit</Link>
             </div>
         )
     }
