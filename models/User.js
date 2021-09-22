@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     },
     bio: {
         type: String
+    }, 
+    comments: {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
     }
 }, {
     timestamps: true

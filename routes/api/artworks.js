@@ -21,13 +21,21 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ noartworkfound: "No artwork found" }));
 });
 
-router.get("/user/:user_id", (req, res) => {
-  Artwork.find({ user: req.params.user_id })
-    .then((artworks) => res.json(artworks))
-    .catch((err) =>
-      res.status(404).json({ noartworkfound: "No artworks found from that user" })
-    );
-});
+
+router.get('/user/:userId', (req, res)=> {
+  Artwork.find({user: req.params.userId})
+  .sort({date: -1})
+  .then(artworks => res.json(artworks))
+  .catch(err=> res.status(404).json({noArtsFound: 'This user did not share any arts yet'}))
+})
+
+// router.get("/user/:userId", (req, res) => {
+//   Artwork.find({ user: req.params.userId })
+//     .then((artworks) => res.json(artworks))
+//     .catch((err) =>
+//       res.status(404).json({ noartworkfound: "No artworks found from that user" })
+//     );
+// });
 
 router.get("/:id", (req, res) => {
   Artwork.findById(req.params.id)
@@ -111,13 +119,13 @@ router.patch("/:id", (req, res) => {
 
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {
-        debugger;
+        // debugger;
         cb(null, '')
     }
 })
 
 const filefilter = (req, file, cb) => {
-    debugger; 
+     
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
         cb(null, true)
     } else {
@@ -152,7 +160,7 @@ const s3 = new Aws.S3({
 
 
 router.post('/', upload.single('artworkImage'), (req, res) => {
-    debugger;
+    // debugger;
     console.log(req.file)
 
     const params = {
@@ -170,12 +178,13 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
         }
 
             // console.log(data)                      // this will give the information about the object in which photo is stored 
-     debugger;
+    //  debugger;
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            artworkImage: data.Location
+            artworkImage: data.Location,
+            user: req.body.user
         });
         artwork.save()
             .then(result => {
@@ -185,6 +194,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
                     description: result.description,
                     price: result.price,
                     artworkImage: data.Location,
+                    user: result.user
                 })
             })
             .catch(err => {
