@@ -12,8 +12,7 @@ class MainPage extends React.Component {
                     <h2>A one stop shop for sharing upcoming NFT releases and connecting with your favorite artists</h2>
                     <Link className="all-art-link" to="/artworks">
                     <button className="all-art">
-                        Viw all artowkrs
-                        
+                        View all artworks
                     </button>
                     </Link>
                     </div>

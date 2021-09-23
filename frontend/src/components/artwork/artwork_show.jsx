@@ -11,7 +11,6 @@ class ArtworkShow extends React.Component {
             
       // }
       componentDidMount() {
-            
             this.props.fetchArtwork(this.props.match.params.artworkId)
             
       }
