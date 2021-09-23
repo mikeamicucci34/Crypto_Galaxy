@@ -1,11 +1,31 @@
 import React from 'react';
 import './main_page.css'
 import {Link} from 'react-router-dom'
+import GLOBE from 'vanta/dist/vanta.globe.min'
+import NavBar from '../nav/navbar_container'
+
 
 class MainPage extends React.Component {
 
+    constructor(){
+        super()
+        this.vantaRef = React.createRef()
+    }
+
+    componentDidMount() {
+        this.vantaEffect = GLOBE({
+          el: this.vantaRef.current
+        })
+      }
+
+      componentWillUnmount() {
+        if (this.vantaEffect) this.vantaEffect.destroy()
+      }
+
     render() {
         return (
+            <div className='animation' ref={this.vantaRef}>
+            < NavBar />
             <div className="wholePage">
                     <div className="landing-page">
                     <h1>For Creators By Creators</h1>
@@ -16,8 +36,8 @@ class MainPage extends React.Component {
                     </button>
                     </Link>
                     </div>
-                    <div className="bottomRocks">
-                    </div>
+                    
+            </div>
             </div>
         );
     }
