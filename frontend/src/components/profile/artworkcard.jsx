@@ -24,7 +24,7 @@ class ArtworkCard extends React.Component {
             className="art-card"
             whileHover={{ scale: 1.1 }}
             >
-                    <Link className="nft-link" to={`artworks/${this.state._id}`}><img className="nft" src={this.state.artworkImage} alt="" /></Link>
+                    <Link className="nft-link" to={`/artworks/${this.state._id}`}><img className="nft" src={this.state.artworkImage} alt="" /></Link>
                     <div className="title-like">
                     <h3 className="title">{this.state.title}</h3>
                     </div>
