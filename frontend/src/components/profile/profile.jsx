@@ -88,7 +88,7 @@ class Profile extends React.Component {
                     <h1>{this.props.user.handle}</h1>
                     {bio}
                     <div className="profilePicEdit">
-                        <Link to="/user/:userId/profile_pic">
+                        <Link to={`/user/${this.props.user._id}/profile_pic`}>
                             <button>Update Profile Pic</button>
                         </Link>
                     </div>

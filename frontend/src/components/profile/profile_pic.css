@@ -8,13 +8,13 @@
 
 .submit-button button{ 
     margin-top: 100px;
-    text-align: center;
     height: 50px;
     width: 100px;
-    padding: 5px;
+    text-align: center;
     border-radius: 25px;
+    height: 33px;
     text-decoration: none;
-    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
     border: none;
 }
