@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { fetchArtwork, deleteArtwork } from '../../actions/artwork_actions';
 import ArtworkShow from './artwork_show';
-import { getArtComments } from '../../actions/comment_actions'
+import { getArtComments, updateComment, removeComment } from '../../actions/comment_actions'
+
 
 
 
@@ -21,7 +22,9 @@ const mSTP = (state, ownProps) => {
 const mDTP = dispatch => ({
       fetchArtwork: artworkId => dispatch(fetchArtwork(artworkId)),
       deleteArtwork: (artworkId) => dispatch(deleteArtwork(artworkId)),
-      getArtComments: (artworkId) => dispatch(getArtComments(artworkId))
+      getArtComments: (artworkId) => dispatch(getArtComments(artworkId)),
+      updateComment: comment => dispatch(updateComment(comment)),
+      removeComment: commentId => dispatch(removeComment(commentId))
       
 })
 

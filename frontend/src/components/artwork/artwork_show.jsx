@@ -61,7 +61,12 @@ class ArtworkShow extends React.Component {
                         {updateButton}
                         <NewComment refresh={this.refresh.bind(this)} />
                         {this.state.comments.map((comment, i)=> {
-                        return <CommentItem key={`${i}${this.state.comments.length}`} comment = {comment}                                                                    
+                        return <CommentItem key={`${i}${this.state.comments.length}`} 
+                                            comment = {comment}      
+                                            currentUser = {this.props.currentUser} 
+                                            updateComment = {this.props.updateComment}  
+                                            removeComment = {this.props.removeComment}
+                                            refresh={this.refresh.bind(this)}                                                           
                         /> })}
                   </div>
             )
