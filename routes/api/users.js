@@ -70,10 +70,11 @@ router.get('/:id', (req, res) => {
 })
 
 router.get("/", (req, res) => {
-    User.all()
+ 
+    User.find()
         .sort({ date: -1 })
-        .then(offers => res.json(offers))
-        .catch(err => res.status(404).json({ nooffersfound: "No offers found" }));
+        .then((users) => res.json(users))
+        .catch(err => res.status(404).json({ nouserssfound: "No users found" }));
 });
 
 router.patch("/:id", (req, res) => {
