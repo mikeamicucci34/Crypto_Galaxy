@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 // import { Link } from 'react-router-dom';
 import './artwork_create.css'
+import 'react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from 'react-modern-calendar-datepicker';
 
 export default class ArtworkCreate extends Component {
     constructor(props) {
@@ -83,12 +85,39 @@ export default class ArtworkCreate extends Component {
   }
 
   update(field) { //double check
-    return e => this.setState({
-      [field]: e.currentTarget.value,
-  })}
+    return e => {
+      this.setState({
+      [field]: e.target.value,
+  })}}
+
+  updateDate(e) {
+    this.setState({
+      date: `${e.year}-${e.month}-${e.day}`,
+  })
+  }
 
 
   render() {
+
+
+
+    const renderCustomInput = ({ ref }) => (
+      <input
+        readOnly
+        ref={ref} // necessary
+        placeholder={this.state.date}
+        style={{
+          textAlign: 'center',
+          padding: '10px',
+          fontSize: '12px',
+          border: '1px solid #9c88ff',
+          borderRadius: '25px',
+          color: 'rgb(18, 18, 18)',
+          outline: 'none',
+        }}
+        className="my-custom-input-class" 
+      />
+    )
 
     return (
       <>
@@ -140,14 +169,16 @@ export default class ArtworkCreate extends Component {
                             placeholder="Insert Price..."
                         />
                       </div>
-                    <div className="artwork__createComponentSubmissionDate">
-                      <p>Release Date</p>
-                    </div>
-                    <div className="artwork__createComponentSubmissionField">
-                      <input type="date"
-                        value={this.state.date}
-                        onChange={this.update('date')}
+                    <div className="artwork__createComponentSubmissionField"
+                          style={{
+                            border: 'none'
+                          }}
+                    >
+                      < DatePicker
+                        onChange={(e)=>this.updateDate(e)}
                         placeholder="Insert Date..."
+                        renderInput={renderCustomInput}
+                        className="date-picker"
                       />
                     </div>
                       <div className="artwork__createComponentSubmissionButton">
@@ -160,7 +191,7 @@ export default class ArtworkCreate extends Component {
             <div className="artwork__previewComponent">
               <h3>Artwork Preview</h3>
               <div className="artwork__previewComponentText">
-                {(this.state.file) ? <img src={this.state.file} />
+                {(this.state.file) ? <img src={this.state.file} alt="" />
                   :
                  <p>Upload file to preview your artwork</p>
                 }

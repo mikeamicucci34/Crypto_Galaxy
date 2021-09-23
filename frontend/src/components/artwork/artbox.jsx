@@ -108,7 +108,6 @@ export default class Artbox extends React.Component {
 
                     <div className="stats">
                     <div>
-                    {/* <h3>{this.props.description}</h3> */}
                     <h3>{this.props.price}$</h3>
                     <h3 className="eth">{this.ethValue()}<Icon icon={ethIcon} /></h3>
                     </div>
@@ -118,7 +117,6 @@ export default class Artbox extends React.Component {
                     </div>
                     <button className="login-button" onClick={() => this.handleDelete()}>Delete</button>
                     <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
-                
             </motion.div>
         )
     }
