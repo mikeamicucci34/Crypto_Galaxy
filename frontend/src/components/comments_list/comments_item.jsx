@@ -62,11 +62,14 @@ class CommentItem extends React.Component{
         } else {
             buttons = null
         }
+        let commenter = this.props.users.filter(userCommented => userCommented._id === this.props.comment.user)
 
         let body;
-        if(this.state.toggle === 'show') {
+        if (this.state.toggle === 'show') {
+           
             body = (
                 <div className="comment">
+                    <p>{commenter[0].handle}</p>
                     <p>{this.state.body}</p>
                     {buttons}
                 </div>

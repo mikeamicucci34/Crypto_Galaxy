@@ -8,6 +8,7 @@ import ethIcon from '@iconify/icons-cryptocurrency/eth';
 
 
 
+
 class ArtworkShow extends React.Component {
       constructor(props) {
             super(props)
@@ -26,6 +27,7 @@ class ArtworkShow extends React.Component {
       componentDidMount() {
             this.props.fetchArtwork(this.props.match.params.artworkId);
             this.props.getArtComments(this.props.match.params.artworkId);
+            this.props.fetchUsers()
             this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
       }
 
@@ -94,6 +96,7 @@ class ArtworkShow extends React.Component {
             return numRound
       }
       render() {
+          
             if (this.props.artwork.length === 0) return null
             if (!this.props.comments) return null;
             let deleteButton;
@@ -131,7 +134,8 @@ class ArtworkShow extends React.Component {
                         {this.state.comments.map((comment, i)=> {
                         return <CommentItem key={`${i}${this.state.comments.length}`} 
                                             comment = {comment}      
-                                            currentUser = {this.props.currentUser} 
+                                            currentUser = {this.props.currentUser}
+                                            users =  {this.props.users} 
                                             updateComment = {this.props.updateComment}  
                                             removeComment = {this.props.removeComment}
                                             refresh={this.refresh.bind(this)}                                                           
