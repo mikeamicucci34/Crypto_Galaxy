@@ -69,8 +69,11 @@ class CommentItem extends React.Component{
            
             body = (
                 <div className="comment">
-                    <p>{commenter[0].handle}</p>
-                    <p>{this.state.body}</p>
+                    
+                    <p className="comment-body-and-author">
+                    <h3 className="commenter">{commenter[0].handle} said </h3> <pre> </pre> {this.state.body}
+                    </p>
+                    
                     {buttons}
                 </div>
                 
