@@ -58,8 +58,8 @@ class LoginForm extends React.Component {
     this.props.login(user);
   }
 
-  demoUser(){
-    
+  demoUser(e){
+    e.preventDefault()
     this.props.login(this.demo);
   }
 
@@ -97,7 +97,7 @@ class LoginForm extends React.Component {
             <br />
             <input type="submit" value="Submit" className="login-button" />
             <br />
-            <input type="submit" value="Demo User" className="login-button" onClick={()=>this.demoUser()} />
+            <input type="submit" value="Demo User" className="login-button" onClick={(e)=>this.demoUser(e)} />
             {this.renderErrors()}
           </form>
         </div>
