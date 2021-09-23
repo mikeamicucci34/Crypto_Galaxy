@@ -18,6 +18,11 @@
     background-color: white;
 }
 
+.stats{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
 
@@ -53,7 +58,11 @@
     z-index: 100;
     top: 18px;
     transform: scale(1.5);
+    
 }
+/* .image{
+    
+} */
 
 .likeComponent{
     display: flex;
@@ -63,4 +72,15 @@
 
 .likeComponent button{
     color: orchid;
+}
+
+.statsDate{
+    font-size:15px;
+    padding: 5px;
+    /* border-image-source: linear-gradient(to left, #743ad5, #d53a9d); */
+    /* background-image: -moz-linear-gradient(center bottom, rgb(14,173,173) 33%, rgb(0,255,255) 67% ); */
+    padding: 8px;
+    border: 2px solid transparent;
+    border-image: linear-gradient(to right, rgb(38, 230, 255) , rgb(234, 0, 255));
+    border-image-slice: 1;
 }

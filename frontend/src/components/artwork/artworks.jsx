@@ -9,7 +9,8 @@ class Artwork extends React.Component {
 
     this.state = {
       artworks: [],
-      placeholder: 'y'
+      placeholder: 'y',
+      time: Date.now()
     };
       
   }
@@ -17,8 +18,11 @@ class Artwork extends React.Component {
   componentDidMount() {
     this.props.fetchArtworks().then(() => this.setState({ artworks: this.props.artworks}));
     this.props.fetchLikes();
+    this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
   }
-
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
       componentDidUpdate(prevProps) {
         
       if (this.props.artworks.length !== prevProps.artworks.length) {
@@ -61,7 +65,7 @@ class Artwork extends React.Component {
              <Artbox key={`${this.myLikes(artwork._id)[1]}` + `${artwork._id}` + `${this.myLikes(artwork._id)[0]}` +`${this.state.artworks.length}`} title={artwork.title} description={artwork.description}
                   price={artwork.price} deleteArtwork={this.props.deleteArtwork} 
                   artworkId={artwork._id} refresh={ this.refresh.bind(this)} createLike={this.props.createLike} currentUser={this.props.userId}
-                  artworkImage={artwork.artworkImage} removeLike={this.props.removeLike} likes={this.myLikes(artwork._id)}/>
+                  artworkImage={artwork.artworkImage} removeLike={this.props.removeLike} likes={this.myLikes(artwork._id)} date={artwork.date}/>
            ))}
           </div>
         </div>
