@@ -77,7 +77,6 @@ router.get("/", (req, res) => {
 });
 
 router.patch("/:id", (req, res) => {
-    debugger; 
     User.findOne({ email: req.body.email }, (err, user) => {
         if (err) {
             return res.status(400).json(err);
@@ -91,7 +90,6 @@ router.patch("/:id", (req, res) => {
                         handle: user.handle,
                         email: user.email,
                         bio: user.bio,
-                        // userImage: user.userImage
                     });
                 }
             });
@@ -141,77 +139,86 @@ router.post('/login', (req, res) => {
         })
 })
 
-// aws for user pro pic upload
 
-// const storage = multer.memoryStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, '')
-//     }
-// })
 
-// const filefilter = (req, file, cb) => {
-//     const allowedMimes = [
-//       'image/jpeg',
-//       'image/pjpeg',
-//       'image/png',
-//       'image/gif',
-//     ];
 
-//     if (allowedMimes.includes(file.mimetype)) {
 
-//         cb(null, true)
-//     } else {
-//         cb(null, false)
-//     }
-// }
 
-// const upload = multer({ storage: storage, fileFilter: filefilter });
 
-// const s3 = new Aws.S3({
-//     accessKeyId:process.env.AWS_ACCESS_KEY_ID,              
-//     secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       
-// })
 
-// router.post('/', upload.single('userImage'), (req, res) => {
 
-//     const params = {
-//         Bucket: process.env.AWS_BUCKET_NAME,     
-//         Key: req.body.email,               
-//         Body: req.file.buffer,                    
-//         ACL: "public-read-write",                 
-//         ContentType: "image/jpeg"                 
-//     };
 
-//     s3.upload(params,(error,data)=>{
-//         if(error){
-//             res.status(500).json(error); 
-//         }
+const storage = multer.memoryStorage({
+    destination: function (req, file, cb) {
+        cb(null, '')
+    }
+})
 
-//     const user = new User({
-//             handle: req.body.handle,
-//             email: req.body.email,
-//             password: req.body.password,
-//             userImage: data.Location,
-//             bio: req.body.bio,
-//             comments: req.body.comments
-//         });
-//         user.save()
-//             .then(result => {
-//                 res.status(200).send({
-//                     _id: result._id,
-//                     handle: result.handle,
-//                     email: result.email,
-//                     password: result.password,
-//                     userImage: data.Location,
-//                     bio: result.bio,
-//                     comments: result.comments
-//                 })
-//             })
-//             .catch(err => {
-//                 res.json(err); 
-//           })
-//     })
-// })
+const filefilter = (req, file, cb) => {
+    const allowedMimes = [
+      'image/jpeg',
+      'image/pjpeg',
+      'image/png',
+      'image/gif',
+    ];
+
+    if (allowedMimes.includes(file.mimetype)) {
+
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
+
+const upload = multer({ storage: storage, fileFilter: filefilter });
+
+const s3 = new Aws.S3({
+    accessKeyId:process.env.AWS_ACCESS_KEY_ID,              
+    secretAccessKey:process.env.AWS_ACCESS_KEY_SECRET       
+})
+
+
+
+
+router.patch("/:id/profile_pic", upload.single('userImage'), (req, res) => {
+    debugger; 
+
+    const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,     
+        Key: req.body.email,               
+        Body: req.file.buffer,                    
+        ACL: "public-read-write",                 
+        ContentType: "image/jpeg"                 
+    };
+
+    s3.upload(params,(error,data)=>{
+        if(error){
+            res.status(500).json(error); 
+        }
+
+
+        User.findOne({ email: req.body.email }, (err, user) => {
+            if (err) {
+                return res.status(400).json(err);
+            } else {
+                user.update({ userImage: data.Location }, (err, docs) => {
+                    if (err) {
+                        return res.status(400).json(err);
+                    } else {
+                        return res.json({
+                            id: user.id,
+                            handle: user.handle,
+                            email: user.email,
+                            bio: user.bio,
+                            userImage: user.userImage
+                        })
+                    }
+                })
+            }
+        })
+    })
+});
+
 
 
 module.exports = router;

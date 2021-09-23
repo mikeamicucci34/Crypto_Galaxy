@@ -12,3 +12,6 @@ export const editUser = (user) => {
     return axios.patch(`/api/users/${user.id}`,user)
 }
 
+export const updateUserProfilePic = (user) => {
+    return axios.patch(`/api/users/${user.id}/profile_pic`,user)
+}

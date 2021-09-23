@@ -6,6 +6,7 @@ import { fetchUser } from '../../actions/user_actions';
 import ArtworkCreate from './artwork_create';
 
 const mSTP = (state, ownProps) => {
+    debugger;
     return ({
     loggedIn: state.session.isAuthenticated,
     newArtwork: state.artworks.new,
@@ -16,7 +17,8 @@ const mSTP = (state, ownProps) => {
         price: "",
         newArtwork: "",
         user: state.session.user.id,
-        artworkImage: null
+        artworkImage: null,
+        file: null
     },
     formType: 'Create Artwork'
 })};
