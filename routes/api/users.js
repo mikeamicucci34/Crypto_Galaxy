@@ -185,7 +185,7 @@ router.patch("/:id/profile_pic", upload.single('userImage'), (req, res) => {
 
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,     
-        Key: req.body.email,               
+        Key: req.file.originalname,               
         Body: req.file.buffer,                    
         ACL: "public-read-write",                 
         ContentType: "image/jpeg"                 

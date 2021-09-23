@@ -102,6 +102,7 @@
     border: none;
     background-color: rgb(18, 18, 18);
     color: white;
+    width: 300px;
 }
 
 .artwork__createComponentSubmissionFields{
