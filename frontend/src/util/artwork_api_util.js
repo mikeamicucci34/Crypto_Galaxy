@@ -13,6 +13,7 @@ export const createArtwork = (artworkData) => {
 };
 
 export const updateArtwork = (artworkData) => {
+    debugger;
     return axios.patch(`/api/artworks/${artworkData.id}`, artworkData);
 };
 

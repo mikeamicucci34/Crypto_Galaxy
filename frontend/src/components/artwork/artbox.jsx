@@ -38,7 +38,38 @@ export default class Artbox extends React.Component {
             return (<LocalFireDepartmentIcon/>)
         }
     }
-
+    releaseDate(date){
+        let releaseDate = new Date(date).getTime()
+        let today= new Date().getTime()
+        if (today < releaseDate) {
+            var milisec_diff = releaseDate - today;
+            var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
+            var date_diff = new Date(milisec_diff);
+            if (days >= 1 && days < 2){
+                return days + " day left"
+            }else if(days > 1){
+                return days + " days left"
+            }else{
+                let hours = date_diff.getHours();
+                if (date_diff.getHours() < 10){
+                    hours = `0${date_diff.getHours()}`
+                }
+                let minutes = date_diff.getMinutes()
+                if (date_diff.getMinutes() < 10) {
+                    minutes = `0${date_diff.getMinutes()}`
+                }
+                let seconds = date_diff.getSeconds()
+                if (date_diff.getSeconds() < 10) {
+                    seconds = `0${date_diff.getSeconds()}`
+                }
+                return (hours + ':' + minutes + ':' + seconds + ' left')
+            }
+        } else {
+            var milisec_diff = 0;
+            return 'Released!'
+        }
+        
+    }
     render() {
         let icon;
         if (this.state.likeToggle === 'unliked') {
@@ -67,8 +98,15 @@ export default class Artbox extends React.Component {
                         </div>
 
                     </div>
-                    <h3>{this.props.description}</h3>
-                    <h3>{this.props.price}</h3>
+                    <div className="stats">
+                    <div>
+                    {/* <h3>{this.props.description}</h3> */}
+                    <h3>{this.props.price}$</h3>
+                    </div>
+                    <div>
+                    <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
+                    </div>
+                    </div>
                     <button className="login-button" onClick={() => this.handleDelete()}>Delete</button>
                     <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
                 
