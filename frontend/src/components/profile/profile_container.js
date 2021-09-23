@@ -9,7 +9,8 @@ const mapStateToProps = (state) => {
     return {
         currentUser: state.session.user,
         user: state.users.user,
-        artworks: Object.values(state.artworks.user)
+        artworks: Object.values(state.artworks.user),
+        // userImage: state.users.user.userImage
     };
 };
 

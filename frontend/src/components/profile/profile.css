@@ -23,6 +23,24 @@
     background-color: white;
 }
 
+.profilePic img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+
+}
+
+.profilePicEdit button{
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    height: 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    color: white;
+    border: none;
+}
+
 .user-bio{
     display: flex;
     flex-direction: column;
