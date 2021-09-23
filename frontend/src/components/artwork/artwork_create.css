@@ -131,6 +131,7 @@
     background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
     cursor: pointer;
+    border: none;
 }
 
 .artwork__previewComponent h3 {
