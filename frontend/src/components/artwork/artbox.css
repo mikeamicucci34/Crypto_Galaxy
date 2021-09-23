@@ -7,12 +7,14 @@
     width: 200px;
     height: 300px;
     gap: 10px;
+    position: relative;
 }
 
 
 .nft{
     width: 200px;
     height: 150px;
+    margin-top: 15px;
     background-color: white;
 }
 
@@ -46,5 +48,19 @@
 }
 
 .fireIcon{
-    color: orange
+    color: orange;
+    position:absolute;
+    z-index: 100;
+    top: 18px;
+    transform: scale(1.5);
+}
+
+.likeComponent{
+    display: flex;
+    color: orchid;
+    align-items: center;
+}
+
+.likeComponent button{
+    color: orchid;
 }

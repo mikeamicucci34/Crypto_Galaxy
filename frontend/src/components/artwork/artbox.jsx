@@ -53,16 +53,19 @@ export default class Artbox extends React.Component {
             >
 
                     <div className="fireIcon">{this.fireIcon()}</div>
-                    <h1>Hot val:{this.props.likes[2]}</h1>
-                    <h1>Likes: {this.state.likes}</h1>
+    
 
                     <Link to={`artworks/${this.props.artworkId}`}><img className="nft" src={this.props.artworkImage} alt="" /></Link>
 
                     <div className="title-like">
                     <h3 className="title">{this.props.title}</h3>
+                        <div className="likeComponent">
                         <button className="like" onClick={()=>this.toggleLike()}>
                             {icon}
                         </button>
+                        <h1>{this.state.likes}</h1>
+                        </div>
+
                     </div>
                     <h3>{this.props.description}</h3>
                     <h3>{this.props.price}</h3>

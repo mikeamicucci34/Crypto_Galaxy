@@ -6,13 +6,15 @@
     height: 800px;
     opacity: .8; 
 } */
-
+@font-face {
+    font-family:'Ramabhadra-Regular';
+    src: url('../../assets/fonts/Ramabhadra/Ramabhadra-Regular.ttf');
+}
 
 .landing-page{
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-family: Ramabhadra-Regular;
     gap: 30px;
     margin-top: 100px;
 }
@@ -20,10 +22,12 @@
 .landing-page h1{
     font-size: 50px;
     margin-bottom: 10px;
+    font-family: Ramabhadra-Regular;
 }
 
 .landing-page h2{
     font-size: 25px;
+    font-family: Ramabhadra-Regular;
 }
 
 .landing{

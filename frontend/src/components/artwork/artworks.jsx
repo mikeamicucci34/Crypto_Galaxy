@@ -41,7 +41,7 @@ class Artwork extends React.Component {
             }
             let dateVal = new Date(this.props.likes[i].createdAt)
             let today = new Date();
-            hot += (1/(today - dateVal))*10000;
+            hot += (1/(today - dateVal))*1000000;
             count+=1;
           }
         }
