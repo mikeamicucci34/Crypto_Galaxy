@@ -181,7 +181,6 @@ const s3 = new Aws.S3({
 
 
 router.patch("/:id/profile_pic", upload.single('userImage'), (req, res) => {
-    debugger; 
 
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,     
