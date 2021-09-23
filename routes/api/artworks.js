@@ -125,7 +125,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
         if(error){
             res.status(500).json(error); 
         }
-
+      
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,

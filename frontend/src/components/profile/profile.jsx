@@ -56,6 +56,7 @@ class Profile extends React.Component {
         }
     }
     render() {
+        debugger;
         if (!this.props.user) return null
         let arts = this.props.artworks.map((art)=>  <ArtworkCard artwork={art}
                                                     refresh ={this.refresh.bind(this)}
@@ -80,10 +81,17 @@ class Profile extends React.Component {
             return (
                 <div className="userProfile">
                 <div id="midCard">
-                    <div className="profilePic"></div>
+                    <div className="profilePic">
+                        <img src={this.props.user.userImage}/>
+                    </div>
                     <div className="user-info">
                     <h1>{this.props.user.handle}</h1>
                     {bio}
+                    <div className="profilePicEdit">
+                        <Link to="/user/:userId/profile_pic">
+                            <button>Update Profile Pic</button>
+                        </Link>
+                    </div>
                     </div>
                     {/* <div>
                         <input type='file' name="userImage" 
