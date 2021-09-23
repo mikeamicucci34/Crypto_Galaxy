@@ -9,12 +9,13 @@ class Artwork extends React.Component {
 
     this.state = {
       artworks: [],
+      placeholder: 'y'
     };
       
   }
 
   componentDidMount() {
-    this.props.fetchArtworks();
+    this.props.fetchArtworks().then(() => this.setState({ artworks: this.props.artworks}));
     this.props.fetchLikes();
   }
 
@@ -50,15 +51,15 @@ class Artwork extends React.Component {
   }
 
   render() {
+    debugger;
     if (this.state.artworks.length === 0) {
       return null;
     } else {
-          
       return (
         <div className="arts-container">
           <div className="artwork-grid">
            {this.state.artworks.map((artwork) => (
-             <Artbox key={`${this.myLikes(artwork._id)[1]}` + `${artwork._id}`} title={artwork.title} description={artwork.description}
+             <Artbox key={`${this.myLikes(artwork._id)[1]}` + `${artwork._id}` + `${this.myLikes(artwork._id)[0]}` +`${this.state.artworks.length}`} title={artwork.title} description={artwork.description}
                   price={artwork.price} deleteArtwork={this.props.deleteArtwork} 
                   artworkId={artwork._id} refresh={ this.refresh.bind(this)} createLike={this.props.createLike} currentUser={this.props.userId}
                   artworkImage={artwork.artworkImage} removeLike={this.props.removeLike} likes={this.myLikes(artwork._id)}/>

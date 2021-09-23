@@ -38,12 +38,14 @@ router.post('/',
 )
 
 router.delete('/:id', (req, res) => {
+
  Comment.deleteOne({_id: req.params.id}).then(artwork => res.json(artwork))
  .catch(err => res.status(404).json({deleteError: 'No comment found'}))
 })
 
 router.patch('/:id', (req, res) => {
     Comment.findOne({ id: req.body.id}, (err, comment) => {
+        
         if (err) {
             return res.status(400).json(err)
         } else {

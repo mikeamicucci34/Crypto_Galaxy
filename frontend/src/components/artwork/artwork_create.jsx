@@ -78,7 +78,6 @@ export default class ArtworkCreate extends Component {
 
 
   render() {
-    
 
     return (
       <>
