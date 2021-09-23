@@ -59,7 +59,8 @@ router.patch("/:id", (req, res) => {
       artwork.updateOne({
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price,
+        date: req.body.date
       }, (err, docs) => {
         if (err) {
           return res.status(400).json(err);
@@ -67,7 +68,8 @@ router.patch("/:id", (req, res) => {
           return res.json({
             title: artwork.title,
             description: artwork.description,
-            price: artwork.price
+            price: artwork.price,
+            date: req.body.date,
           })
         }
       });
@@ -131,7 +133,8 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
             description: req.body.description,
             price: req.body.price,
             artworkImage: data.Location,
-            user: req.body.user
+            user: req.body.user,
+            date: req.body.date
         });
         artwork.save()
             .then(result => {
@@ -141,7 +144,8 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
                     description: result.description,
                     price: result.price,
                     artworkImage: data.Location,
-                    user: result.user
+                    user: result.user,
+                    date: result.date
                 })
             })
             .catch(err => {

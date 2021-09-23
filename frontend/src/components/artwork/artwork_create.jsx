@@ -54,6 +54,7 @@ export default class ArtworkCreate extends Component {
       artwork.append('price', this.state.price)
       artwork.append('user', this.state.user)
       artwork.append('artworkImage', this.state.artworkImage[0])
+      artwork.append('date', this.state.date)
       this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
 
     }else{
@@ -64,7 +65,8 @@ export default class ArtworkCreate extends Component {
           description: this.state.description,
           price: this.state.price,
           user: this.state.user,
-          artworktImage: this.state.artworkImage
+          artworktImage: this.state.artworkImage,
+          date: this.state.date
       }
       this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
 
@@ -138,6 +140,16 @@ export default class ArtworkCreate extends Component {
                             placeholder="Insert Price..."
                         />
                       </div>
+                    <div className="artwork__createComponentSubmissionDate">
+                      <p>Release Date</p>
+                    </div>
+                    <div className="artwork__createComponentSubmissionField">
+                      <input type="date"
+                        value={this.state.date}
+                        onChange={this.update('date')}
+                        placeholder="Insert Date..."
+                      />
+                    </div>
                       <div className="artwork__createComponentSubmissionButton">
                         <input type="submit" value={this.props.formType} />
                       </div>
