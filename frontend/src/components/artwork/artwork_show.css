@@ -133,3 +133,6 @@
     /* animation: spin 5s linear infinite; */
 }
 
+.ethShow{
+    display:flex;
+}

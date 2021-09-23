@@ -116,6 +116,9 @@ export default class Artbox extends React.Component {
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
                     </div>
                     </div>
+
+                    <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
+
             </motion.div>
         )
     }
