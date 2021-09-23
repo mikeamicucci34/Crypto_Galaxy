@@ -110,7 +110,7 @@ export default class Artbox extends React.Component {
                     <div>
                     <h3>{this.props.price}.00$</h3>
                     <br />
-                    <h3 className="eth">{this.ethValue()}<Icon icon={ethIcon} /></h3>
+                    <h3 className="eth">{this.ethValue()} <Icon icon={ethIcon} /></h3>
                     </div>
                     <div>
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
