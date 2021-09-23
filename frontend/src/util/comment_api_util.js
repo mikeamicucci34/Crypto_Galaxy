@@ -11,7 +11,7 @@ export const editComment = comment => {
 }
 
 export const deleteComment = commentId => {
-    return axios.delete(`api/comment/${commentId}`)
+    return axios.delete(`api/comments/${commentId}`)
 }
 
 export const getArtComments = artworkId => {

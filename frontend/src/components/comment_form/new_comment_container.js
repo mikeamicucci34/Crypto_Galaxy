@@ -4,13 +4,15 @@ import { createComment } from "../../actions/comment_actions"
 import NewComment from './new_comment.jsx'
 
 
-const mapSTP = (state, ownProps) => ({
+const mapSTP = (state, ownProps) => {
+  
+    return {
     comment: {
         body: '',
         user: state.session.user.id,
         artwork: ownProps.match.params.artworkId
     }
-})
+}}
 
 
 const mapDTP = dispatch => ({

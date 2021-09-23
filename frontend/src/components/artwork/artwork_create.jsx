@@ -45,7 +45,7 @@ export default class ArtworkCreate extends Component {
     
 
     
-    let artwork = new FormData() 
+    let artwork = new FormData()
       artwork.append('title', this.state.title)
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
@@ -87,7 +87,7 @@ export default class ArtworkCreate extends Component {
                   <p> .image, .jpeg, .png, .gif Max 100mb. </p>
                   
                     <input type='file' name="artworkImage" 
-                        onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
+                         onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
                         multiple={false}/> 
                 </div>
               </div>
