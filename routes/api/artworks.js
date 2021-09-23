@@ -52,11 +52,11 @@ router.delete("/:id", (req, res) => {
 
 
 router.patch("/:id", (req, res) => {
-  Artwork.findOne({ id: req.body.id }, (err, artwork) => {
+  Artwork.findOne({ _id: req.body.id }, (err, artwork) => {
     if (err) {
       return res.status(400).json(err)
     } else {
-      artwork.update({
+      artwork.updateOne({
         title: req.body.title,
         description: req.body.description,
         price: req.body.price
@@ -125,8 +125,7 @@ router.post('/', upload.single('artworkImage'), (req, res) => {
         if(error){
             res.status(500).json(error); 
         }
-
-   
+      
     const artwork = new Artwork({
             title: req.body.title,
             description: req.body.description,

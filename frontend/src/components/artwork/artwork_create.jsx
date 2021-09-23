@@ -46,14 +46,29 @@ export default class ArtworkCreate extends Component {
     
 
     
-    let artwork = new FormData()
+  
+    if (this.props.formType === 'Create Artwork'){
+      let artwork = new FormData()
       artwork.append('title', this.state.title)
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
       artwork.append('user', this.state.user)
       artwork.append('artworkImage', this.state.artworkImage[0])
+      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
 
-    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+    }else{
+      let artwork = {}
+      artwork = {
+          id: this.state._id,
+          title: this.state.title,
+          description: this.state.description,
+          price: this.state.price,
+          user: this.state.user,
+          artworktImage: this.state.artworkImage
+      }
+      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
+
+    }
         
     this.setState({
         title: "",

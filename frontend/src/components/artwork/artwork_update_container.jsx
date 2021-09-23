@@ -20,7 +20,7 @@ class EditArtWork extends React.Component {
 }
 
 const mSTP = (state, ownProps) => {
-
+      debugger;
       return {
             artwork: state.artworks.all[0],
             formType: 'Update Artwork'
