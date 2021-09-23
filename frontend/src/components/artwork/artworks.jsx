@@ -12,10 +12,19 @@ class Artwork extends React.Component {
       placeholder: 'y',
       time: Date.now()
     };
-      
+
+
+    const CoinGecko = require('coingecko-api');
+    const CoinGeckoClient = new CoinGecko();
+    var func = async () => {
+      this.eth = await CoinGeckoClient.coins.fetch('ethereum', {});
+    }
+    func();
   }
 
   componentDidMount() {
+
+
     this.props.fetchArtworks().then(() => this.setState({ artworks: this.props.artworks}));
     this.props.fetchLikes();
     this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
@@ -53,8 +62,15 @@ class Artwork extends React.Component {
     let likeArr = [count, liked,hot]
     return likeArr
   }
-
+  ethTracker(){
+    if (this.eth===undefined){
+      return 'Loading...'
+    }else{
+      return this.eth.data.tickers[1].last
+    }
+  }
   render() {
+    debugger;
     if (this.state.artworks.length === 0) {
       return null;
     } else {
@@ -65,7 +81,7 @@ class Artwork extends React.Component {
              <Artbox key={`${this.myLikes(artwork._id)[1]}` + `${artwork._id}` + `${this.myLikes(artwork._id)[0]}` +`${this.state.artworks.length}`} title={artwork.title} description={artwork.description}
                   price={artwork.price} deleteArtwork={this.props.deleteArtwork} 
                   artworkId={artwork._id} refresh={ this.refresh.bind(this)} createLike={this.props.createLike} currentUser={this.props.userId}
-                  artworkImage={artwork.artworkImage} removeLike={this.props.removeLike} likes={this.myLikes(artwork._id)} date={artwork.date}/>
+               artworkImage={artwork.artworkImage} removeLike={this.props.removeLike} likes={this.myLikes(artwork._id)} date={artwork.date} eth={this.ethTracker()} price={artwork.price}/>
            ))}
           </div>
         </div>

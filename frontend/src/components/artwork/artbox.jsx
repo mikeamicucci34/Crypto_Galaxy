@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import { Icon, InlineIcon } from '@iconify/react';
+import ethIcon from '@iconify/icons-cryptocurrency/eth';
 
 export default class Artbox extends React.Component {
 
@@ -70,6 +72,11 @@ export default class Artbox extends React.Component {
         }
         
     }
+    ethValue(){
+        let num = this.props.price/this.props.eth
+        let numRound = num.toFixed(5);
+        return numRound 
+    }
     render() {
         let icon;
         if (this.state.likeToggle === 'unliked') {
@@ -103,6 +110,7 @@ export default class Artbox extends React.Component {
                     <div>
                     {/* <h3>{this.props.description}</h3> */}
                     <h3>{this.props.price}$</h3>
+                    <h3 className="eth">{this.ethValue()}<Icon icon={ethIcon} /></h3>
                     </div>
                     <div>
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
@@ -110,7 +118,6 @@ export default class Artbox extends React.Component {
                     </div>
                     <button className="login-button" onClick={() => this.handleDelete()}>Delete</button>
                     <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
-
                 
             </motion.div>
         )

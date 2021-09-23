@@ -84,3 +84,7 @@
     border-image: linear-gradient(to right, rgb(38, 230, 255) , rgb(234, 0, 255));
     border-image-slice: 1;
 }
+
+.eth{
+    display:flex
+}
