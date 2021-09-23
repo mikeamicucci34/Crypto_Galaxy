@@ -1,0 +1,124 @@
+.show-image {
+    width: 500px;
+    height: 500px;
+    border-radius: 15px;
+}
+
+
+.show-page{
+    display: flex;
+    flex-direction: row;
+    margin: 40px;
+    justify-content: space-between;
+}
+
+
+.commentsandinfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 60px;
+    gap: 30px;
+    width: 40%;
+  
+}
+
+
+.comments-wrapper{
+  max-width: 700px;
+  width: 700px;
+  padding: 3px;
+  position: relative;
+  background: linear-gradient(to right, #675dd0, #8aedda);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.comments{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    height: max-content;
+    width: 670px;
+    max-width: 670px;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+    border-radius: 25px;
+    background: rgb(18, 18, 18);
+    align-items: center;
+}
+
+
+.nft-info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.title-wrapper{
+    max-width: 300px;
+    width: 300px;
+    padding: 3px;
+    position: relative;
+    background: linear-gradient(to right, #675dd0, #8aedda);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    
+}
+
+.nft-titleandmore{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: rgb(18, 18, 18);
+    width: 290px;
+    max-width: 290px;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+.edit-link{
+    text-align: center;
+    padding-top: 8px;
+    width: 80px;
+    border-radius: 25px;
+    height: 20px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
+    color: white;
+}
+
+.delete-button{
+    text-align: center;
+    width: 80px;
+    border-radius: 25px;
+    height: 27px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
+    color: white;
+    border: none;
+}
+
+
+.art-title{
+    font-size: 15px;
+    font-weight: bold;
+}

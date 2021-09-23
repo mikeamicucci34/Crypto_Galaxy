@@ -1,4 +1,5 @@
 import React from 'react' 
+import './new_comment.css'
 
 
 class NewComment extends React.Component {
@@ -27,14 +28,15 @@ class NewComment extends React.Component {
     render(){
         return (
             <div>
-                <form onSubmit={()=> this.handleSubmit()} >
+                <form className="comment-form" onSubmit={()=> this.handleSubmit()} >
                     <textarea 
                         value={this.state.body} 
                         onChange={(e)=> this.handleChange(e)}
                         placeholder="leave a comment"
+                        className="comment-input"
                     >
                     </textarea>
-                    <button>Post</button>
+                    <button className="post-button">Post</button>
                 </form>
             </div>
         )

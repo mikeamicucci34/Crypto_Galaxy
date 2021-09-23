@@ -1,4 +1,5 @@
 import React from 'react'
+import './comment.css'
 
 
 class CommentItem extends React.Component{
@@ -53,9 +54,9 @@ class CommentItem extends React.Component{
    
         if(this.props.currentUser === this.props.comment.user) {
             buttons = (
-                <div>
-                    <button onClick={()=> this.handleEdit()}>Edit Comment</button>
-                    <button onClick={()=> this.handleDelete()}>Delete Comment</button>
+                <div className="comment-buttons">
+                    <button className="comment-button" onClick={()=> this.handleEdit()}>Edit</button>
+                    <button className="comment-button" onClick={()=> this.handleDelete()}>Delete</button>
                 </div>
             )
         } else {
@@ -73,9 +74,9 @@ class CommentItem extends React.Component{
             )
         } else {
             body = (
-                <form onSubmit={()=> this.submitEdit()}>
-                <textarea value={this.state.body} onChange={(e)=>this.handleChange(e)}></textarea>
-                <button>Post</button>
+                <form className="comment-form-edit" onSubmit={()=> this.submitEdit()}>
+                <textarea className="comment-input" value={this.state.body} onChange={(e)=>this.handleChange(e)}></textarea>
+                <button className="post-button" >Post</button>
                 </form>
             )
         }
