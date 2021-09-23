@@ -7,11 +7,10 @@ import CommentItem from '../comments_list/comments_item.jsx'
 
 
 class ArtworkShow extends React.Component {
-      // constructor(props) {
-      //       super()
-      //       this.state = {key: ""}
-            
-      // }
+      constructor(props) {
+            super(props)
+            this.state = {comments: this.props.comments}
+      }
 
       
 
@@ -21,12 +20,18 @@ class ArtworkShow extends React.Component {
       }
 
       refresh(){
-            this.props.fetchArtwork(this.props.match.params.artworkId)
             this.props.getArtComments(this.props.match.params.artworkId).then(res => this.forceUpdate() )
-      }
+            this.props.fetchArtwork(this.props.match.params.artworkId)
+     }
 
       handleDelete() {
         this.props.deleteArtwork(this.props.artwork[0]._id).then(() => this.props.history.push('/artworks'))
+      }
+
+      componentDidUpdate(prevProps){
+            if (prevProps.comments.length !== this.props.comments.length) {
+                  this.setState({comments: this.props.comments})
+            }
       }
 
    
@@ -34,7 +39,7 @@ class ArtworkShow extends React.Component {
 
       render() {
             if (this.props.artwork.length === 0) return null
-            debugger
+            if (!this.props.comments) return null;
             let deleteButton;
             let updateButton;
             if (this.props.artwork[0].user === this.props.currentUser) {
@@ -44,9 +49,7 @@ class ArtworkShow extends React.Component {
                   deleteButton = <button onClick={() => this.handleDelete()}>Delete Artwork</button>
                   updateButton = <Link to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
             }
-            let comments = this.props.comments.map((comment, i)=> {
-             return <CommentItem key={i} comment = {comment}                                                                    
-            /> })
+            
 
             return (
                   <div>
@@ -57,7 +60,9 @@ class ArtworkShow extends React.Component {
                         {deleteButton}
                         {updateButton}
                         <NewComment refresh={this.refresh.bind(this)} />
-                        {comments}
+                        {this.state.comments.map((comment, i)=> {
+                        return <CommentItem key={`${i}${this.state.comments.length}`} comment = {comment}                                                                    
+                        /> })}
                   </div>
             )
       }
