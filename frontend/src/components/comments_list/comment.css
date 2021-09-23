@@ -41,6 +41,15 @@
 
 }
 
+.commenter{
+    font-weight: bold;
+}
+
+.comment-body-and-author{
+    display: flex;
+    flex-direction: row;
+}
+
 
 .comment-input:focus{
     text-decoration: none;
