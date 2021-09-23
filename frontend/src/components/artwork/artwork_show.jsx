@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import NewComment from '../comment_form/new_comment_container'
 import CommentItem from '../comments_list/comments_item.jsx'
+import './artwork_show.css'
 
 
 
@@ -44,23 +45,33 @@ class ArtworkShow extends React.Component {
             let deleteButton;
             let updateButton;
             if (this.props.artwork[0].user === this.props.currentUser) {
-                  deleteButton = <button onClick={() => this.handleDelete.bind(this)}>Delete Artwork</button>
-                  updateButton = <Link to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
+                  deleteButton = <button className="delete-button" onClick={() => this.handleDelete.bind(this)}>Delete</button>
+                  updateButton = <Link className="edit-link" to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
             } else {
-                  deleteButton = <button onClick={() => this.handleDelete()}>Delete Artwork</button>
-                  updateButton = <Link to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
+                  deleteButton = null
+                  updateButton = null
             }
             
 
             return (
-                  <div>
-                        <img src={this.props.artwork[0].artworkImage} alt="" />
-                        <p>{this.props.artwork[0].title}</p>
-                        <p>{ this.props.artwork[0].price}</p>
+                  <div className="show-page">
+                        <div className="nft-info">
+                        <img className="show-image" src={this.props.artwork[0].artworkImage} alt="" />
+                        <div className="title-wrapper">
+                        <div className="nft-titleandmore">
+                        <h3 className="art-title">{this.props.artwork[0].title}</h3>
+                        <p>Price: {this.props.artwork[0].price}.00$</p>
                         <p>{this.props.artwork[0].description}</p>
+                        <div className="buttons">
                         {deleteButton}
                         {updateButton}
-                        <NewComment refresh={this.refresh.bind(this)} />
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div className="commentsandinfo"> 
+                        <div className="comments-wrapper">
+                        <div className="comments">
                         {this.state.comments.map((comment, i)=> {
                         return <CommentItem key={`${i}${this.state.comments.length}`} 
                                             comment = {comment}      
@@ -69,6 +80,10 @@ class ArtworkShow extends React.Component {
                                             removeComment = {this.props.removeComment}
                                             refresh={this.refresh.bind(this)}                                                           
                         /> })}
+                        </div>
+                        </div>
+                        <NewComment refresh={this.refresh.bind(this)} />
+                        </div>
                   </div>
             )
       }

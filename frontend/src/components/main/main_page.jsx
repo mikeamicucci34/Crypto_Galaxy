@@ -32,7 +32,7 @@ class MainPage extends React.Component {
               with your favorite artists
             </h2>
             <Link className="all-art-link" to="/artworks">
-              <button className="all-art">View all artworks</button>
+              <button className="all-art">Explore Upcoming Arts</button>
             </Link>
           </div>
         </div>

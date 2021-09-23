@@ -1,0 +1,48 @@
+.comment{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    width: 600px;
+    border-bottom: 2px solid white;
+    padding-bottom: 20px;
+}
+
+
+.comment-button{
+    text-align: center;
+    padding: 5px;
+    border-radius: 25px;
+    height: 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
+    color: white;
+    border: none;
+    width: 100px;
+}
+
+.comment-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+.comment-form-edit{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    width: 600px;
+    border-bottom: 2px solid white;
+    padding-bottom: 20px;
+
+}
+
+
+.comment-input:focus{
+    text-decoration: none;
+    outline: none;
+}

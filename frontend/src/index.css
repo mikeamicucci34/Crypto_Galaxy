@@ -39,6 +39,16 @@ button{
 	font-size: 15px;
 }
 
+
+textarea{
+	resize: none;
+}
+
+
+button:hover{
+	cursor: pointer;
+}
+
 body {
 	line-height: 1;
 }
