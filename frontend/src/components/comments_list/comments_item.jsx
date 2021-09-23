@@ -16,7 +16,6 @@ class CommentItem extends React.Component{
     }
 
     submitEdit() {
-        debugger
         let comment = {
             _id: this.state._id,
             body: this.state.body,
