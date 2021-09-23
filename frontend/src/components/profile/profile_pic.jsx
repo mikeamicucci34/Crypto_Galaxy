@@ -32,7 +32,7 @@ export default class ProfilePic extends Component {
     submitPhoto(e){
         e.preventDefault();
         this.setState({user: this.props.user})
-        debugger; 
+   
         
         let user = new FormData() 
             user.append('email', this.state.email)
@@ -51,7 +51,6 @@ export default class ProfilePic extends Component {
     
     
     render() {
-        debugger;
         return (
             <div>
                  <form onSubmit={this.submitPhoto} encType="multipart/form-data">

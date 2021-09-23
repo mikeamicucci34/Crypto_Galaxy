@@ -6,7 +6,7 @@ import { fetchUser } from '../../actions/user_actions';
 import ArtworkCreate from './artwork_create';
 
 const mSTP = (state, ownProps) => {
-    debugger;
+   
     return ({
     loggedIn: state.session.isAuthenticated,
     newArtwork: state.artworks.new,

@@ -5,7 +5,7 @@ import { getUserArtwork } from '../../actions/artwork_actions.js';
 import {fetchArtwork, updateArtwork, deleteArtwork} from '../../actions/artwork_actions'
 
 const mapStateToProps = (state) => {
-    debugger;
+ 
     return {
         currentUser: state.session.user,
         user: state.users.user,
