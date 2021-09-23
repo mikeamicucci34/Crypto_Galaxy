@@ -12,6 +12,7 @@ import {Route} from 'react-router-dom'
 import ArtworkUpdateContainer from './artwork/artwork_update_container'
 import ArtworkShowContainer from './artwork/artwork_show_container'
 import './app.css'
+import ProfilePicContainer from './profile/profile_pic_container';
 
 const App = () => (
   <div>
@@ -26,6 +27,7 @@ const App = () => (
       <ProtectedRoute exact path="/update_artwork/:artworkId" component={ArtworkUpdateContainer} />
       <ProtectedRoute exact path="/artworks" component={ArtworksContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+      <ProtectedRoute exact path="/user/:userId/profile_pic" component={ProfilePicContainer} />
     </Switch>
   </div>
 );

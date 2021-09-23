@@ -36,3 +36,9 @@ export const updateUser = user => dispatch => {
         .then(user => dispatch(receiveUser(user))
         );
 }
+
+export const updateUserProfilePic = user => dispatch => {
+    return APIUtil.updateUserProfilePic(user)
+        .then(user => dispatch(receiveUser(user))
+        );
+}

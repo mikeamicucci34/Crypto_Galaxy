@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './artwork_create.css'
 
 export default class ArtworkCreate extends Component {
@@ -52,10 +52,8 @@ export default class ArtworkCreate extends Component {
       artwork.append('user', this.state.user)
       artwork.append('artworkImage', this.state.artworkImage[0])
 
-      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
-    
-    // this.props.submitArtwork(artwork); 
-    
+    this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
+        
     this.setState({
         title: "",
         description: "",
@@ -71,15 +69,8 @@ export default class ArtworkCreate extends Component {
       [field]: e.currentTarget.value,
   })}
 
-  // artworkChange(e) {
-  //   if (e.target.files.length !== 0) {
-  //     return (e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })
-  //   }
-  // }
-
 
   render() {
-    debugger; 
 
     return (
       <>
