@@ -11,7 +11,6 @@ class CommentItem extends React.Component{
             body: this.props.comment.body,
             user: this.props.comment.user,
             artwork: this.props.comment.artwork,
-            handle: this.props.userHandle,
             toggle: 'show'
         }
         
@@ -23,7 +22,6 @@ class CommentItem extends React.Component{
             body: this.state.body,
             user: this.state.user,
             artwork: this.state.artwork,
-            handle: this.state.handle
         }
         this.props.updateComment(comment).then(res => this.props.refresh())
     }
