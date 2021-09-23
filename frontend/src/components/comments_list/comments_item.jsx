@@ -22,9 +22,7 @@ class CommentItem extends React.Component{
             user: this.state.user,
             artwork: this.state.artwork,
         }
-        this.props.updateComment(comment)
-        this.props.refresh()
-
+        this.props.updateComment(comment).then(res => this.props.refresh())
     }
 
     handleEdit() {
@@ -52,6 +50,7 @@ class CommentItem extends React.Component{
 
 
         let buttons;
+   
         if(this.props.currentUser === this.props.comment.user) {
             buttons = (
                 <div>

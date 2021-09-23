@@ -33,7 +33,7 @@
 .like{
     background: transparent;
     border: none;
-    color:  #b621fe;
+    color:  linear-gradient(to right, #675dd0, #8aedda);
     align-self: flex-end;
 }
 

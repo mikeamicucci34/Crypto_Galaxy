@@ -8,7 +8,7 @@
 }
 
 .artwork_component h2{
-    color: linear-gradient(to right, #b621fe, #1fd1f9);
+    color: linear-gradient(to right, #675dd0, #8aedda);
 }
 
 .artwork__returnLink{
@@ -65,7 +65,7 @@
     border-radius: 25px;
     height: 25px;
     text-decoration: none;
-    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
     cursor: pointer;
 }
@@ -129,9 +129,10 @@
     border-radius: 25px;
     height: 40px;
     text-decoration: none;
-    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
     cursor: pointer;
+    border: none;
 }
 
 .artwork__previewComponent h3 {

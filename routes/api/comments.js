@@ -44,23 +44,20 @@ router.delete('/:id', (req, res) => {
 })
 
 router.patch('/:id', (req, res) => {
-    Comment.findOne({ id: req.body.id}, (err, comment) => {
+   
+    Comment.findOne({ _id: req.body._id}, (err, comment) => {
         
         if (err) {
             return res.status(400).json(err)
         } else {
             comment.updateOne({
-                body: req.body.body,
-                user: req.body.id,
-                artwork: req.body.id
+                body: req.body.body
             }, (err, docs) => {
                 if (err) {
                     return res.status(400).jason(err)
                 } else {
                     return res.json({
-                        body: comment.body,
-                        user: comment.user,
-                        artwork: comment.artwork
+                        body: comment.body
                     })
                 }
             })

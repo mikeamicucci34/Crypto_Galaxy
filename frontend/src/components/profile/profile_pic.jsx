@@ -32,8 +32,8 @@ export default class ProfilePic extends Component {
 
     submitPhoto(e){
         e.preventDefault();
-        
-        debugger; 
+      
+        this.setState({user: this.props.user})
         
         let user = new FormData() 
             user.append('email', this.props.user.email)
@@ -52,7 +52,6 @@ export default class ProfilePic extends Component {
     
     
     render() {
-        debugger;
         return (
             <div>
                 <div className="profilePicUploadComponent">
