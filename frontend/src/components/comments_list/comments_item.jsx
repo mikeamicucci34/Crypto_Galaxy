@@ -63,7 +63,7 @@ class CommentItem extends React.Component{
             buttons = null
         }
         let commenter = this.props.users.filter(userCommented => userCommented._id === this.props.comment.user)
-
+        if (commenter.length === 0) return null
         let body;
         if (this.state.toggle === 'show') {
            

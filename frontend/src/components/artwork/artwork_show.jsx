@@ -23,6 +23,10 @@ class ArtworkShow extends React.Component {
             this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
       }
 
+      componentWillMount() {
+            this.props.fetchUsers();
+      }
+
       componentWillUnmount() {
             clearInterval(this.interval);
       }

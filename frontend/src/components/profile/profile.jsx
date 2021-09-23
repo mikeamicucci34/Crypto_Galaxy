@@ -28,7 +28,7 @@ class Profile extends React.Component {
     }
 
     refresh(){
-            debugger;
+            
             this.props.fetchUser(this.props.currentUser.id)
             this.props.getUserArtwork(this.props.currentUser.id)
     }
