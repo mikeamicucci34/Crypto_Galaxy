@@ -16,10 +16,14 @@ class ArtworkShow extends React.Component {
       
 
       componentDidMount() {
-            this.props.fetchArtwork(this.props.match.params.artworkId)
-            this.props.getArtComments(this.props.match.params.artworkId)
+            this.props.fetchArtwork(this.props.match.params.artworkId);
+            this.props.getArtComments(this.props.match.params.artworkId);
+            this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
       }
 
+      componentWillUnmount() {
+            clearInterval(this.interval);
+      }
       refresh(){
             this.props.getArtComments(this.props.match.params.artworkId).then()
             this.props.fetchArtwork(this.props.match.params.artworkId).then(res => this.forceUpdate() )
@@ -35,7 +39,38 @@ class ArtworkShow extends React.Component {
                   this.setState({comments: this.props.comments})
             }
       }
+      releaseDate(date) {
+            let releaseDate = new Date(date).getTime()
+            let today = new Date().getTime()
+            if (today < releaseDate) {
+                  var milisec_diff = releaseDate - today;
+                  var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
+                  var date_diff = new Date(milisec_diff);
+                  if (days >= 1 && days < 2) {
+                        return days + " day left"
+                  } else if (days > 1) {
+                        return days + " days left"
+                  } else {
+                        let hours = date_diff.getHours();
+                        if (date_diff.getHours() < 10) {
+                              hours = `0${date_diff.getHours()}`
+                        }
+                        let minutes = date_diff.getMinutes()
+                        if (date_diff.getMinutes() < 10) {
+                              minutes = `0${date_diff.getMinutes()}`
+                        }
+                        let seconds = date_diff.getSeconds()
+                        if (date_diff.getSeconds() < 10) {
+                              seconds = `0${date_diff.getSeconds()}`
+                        }
+                        return (hours + ':' + minutes + ':' + seconds + ' left')
+                  }
+            } else {
+                  var milisec_diff = 0;
+                  return 'Released!'
+            }
 
+      }
    
       
 
@@ -62,6 +97,7 @@ class ArtworkShow extends React.Component {
                         <h3 className="art-title">{this.props.artwork[0].title}</h3>
                         <p>Price: {this.props.artwork[0].price}.00$</p>
                         <p>{this.props.artwork[0].description}</p>
+                        <p>{this.releaseDate(this.props.artwork[0].date)}</p>
                         <div className="buttons">
                         {deleteButton}
                         {updateButton}
