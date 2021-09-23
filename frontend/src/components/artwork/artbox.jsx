@@ -115,7 +115,6 @@ export default class Artbox extends React.Component {
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
                     </div>
                     </div>
-                    <button className="login-button" onClick={() => this.handleDelete()}>Delete</button>
                     <Link to={`./update_artworks/${this.props.artworkId}`}></Link>
             </motion.div>
         )

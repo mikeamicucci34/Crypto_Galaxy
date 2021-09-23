@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import NewComment from '../comment_form/new_comment_container'
 import CommentItem from '../comments_list/comments_item.jsx'
 import './artwork_show.css'
-
+import { Icon, InlineIcon } from '@iconify/react';
+import ethIcon from '@iconify/icons-cryptocurrency/eth';
 
 
 
@@ -11,6 +12,13 @@ class ArtworkShow extends React.Component {
       constructor(props) {
             super(props)
             this.state = {comments: this.props.comments}
+
+            const CoinGecko = require('coingecko-api');
+            const CoinGeckoClient = new CoinGecko();
+            var func = async () => {
+                  this.eth = await CoinGeckoClient.coins.fetch('ethereum', {});
+            }
+            func();
       }
 
       
@@ -72,8 +80,19 @@ class ArtworkShow extends React.Component {
 
       }
    
-      
+      ethTracker() {
+            if (this.eth === undefined) {
+                  return 'Loading...'
+            } else {
+                  return this.eth.data.tickers[1].last
+            }
+      }
 
+      ethValue(price) {
+            let num = price / this.ethTracker()
+            let numRound = num.toFixed(5);
+            return numRound
+      }
       render() {
             if (this.props.artwork.length === 0) return null
             if (!this.props.comments) return null;
@@ -96,6 +115,7 @@ class ArtworkShow extends React.Component {
                         <div className="nft-titleandmore">
                         <h3 className="art-title">{this.props.artwork[0].title}</h3>
                         <p>Price: {this.props.artwork[0].price}.00$</p>
+                        <p className="ethShow">{this.ethValue(this.props.artwork[0].price)} <Icon icon={ethIcon} /></p>
                         <p>{this.props.artwork[0].description}</p>
                         <p>{this.releaseDate(this.props.artwork[0].date)}</p>
                         <div className="buttons">
