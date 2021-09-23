@@ -52,6 +52,7 @@ class CommentItem extends React.Component{
 
 
         let buttons;
+        debugger
         if(this.props.currentUser === this.props.comment.user) {
             buttons = (
                 <div>
