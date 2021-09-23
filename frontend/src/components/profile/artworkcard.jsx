@@ -12,7 +12,7 @@ class ArtworkCard extends React.Component {
 
 
     handleDelete(){
-        // debugger
+       
         this.props.deleteArtwork(this.state._id)
         this.props.refresh()
     }

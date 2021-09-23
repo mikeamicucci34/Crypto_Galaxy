@@ -20,8 +20,9 @@ class ArtworkShow extends React.Component {
       }
 
       refresh(){
-            this.props.getArtComments(this.props.match.params.artworkId).then(res => this.forceUpdate() )
-            this.props.fetchArtwork(this.props.match.params.artworkId)
+            this.props.getArtComments(this.props.match.params.artworkId).then()
+            this.props.fetchArtwork(this.props.match.params.artworkId).then(res => this.forceUpdate() )
+            
      }
 
       handleDelete() {
