@@ -45,13 +45,12 @@ export default class ArtworkCreate extends Component {
     
 
     
-    let artwork = new FormData() 
+    let artwork = new FormData()
       artwork.append('title', this.state.title)
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
       artwork.append('user', this.state.user)
       artwork.append('artworkImage', this.state.artworkImage[0])
-
       this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`)); 
     
     // this.props.submitArtwork(artwork); 
@@ -79,7 +78,7 @@ export default class ArtworkCreate extends Component {
 
 
   render() {
-    debugger; 
+    
 
     return (
       <>
@@ -96,7 +95,7 @@ export default class ArtworkCreate extends Component {
                   <p> .image, .jpeg, .png, .gif Max 100mb. </p>
                   
                     <input type='file' name="artworkImage" 
-                        onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
+                         onChange={(e) => this.setState({ artworkImage: e.target.files, file: URL.createObjectURL(e.target.files[0]) })} 
                         multiple={false}/> 
                 </div>
               </div>
