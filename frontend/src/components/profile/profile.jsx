@@ -56,7 +56,7 @@ class Profile extends React.Component {
         }
     }
     render() {
-        debugger;
+      
         if (!this.props.user) return null
         let arts = this.props.artworks.map((art)=>  <ArtworkCard artwork={art}
                                                     refresh ={this.refresh.bind(this)}

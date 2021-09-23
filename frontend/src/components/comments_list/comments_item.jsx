@@ -11,6 +11,7 @@ class CommentItem extends React.Component{
             body: this.props.comment.body,
             user: this.props.comment.user,
             artwork: this.props.comment.artwork,
+            handle: this.props.userHandle,
             toggle: 'show'
         }
         
@@ -22,6 +23,7 @@ class CommentItem extends React.Component{
             body: this.state.body,
             user: this.state.user,
             artwork: this.state.artwork,
+            handle: this.state.handle
         }
         this.props.updateComment(comment).then(res => this.props.refresh())
     }
@@ -62,11 +64,14 @@ class CommentItem extends React.Component{
         } else {
             buttons = null
         }
+        let commenter = this.props.users.filter(userCommented => userCommented._id === this.props.comment.user)
 
         let body;
-        if(this.state.toggle === 'show') {
+        if (this.state.toggle === 'show') {
+           
             body = (
                 <div className="comment">
+                    <p>{commenter[0].handle}</p>
                     <p>{this.state.body}</p>
                     {buttons}
                 </div>
