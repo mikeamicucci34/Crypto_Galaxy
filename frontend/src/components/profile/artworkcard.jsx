@@ -12,7 +12,6 @@ class ArtworkCard extends React.Component {
 
 
     handleDelete(){
-       
         this.props.deleteArtwork(this.state._id)
         this.props.refresh()
     }

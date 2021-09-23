@@ -26,6 +26,9 @@ const ArtworkSchema = new Schema({
     comments: {
         type: Schema.Types.ObjectId,
         ref: 'Comment'
+    },
+    date: {
+        type: Date
     }
 }, {
     timestamps: true

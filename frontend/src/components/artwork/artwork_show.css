@@ -1,8 +1,4 @@
-.show-image {
-    width: 500px;
-    height: 500px;
-    border-radius: 15px;
-}
+
 
 
 .show-page{
@@ -62,8 +58,8 @@
 
 
 .title-wrapper{
-    max-width: 300px;
-    width: 300px;
+    max-width: 500px;
+    width: 500px;
     padding: 3px;
     position: relative;
     background: linear-gradient(to right, #675dd0, #8aedda);
@@ -81,8 +77,8 @@
     align-items: center;
     gap: 10px;
     background: rgb(18, 18, 18);
-    width: 290px;
-    max-width: 290px;
+    width: 480px;
+    max-width: 480px;
     border-radius: 25px;
     padding: 10px;
 }
@@ -122,3 +118,18 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+
+
+@keyframes spin {
+    0% { transform: rotate3d(0, 1, 0, 0deg);; }
+    100% { transform: rotate3d(0, 1, 0, 360deg);; }
+}
+
+.show-image {
+    width: 500px;
+    height: 500px;
+    border-radius: 15px;
+    /* animation: spin 5s linear infinite; */
+}
+

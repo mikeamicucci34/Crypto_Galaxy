@@ -28,9 +28,10 @@ class Profile extends React.Component {
     }
 
     refresh(){
+            debugger;
             this.props.fetchUser(this.props.currentUser.id)
             this.props.getUserArtwork(this.props.currentUser.id)
-        }
+    }
 
     
     submitBio(e){
@@ -44,9 +45,12 @@ class Profile extends React.Component {
         }
 
         this.props.updateUser(user)
+            .then(res => {
+                this.setState({toggle: 'show'})
+                this.refresh()
+             })
         
-        this.setState({toggle: 'show'})
-        this.refresh()
+
         
     }
 
@@ -55,8 +59,10 @@ class Profile extends React.Component {
             this.setState({ [text]: e.currentTarget.value })
         }
     }
+
     render() {
-      
+
+
         if (!this.props.user) return null
         let arts = this.props.artworks.map((art)=>  <ArtworkCard artwork={art}
                                                     refresh ={this.refresh.bind(this)}
@@ -69,24 +75,34 @@ class Profile extends React.Component {
         if(this.state.toggle === "show"){
             bio = <div className="user-bio">
                         <div>{this.props.user.bio}</div>
-                        <button className="login-button" onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
+                        <button  onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
                     </div>
         } else if(this.state.toggle === "edit") {
             bio = <form className="user-bio" onSubmit={(e)=>this.submitBio(e)}>
                         <textarea className="login-input" placeholder='Biography' onChange={this.update('bio')}></textarea>
-                        <button className="login-button">Submit</button>
+                        <button >Submit</button>
                   </form>
         }
-        
+
+        let propic;
+        if (this.props.user.userImage) { 
+            propic = <div className="profilePicReal">
+                        <img src={this.props.user.userImage}/>
+                    </div>
+        } else {
+           propic = <div className="profilePicFake">
+                    </div>
+        }
+
             return (
                 <div className="userProfile">
                 <div id="midCard">
-                    <div className="profilePic">
-                        <img src={this.props.user.userImage}/>
-                    </div>
+                    {propic}
                     <div className="user-info">
                     <h1>{this.props.user.handle}</h1>
-                    {bio}
+                    <div className="user-bioContainer">
+                        {bio}
+                    </div>
                     <div className="profilePicEdit">
                         <Link to={`/user/${this.props.user._id}/profile_pic`}>
                             <button>Update Profile Pic</button>
