@@ -17,7 +17,8 @@ const mSTP = (state, ownProps) => {
         newArtwork: "",
         user: state.session.user.id,
         artworkImage: null,
-        file: null
+        file: null,
+        date: 'Release Date',
     },
     formType: 'Create Artwork'
 })};
