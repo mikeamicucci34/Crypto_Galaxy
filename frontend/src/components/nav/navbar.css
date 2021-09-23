@@ -7,13 +7,11 @@
 
 
 .logo{
+    background-image: url(../../assets/clogo.png);
     margin-left: 20px;
-    text-decoration: none;
     margin-top: 10px;
-    font-size: 1.5em;
-    background: -webkit-linear-gradient( #b621fe, #1fd1f9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    width: 300px;
+    height: 100px;
 }
 
 
@@ -36,7 +34,7 @@
     border-radius: 25px;
     height: 25px;
     text-decoration: none;
-    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
 }
 
@@ -46,7 +44,7 @@
     border-radius: 25px;
     height: 33px;
     text-decoration: none;
-    background-image: linear-gradient(to right, #b621fe, #1fd1f9);
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
     color: white;
     border: none;
 }

@@ -1,86 +1,95 @@
-
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import './login.css'
+import React from "react";
+import { withRouter } from "react-router-dom";
+import "./login.css";
+import GLOBE from "vanta/dist/vanta.globe.min";
+import NavBar from "../nav/navbar_container";
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            email: '',
-            password: '',
-            errors: {}
-        };
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+    };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
-    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
+    this.vantaRef = React.createRef();
+  }
 
-  
-    componentWillReceiveProps(nextProps) {
-        this.setState({ errors: nextProps.errors })
-    }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
+  }
 
-   
-    update(field) {
-        return e => this.setState({
-            [field]: e.currentTarget.value
-        });
-    }
+  componentDidMount() {
+    this.vantaEffect = GLOBE({
+      el: this.vantaRef.current,
+    });
+  }
 
+  componentWillUnmount() {
+    if (this.vantaEffect) this.vantaEffect.destroy();
+  }
 
-    handleSubmit(e) {
-        e.preventDefault();
+  update(field) {
+    return (e) =>
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
+  }
 
-        let user = {
-            email: this.state.email,
-            password: this.state.password
-        };
+  handleSubmit(e) {
+    e.preventDefault();
 
-        this.props.login(user)
-    }
-    
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+    };
 
-    renderErrors() {
-        return (
-            <ul className="errors">
-                {Object.keys(this.state.errors).map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {this.state.errors[error]}
-                    </li>
-                ))}
-            </ul>
-        );
-    }
+    this.props.login(user);
+  }
 
-    render() {
-        return (
-            <div className="form-contianer">
-                <form className="form" onSubmit={this.handleSubmit}>
-                    
-                        <input type="text"
-                            value={this.state.email}
-                            onChange={this.update('email')}
-                            placeholder="Email"
-                            className="login-input"
-                        />
-                        <br />
-                        <input type="password"
-                            value={this.state.password}
-                            onChange={this.update('password')}
-                            placeholder="Password"
-                            className="login-input"
-                        />
-                        <br />
-                        <input type="submit" value="Submit" className="login-button"/>
-                        {this.renderErrors()}
+  renderErrors() {
+    return (
+      <ul className="errors">
+        {Object.keys(this.state.errors).map((error, i) => (
+          <li key={`error-${i}`}>{this.state.errors[error]}</li>
+        ))}
+      </ul>
+    );
+  }
 
-                </form>
-                <div className="footer"></div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="animation" ref={this.vantaRef}>
+        <NavBar />
+        <div className="form-contianer">
+          <form className="form" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              value={this.state.email}
+              onChange={this.update("email")}
+              placeholder="Email"
+              className="login-input"
+            />
+            <br />
+            <input
+              type="password"
+              value={this.state.password}
+              onChange={this.update("password")}
+              placeholder="Password"
+              className="login-input"
+            />
+            <br />
+            <input type="submit" value="Submit" className="login-button" />
+            {this.renderErrors()}
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(LoginForm);
