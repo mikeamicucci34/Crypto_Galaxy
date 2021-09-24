@@ -15,6 +15,7 @@ class Profile extends React.Component {
         }
     }
 
+
     componentWillMount(){
         this.props.getUserArtwork(this.props.match.params.userId)
     }
@@ -33,8 +34,9 @@ class Profile extends React.Component {
             this.setState({user: this.props.user})
     }
 
+
+ 
     refresh(){
-            
             this.props.fetchUser(this.props.currentUser.id)
             this.props.getUserArtwork(this.props.currentUser.id)
     }
@@ -89,6 +91,24 @@ class Profile extends React.Component {
                                                     deleteArtwork={this.props.deleteArtwork}
                                                     key={art._id}
                                                     />)
+        
+        let newArt;
+        if (this.props.currentUser.id === this.props.user._id){ 
+            newArt = (
+                <motion.div
+                    className="addart-card"
+                    whileHover={{ scale: 1.1 }}
+                > 
+                    <Link className="create-art" to={`/create_artwork`}>
+                            <AddCircleOutlineIcon className="add-icon"/>
+                    </Link>
+                    <p>Post a new art</p>
+                </motion.div>
+            )
+        } else {
+            newArt = null
+        }
+
         let bio;
         if (this.state.toggle === "show"){
             if (this.props.currentUser.id === this.props.user._id){
@@ -137,15 +157,7 @@ class Profile extends React.Component {
                     </div> */}
                 </div>
                 <ul className="user-arts">
-                <motion.div
-                    className="addart-card"
-                    whileHover={{ scale: 1.1 }}
-                > 
-                    <Link className="create-art" to={`/create_artwork`}>
-                            <AddCircleOutlineIcon className="add-icon"/>
-                    </Link>
-                    <p>Post a new art</p>
-                </motion.div>
+                {newArt}
                 {arts}
                 </ul>
                 </div>
