@@ -14,6 +14,7 @@ class Profile extends React.Component {
         }
     }
 
+
     componentWillMount(){
         this.props.getUserArtwork(this.props.match.params.userId)
     }
@@ -27,8 +28,9 @@ class Profile extends React.Component {
             this.setState({user: this.props.user})
     }
 
+
+ 
     refresh(){
-            
             this.props.fetchUser(this.props.currentUser.id)
             this.props.getUserArtwork(this.props.currentUser.id)
     }
