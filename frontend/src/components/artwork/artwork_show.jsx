@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NewComment from '../comment_form/new_comment_container'
 import CommentItem from '../comments_list/comments_item.jsx'
 import './artwork_show.css'
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import ethIcon from '@iconify/icons-cryptocurrency/eth';
 
 
@@ -22,11 +22,17 @@ class ArtworkShow extends React.Component {
             func();
       }
 
-      
+
+
+      componentWillReceiveProps(nextProps){
+            this.setState({comments: Object.values(nextProps.comments)})
+      }
 
       componentDidMount() {
-            this.props.fetchArtwork(this.props.match.params.artworkId);
-            this.props.getArtComments(this.props.match.params.artworkId);
+            this.props.fetchArtwork(this.props.match.params.artworkId).then(res=>
+                  this.props.getArtComments(this.props.match.params.artworkId).then(res=>{
+                        this.forceUpdate()
+                  }));
             this.props.fetchUsers()
             this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
       }
@@ -36,8 +42,9 @@ class ArtworkShow extends React.Component {
       }
 
       componentWillUnmount() {
-            clearInterval(this.interval);
+            clearInterval(this.interval); 
       }
+
       refresh(){
             this.props.getArtComments(this.props.match.params.artworkId).then()
             this.props.fetchArtwork(this.props.match.params.artworkId).then(res => this.forceUpdate() )
@@ -56,8 +63,9 @@ class ArtworkShow extends React.Component {
       releaseDate(date) {
             let releaseDate = new Date(date).getTime()
             let today = new Date().getTime()
+            let milisec_diff;
             if (today < releaseDate) {
-                  var milisec_diff = releaseDate - today;
+                  milisec_diff = releaseDate - today;
                   var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
                   var date_diff = new Date(milisec_diff);
                   if (days >= 1 && days < 2) {
@@ -80,7 +88,7 @@ class ArtworkShow extends React.Component {
                         return (hours + ':' + minutes + ':' + seconds + ' left')
                   }
             } else {
-                  var milisec_diff = 0;
+                  milisec_diff = 0;
                   return 'Released!'
             }
 
@@ -106,7 +114,7 @@ class ArtworkShow extends React.Component {
             let deleteButton;
             let updateButton;
             if (this.props.artwork[0].user === this.props.currentUser) {
-                  deleteButton = <button className="delete-button" onClick={() => this.handleDelete.bind(this)}>Delete</button>
+                  deleteButton = <button className="delete-button" onClick={() => this.handleDelete()}>Delete</button>
                   updateButton = <Link className="edit-link" to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
             } else {
                   deleteButton = null
@@ -136,7 +144,7 @@ class ArtworkShow extends React.Component {
                         <div className="comments-wrapper">
                         <div className="comments">
                         {this.state.comments.map((comment, i)=> {
-                        return <CommentItem key={`${i}${this.state.comments.length}`} 
+                        return <CommentItem key={`${i}${this.state.comments.length}${comment._id}`} 
                                             comment = {comment}      
                                             currentUser = {this.props.currentUser}
                                             users =  {this.props.users} 
