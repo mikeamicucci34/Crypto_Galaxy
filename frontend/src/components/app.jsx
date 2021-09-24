@@ -16,6 +16,7 @@ import ProfilePicContainer from './profile/profile_pic_container';
 
 const App = () => (
   <div>
+    <link rel="icon" type="image/png" href="/../assets/favicon.jpeg" />
     <NavBarContainer />
     <Switch>
       <Route exact path="/" component={MainPage} />
