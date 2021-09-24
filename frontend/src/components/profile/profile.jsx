@@ -10,7 +10,8 @@ class Profile extends React.Component {
         super(props);
         this.state = {
             user: this.props.user,
-            toggle: "show"
+            toggle: "show",
+            x: 'x'
         }
     }
 
@@ -18,7 +19,12 @@ class Profile extends React.Component {
         this.props.getUserArtwork(this.props.match.params.userId)
     }
 
-    
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.userId !== this.props.match.params.userId) {
+            this.props.fetchUser(nextProps.match.params.userId);
+            this.props.getUserArtwork(nextProps.match.params.userId)
+        }
+    }
     componentDidMount(){
         if (this.props.currentUser !== 0){
             this.props.fetchUser(this.props.match.params.userId);
@@ -59,7 +65,19 @@ class Profile extends React.Component {
             this.setState({ [text]: e.currentTarget.value })
         }
     }
-
+    returnVal(){
+        if (this.props.currentUser !== undefined && this.props.user!== undefined ){
+            if (this.props.currentUser.id === this.props.user._id){
+                return (<Link to={`/user/${this.props.user._id}/profile_pic`}>
+                    <button>Update Profile Pic</button>
+                </Link>)
+            }
+            else{
+                return(<div></div>)
+            }
+        }
+              
+    }
     render() {
 
 
@@ -72,18 +90,23 @@ class Profile extends React.Component {
                                                     key={art._id}
                                                     />)
         let bio;
-        if(this.state.toggle === "show"){
+        if (this.state.toggle === "show"){
+            if (this.props.currentUser.id === this.props.user._id){
             bio = <div className="user-bio">
                         <div>{this.props.user.bio}</div>
                         <button  onClick={()=>this.setState({toggle: 'edit'})}>Edit Bio</button>
                     </div>
-        } else if(this.state.toggle === "edit") {
+            }else(
+                bio = <div className="user-bio">
+                    <div>{this.props.user.bio}</div>
+                    </div>
+            )
+        } else if (this.state.toggle === "edit") {
             bio = <form className="user-bio" onSubmit={(e)=>this.submitBio(e)}>
                         <textarea className="login-input" placeholder='Biography' onChange={this.update('bio')}></textarea>
                         <button >Submit</button>
                   </form>
         }
-
         let propic;
         if (this.props.user.userImage) { 
             propic = <div className="profilePicReal">
@@ -104,9 +127,7 @@ class Profile extends React.Component {
                         {bio}
                     </div>
                     <div className="profilePicEdit">
-                        <Link to={`/user/${this.props.user._id}/profile_pic`}>
-                            <button>Update Profile Pic</button>
-                        </Link>
+                        {this.returnVal()}
                     </div>
                     </div>
                     {/* <div>
