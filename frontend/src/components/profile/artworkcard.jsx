@@ -29,8 +29,6 @@ class ArtworkCard extends React.Component {
                     <h3 className="title">{this.state.title}</h3>
                     </div>
                     <h3>{this.state.description}</h3>
-                    <h3>{this.state.price}</h3>
-                    <button className="login-button" onClick={() => this.handleDelete()}>Delete</button>
                     <Link to={`./update_artworks/${this.state.artworkId}`}></Link>
             </motion.div>
         )
