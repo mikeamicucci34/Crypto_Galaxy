@@ -9,7 +9,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/mikeamicucci34/Crypto_Galaxy/blob/main/frontend/src/assets/production%20ReadME%20Gif/homepage.gif" />
+  <img src="https://github.com/mikeamicucci34/Crypto_Galaxy/blob/main/frontend/src/assets/production%20ReadME%20Gif/homepage2.gif" />
 </p>
 
 
