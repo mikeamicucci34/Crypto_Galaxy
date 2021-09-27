@@ -1,0 +1,71 @@
+.ous-img{
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/ouss.jpeg);
+    border-radius: 50px;
+    background-size: 200px;
+}
+
+
+.mike-img{
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/mike.jpeg);
+    border-radius: 50px;
+    background-size: 200px;
+
+}
+
+
+.chris-img{
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/chris.jpeg);
+    border-radius: 50px;
+    background-size: 200px;
+}
+
+
+.omar-img{
+    width: 200px;
+    height: 200px;
+    background-image: url(../../assets/IMG_8547.jpeg);
+    border-radius: 50px;
+    background-size: 200px;
+
+}
+
+
+.about{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 100px;
+}
+
+
+.team-member{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 200px;
+    border: 2px white solid;
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.headline{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    place-self: center;
+    text-align: center;
+}
+
+.about-links{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
