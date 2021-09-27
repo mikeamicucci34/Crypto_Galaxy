@@ -13,6 +13,7 @@ import ArtworkUpdateContainer from './artwork/artwork_update_container'
 import ArtworkShowContainer from './artwork/artwork_show_container'
 import './app.css'
 import ProfilePicContainer from './profile/profile_pic_container';
+import About from './about/about.jsx'
 
 const App = () => (
   <div>
@@ -20,6 +21,7 @@ const App = () => (
     <NavBarContainer />
     <Switch>
       <Route exact path="/" component={MainPage} />
+      <Route exact path ="/about" component={About} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/create_artwork" component={ArtworkCreateContainer} />

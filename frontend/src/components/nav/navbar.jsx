@@ -28,6 +28,7 @@ class NavBar extends React.Component {
             
             return (
                 <div className="links">
+                    <Link className="navbar-link" to={"/about"}>About</Link>
                     <Link className="navbar-link" to={`/user/${this.props.session.user.id}`}>Profile</Link>
                     <button className="logout-button"  onClick={this.logoutUser}>Logout</button>
                 </div>
@@ -35,6 +36,7 @@ class NavBar extends React.Component {
         } else {
             return (
                 <div className="links">
+                    <Link className="navbar-link" to={"/about"} >About</Link>
                     <Link className="navbar-link" to={'/signup'}>Signup</Link>
                     <Link className="navbar-link" to={'/login'}>Login</Link>
                 </div>
