@@ -106,7 +106,7 @@ class ArtworkShow extends React.Component {
             let deleteButton;
             let updateButton;
             if (this.props.artwork[0].user === this.props.currentUser) {
-                  deleteButton = <button className="delete-button" onClick={() => this.handleDelete.bind(this)}>Delete</button>
+                  deleteButton = <button className="delete-button" onClick={() => this.handleDelete()}>Delete</button>
                   updateButton = <Link className="edit-link" to={`/update_artwork/${this.props.artwork[0]._id}`}>Edit</Link>
             } else {
                   deleteButton = null
@@ -135,8 +135,8 @@ class ArtworkShow extends React.Component {
                         <div className="commentsandinfo"> 
                         <div className="comments-wrapper">
                         <div className="comments">
-                        {this.state.comments.map((comment, i)=> {
-                        return <CommentItem key={`${i}${this.state.comments.length}`} 
+                        {this.state.comments.map((comment)=> {
+                        return <CommentItem key={comment._id} 
                                             comment = {comment}      
                                             currentUser = {this.props.currentUser}
                                             users =  {this.props.users} 
