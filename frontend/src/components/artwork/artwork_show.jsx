@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NewComment from '../comment_form/new_comment_container'
 import CommentItem from '../comments_list/comments_item.jsx'
 import './artwork_show.css'
-import { Icon, InlineIcon } from '@iconify/react';
+import { Icon } from '@iconify/react';
 import ethIcon from '@iconify/icons-cryptocurrency/eth';
 
 
@@ -22,12 +22,20 @@ class ArtworkShow extends React.Component {
             func();
       }
 
-      
+
+
+      componentWillReceiveProps(nextProps){
+            this.setState({comments: Object.values(nextProps.comments)})
+      }
 
       componentDidMount() {
-            this.props.fetchArtwork(this.props.match.params.artworkId);
-            this.props.getArtComments(this.props.match.params.artworkId);
-            this.props.fetchUsers()
+
+            this.props.fetchArtwork(this.props.match.params.artworkId).then(res=>
+                  this.props.getArtComments(this.props.match.params.artworkId).then(res=>{
+                        this.forceUpdate()
+                  }));
+            this.props.fetchUsers();
+
             this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
       }
 
@@ -36,11 +44,13 @@ class ArtworkShow extends React.Component {
       }
 
       componentWillUnmount() {
-            clearInterval(this.interval);
+            clearInterval(this.interval); 
       }
+
       refresh(){
             this.props.getArtComments(this.props.match.params.artworkId).then()
-            this.props.fetchArtwork(this.props.match.params.artworkId).then(res => this.forceUpdate() )
+            this.props.fetchArtwork(this.props.match.params.artworkId).then((res)=> this.forceUpdate() )
+            this.setState({ randValue: Math.random() * 100 })
             
      }
 
@@ -54,10 +64,13 @@ class ArtworkShow extends React.Component {
             }
       }
       releaseDate(date) {
+           
+            
             let releaseDate = new Date(date).getTime()
             let today = new Date().getTime()
+            let milisec_diff;
             if (today < releaseDate) {
-                  var milisec_diff = releaseDate - today;
+                  milisec_diff = releaseDate - today;
                   var days = Math.floor(milisec_diff / 1000 / 60 / (60 * 24));
                   var date_diff = new Date(milisec_diff);
                   if (days >= 1 && days < 2) {
@@ -80,7 +93,7 @@ class ArtworkShow extends React.Component {
                         return (hours + ':' + minutes + ':' + seconds + ' left')
                   }
             } else {
-                  var milisec_diff = 0;
+                  milisec_diff = 0;
                   return 'Released!'
             }
 
@@ -99,8 +112,26 @@ class ArtworkShow extends React.Component {
             let numRound = num.toFixed(5);
             return numRound
       }
+
+      handle() {
+            if (this.props.users.length > 0) {
+                  for (let i = 0; i < this.props.users.length; i++) {
+                        if (this.props.users[i]._id === this.props.artwork[0].user) {
+                              let handle = this.props.users[i].handle
+                              return handle
+
+                        }
+                  }
+            }
+      }
+
+      id(){
+            if (this.props.artwork !== undefined){
+                  return this.props.artwork[0].user
+            }
+      }
       render() {
-          
+            
             if (this.props.artwork.length === 0) return null
             if (!this.props.comments) return null;
             let deleteButton;
@@ -113,7 +144,6 @@ class ArtworkShow extends React.Component {
                   updateButton = null
             }
             
-
             return (
                   <div className="show-page">
                         <div className="nft-info">
@@ -121,6 +151,8 @@ class ArtworkShow extends React.Component {
                         <div className="title-wrapper">
                         <div className="nft-titleandmore">
                         <h3 className="art-title">{this.props.artwork[0].title}</h3>
+              
+                        <h3><Link to={`/user/${this.id()}`}>{this.handle()}</Link></h3>  
                         <p>Price: {this.props.artwork[0].price}.00$</p>
                         <p className="ethShow">{this.ethValue(this.props.artwork[0].price)} <Icon icon={ethIcon} /></p>
                         <p>{this.props.artwork[0].description}</p>
@@ -135,8 +167,9 @@ class ArtworkShow extends React.Component {
                         <div className="commentsandinfo"> 
                         <div className="comments-wrapper">
                         <div className="comments">
-                        {this.state.comments.map((comment)=> {
-                        return <CommentItem key={comment._id} 
+                        {this.state.comments.map((comment, i)=> {
+
+                        return <CommentItem key={`${i}${this.state.comments.length}${comment._id}`} 
                                             comment = {comment}      
                                             currentUser = {this.props.currentUser}
                                             users =  {this.props.users} 

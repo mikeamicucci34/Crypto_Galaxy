@@ -70,7 +70,6 @@ class Artwork extends React.Component {
     }
   }
   render() {
-  
     if (this.state.artworks.length === 0) {
       return null;
     } else {
