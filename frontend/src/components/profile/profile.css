@@ -86,7 +86,13 @@
     flex-direction: column;
     gap: 20px;
     align-items: center;
+    
 }
+.user-info h1{
+    font-size: 35px;
+    font-weight: bolder;
+}
+
 
 .addart-card{
     display: flex;
