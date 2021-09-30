@@ -121,3 +121,10 @@
     gap: 50px;
     margin-bottom: 5%;
 }
+
+.user-info h1 {
+    font-size: 35px;
+    font-weight: bolder;
+}
+
+
