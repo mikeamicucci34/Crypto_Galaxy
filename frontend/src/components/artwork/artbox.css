@@ -35,6 +35,8 @@
 .title{
     align-self: center;
     margin-right: 20px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 .like{
@@ -87,4 +89,9 @@
 
 .eth{
     display:flex
+}
+
+
+.outer-link-card{
+    text-decoration: none !important;
 }
