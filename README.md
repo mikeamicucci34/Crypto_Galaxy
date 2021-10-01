@@ -45,5 +45,6 @@
 
 
 ## found a 🐛 ?
+
  Feel free to file a new issue with a respective title and description on Crypto Galaxy's repository.
- 
+
