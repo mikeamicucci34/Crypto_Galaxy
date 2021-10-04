@@ -72,3 +72,7 @@ table {
     font-family: 'Ramabhadra-Regular';
     src: local('Ramabhadra-Regular'), url(./assets/fonts/Ramabhadra/Ramabhadra-Regular.ttf) format('truetype');
 }
+
+::placeholder{
+	color: white;
+}

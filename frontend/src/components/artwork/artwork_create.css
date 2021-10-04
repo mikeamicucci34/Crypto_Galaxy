@@ -100,7 +100,7 @@
 .artwork__createComponentSubmissionField input{
     outline: none;
     border: none;
-    background-color: rgb(18, 18, 18);
+    background-color: rgb(35,21,60);
     color: white;
     width: 300px;
 }
