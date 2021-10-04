@@ -89,12 +89,12 @@ export default class Artbox extends React.Component {
             price = <h3>{(this.props.price/1000000).toFixed(1)}M$</h3>
             
         } else if (this.props.price > 1000000000 && this.props.price < 1000000000000) {
-            price = <h3>{(this.props.price/1000000000).toFixed(1)}B$</h3>
+            price = <h3>{`${(this.props.price/1000000000).toFixed(1)}B `}$</h3>
         } else if (this.props.price > 1000000000000) (
-            price = <h3>{(this.props.price/1000000000000).toFixed(1)}T$</h3>
+            price = <h3>{`${(this.props.price/1000000000000).toFixed(1)}T `}$</h3>
         )
         else{
-            price = <h3>{this.props.price}.00$</h3> 
+            price = <h3>{`${this.props.price}.00 `}$</h3> 
         }
 
         let etherPrice;
