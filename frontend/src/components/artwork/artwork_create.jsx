@@ -112,7 +112,7 @@ export default class ArtworkCreate extends Component {
           fontSize: '12px',
           border: '1px solid #9c88ff',
           borderRadius: '25px',
-          color: 'rgb(18, 18, 18)',
+          color: 'rgb(35,21,60)',
           outline: 'none',
         }}
         className="my-custom-input-class" 

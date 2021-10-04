@@ -84,6 +84,32 @@ export default class Artbox extends React.Component {
         } else {
             icon = <FavoriteIcon />
         }
+        let price;
+        if (this.props.price > 10000000 && this.props.price < 1000000000) {
+            price = <h3>{(this.props.price/1000000).toFixed(1)}M$</h3>
+            
+        } else if (this.props.price > 1000000000 && this.props.price < 1000000000000) {
+            price = <h3>{`${(this.props.price/1000000000).toFixed(1)}B `}$</h3>
+        } else if (this.props.price > 1000000000000) (
+            price = <h3>{`${(this.props.price/1000000000000).toFixed(1)}T `}$</h3>
+        )
+        else{
+            price = <h3>{`${this.props.price}.00 `}$</h3> 
+        }
+
+        let etherPrice;
+        if (this.ethValue() > 10000000 && this.ethValue() < 1000000000) {
+            etherPrice = <h3>{(this.ethValue()/1000000).toFixed(1)}M</h3>
+            
+        } else if (this.ethValue() > 1000000000 && this.ethValue() < 1000000000000) {
+            etherPrice = <h3>{(this.ethValue()/1000000000).toFixed(1)}B</h3>
+        } else if (this.ethValue() > 1000000000000) (
+            etherPrice = <h3>{(this.ethValue()/1000000000000).toFixed(1)}T</h3>
+        )
+        else{
+            etherPrice = <h3>{this.ethValue()}.00</h3> 
+        }
+
         return (
             <motion.div 
             className="art-card"
@@ -108,9 +134,9 @@ export default class Artbox extends React.Component {
 
                     <div className="stats">
                     <div>
-                    <h3>{this.props.price}.00$</h3>
+                    {price}
                     <br />
-                    <h3 className="eth">{this.ethValue()} <Icon icon={ethIcon} /></h3>
+                    <h3 className="eth">{etherPrice} <Icon icon={ethIcon} /></h3>
                     </div>
                     <div>
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
