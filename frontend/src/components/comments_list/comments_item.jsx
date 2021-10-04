@@ -50,7 +50,6 @@ class CommentItem extends React.Component{
 
     render(){
 
-
         let buttons;
    
         if(this.props.currentUser === this.props.comment.user) {
@@ -71,9 +70,12 @@ class CommentItem extends React.Component{
             body = (
                 <div className="comment">
                     
-                    <p className="comment-body-and-author">
-                    <h3 className="commenter">{commenter[0].handle} said </h3> <pre> </pre> {this.state.body}
-                    </p>
+                    <div className="comment-author-body">
+                        <img src={commenter[0].userImage}  className={this.props.currentUser === this.props.comment.user ? "profilePicRealComment" : "profilePicRealComment" }></img>
+                        <div className={ this.props.currentUser === this.props.comment.user ?  "comment-body-user" : "comment-body"}>
+                                <p className="body-line-width">{this.state.body}</p>
+                        </div>
+                    </div>
                     
                     {buttons}
                 </div>
