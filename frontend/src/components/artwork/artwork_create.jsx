@@ -9,6 +9,7 @@ export default class ArtworkCreate extends Component {
       super(props);
 
       this.state = this.props.artwork
+      this.error = null
 
       // this.state = {
       //   title: "",
@@ -55,9 +56,13 @@ export default class ArtworkCreate extends Component {
       artwork.append('description', this.state.description)
       artwork.append('price', this.state.price)
       artwork.append('user', this.state.user)
-      artwork.append('artworkImage', this.state.artworkImage[0])
+      if (this.state.artworkImage){
+        artwork.append('artworkImage', this.state.artworkImage[0])
+      } 
       artwork.append('date', this.state.date)
-      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
+      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`), err => {
+        this.handleErrors()
+      });
 
     }else{
       let artwork = {}
@@ -70,7 +75,9 @@ export default class ArtworkCreate extends Component {
           artworktImage: this.state.artworkImage,
           date: this.state.date
       }
-      this.props.submitArtwork(artwork).then(() => this.props.history.push(`/artworks`));
+      this.props.submitArtwork(artwork).then((res) => this.props.history.push(`/artworks`), err => {
+        this.handleErrors()
+      });
 
     }
         
@@ -83,6 +90,12 @@ export default class ArtworkCreate extends Component {
         file: null
     })
   }
+
+  handleErrors(){
+    this.error = <p className="errors">Something went wrong, please make sure to fill all fields!</p>
+    this.forceUpdate()
+  }
+  
 
   update(field) { //double check
     return e => {
@@ -187,6 +200,7 @@ export default class ArtworkCreate extends Component {
                   </div>
               </form>
               <br />
+              {this.error}
             </div>
             <div className="artwork__previewComponent">
               <h3>Artwork Preview</h3>
