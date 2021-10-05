@@ -65,7 +65,6 @@ class ArtworkShow extends React.Component {
       }
       releaseDate(date) {
            
-            
             let releaseDate = new Date(date).getTime()
             let today = new Date().getTime()
             let milisec_diff;

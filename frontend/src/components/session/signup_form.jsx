@@ -56,7 +56,7 @@ class SignupForm extends React.Component {
           password: this.state.password,
         });
       }
-    });
+    }).then(() => this.props.history.push("/artworks"))
   }
 
   renderErrors() {
