@@ -31,6 +31,11 @@
     width: 100%;
     justify-content: space-between;
 }
+
+.cardDescription{
+
+}
+
 .titleLink{
     text-decoration: none;
 }
@@ -39,6 +44,19 @@
     margin-right: 20px;
     font-size: larger;
     font-weight: bolder;
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.profile_cardTitle{
+    align-self: center;
+    margin-right: 10px;
+    font-size: larger;
+    font-weight: bolder;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .like{
