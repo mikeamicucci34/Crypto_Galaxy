@@ -6,7 +6,6 @@
     flex-direction: column;
     width: 500px;
     margin-top: 80px;
-    margin-left: 50px;
     padding: 20px;
     border: 1px solid rgb(204, 204, 204);
     border-radius: 5px;
@@ -134,3 +133,38 @@
 }
 
 
+.profilePicEdit button{
+    text-align: center;
+    width: 200px;
+    border-radius: 25px;
+    height: 33px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
+    color: white;
+    border: none;
+}
+
+.toggleLikeCreations button{
+    text-align: center;
+    width: 100px;
+    border-radius: 25px;
+    height: 33px;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #675dd0, #8aedda);
+    color: white;
+    border: none;
+    margin-left: 10px;
+    margin-right:10px;
+}
+
+.toggleLikeCreations button:hover{
+    background-image: linear-gradient(to right, #8a85c7, #b2f1e5);
+}
+
+.profilePicEdit button:hover{
+    background-image: linear-gradient(to right, #8a85c7, #b2f1e5);
+}
+
+.user-bio button:hover{
+    background-image: linear-gradient(to right, #8a85c7, #b2f1e5);
+}
