@@ -145,10 +145,12 @@ class ArtworkShow extends React.Component {
             }
 
             let truncatetitle;
-            if (this.state.title.length >= 20) {
-            truncatetitle = this.state.title.slice(0,20) + "..."
-            } else {
-                  truncatetitle = this.state.title
+            if (this.state.title) {
+                  if (this.state.title.length >= 20) {
+                  truncatetitle = this.state.title.slice(0,20) + "..."
+                  } else {
+                        truncatetitle = this.state.title
+                  }
             }
             
             return (
