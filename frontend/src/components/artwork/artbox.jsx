@@ -77,7 +77,21 @@ export default class Artbox extends React.Component {
         let numRound = num.toFixed(5);
         return numRound 
     }
+
+    
+
     render() {
+
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+        });
+
+
         let icon;
         if (this.state.likeToggle === 'unliked') {
             icon = <FavoriteBorderIcon />
@@ -86,15 +100,15 @@ export default class Artbox extends React.Component {
         }
         let price;
         if (this.props.price > 10000000 && this.props.price < 1000000000) {
-            price = <h3>{(this.props.price/1000000).toFixed(1)}M$</h3>
+            price = <h3>{formatter.format((this.props.price/1000000).toFixed(1))}M</h3>
             
         } else if (this.props.price > 1000000000 && this.props.price < 1000000000000) {
-            price = <h3>{`${(this.props.price/1000000000).toFixed(1)}B `}$</h3>
+            price = <h3>{formatter.format(`${(this.props.price/1000000000).toFixed(1)}`)}B</h3>
         } else if (this.props.price > 1000000000000) (
-            price = <h3>{`${(this.props.price/1000000000000).toFixed(1)}T `}$</h3>
+            price = <h3>{formatter.format(`${(this.props.price/1000000000000).toFixed(1)}`)}T</h3>
         )
         else{
-            price = <h3>{`${this.props.price}.00 `}$</h3> 
+            price = <h3>{formatter.format(`${this.props.price}`)}</h3> 
         }
 
         let etherPrice;
@@ -107,8 +121,16 @@ export default class Artbox extends React.Component {
             etherPrice = <h3>{(this.ethValue()/1000000000000).toFixed(1)}T</h3>
         )
         else{
-            etherPrice = <h3>{this.ethValue()}.00</h3> 
+            etherPrice = <h3>{this.ethValue()}</h3> 
         }
+
+        let truncatetitle;
+        if (this.props.title.length >= 20) {
+           truncatetitle = this.props.title.slice(0,20) + "..."
+        } else {
+            truncatetitle = this.props.title
+        }
+       
 
         return (
             <motion.div 
@@ -122,7 +144,7 @@ export default class Artbox extends React.Component {
                     <Link to={`artworks/${this.props.artworkId}`}><img className="nft" src={this.props.artworkImage} alt="" /></Link>
 
                     <div className="title-like">
-                    <Link to={`artworks/${this.props.artworkId}`} className='titleLink'><h3 className="title">{this.props.title}</h3></Link>
+                    <Link to={`artworks/${this.props.artworkId}`} className='titleLink'><h3 className="title">{truncatetitle}</h3></Link>
                         <div className="likeComponent">
                         <button className="like" onClick={()=>this.toggleLike()}>
                             {icon}
@@ -136,7 +158,7 @@ export default class Artbox extends React.Component {
                     <div>
                     {price}
                     <br />
-                    <h3 className="eth">{etherPrice} <Icon icon={ethIcon} /></h3>
+                    <h3 className="eth"><Icon icon={ethIcon} />{etherPrice}</h3>
                     </div>
                     <div>
                     <h3 className="statsDate">{this.releaseDate(this.props.date)}</h3>
