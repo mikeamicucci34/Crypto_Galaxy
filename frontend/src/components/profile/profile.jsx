@@ -11,13 +11,17 @@ class Profile extends React.Component {
         this.state = {
             user: this.props.user,
             toggle: "show",
-            x: 'x'
+            x: 'x',
+            show: 'Creations'
         }
     }
 
 
     componentWillMount(){
-        this.props.getUserArtwork(this.props.match.params.userId)
+        this.props.getUserArtwork(this.props.match.params.userId);
+        this.props.fetchArtworks();
+        this.props.fetchLikes();
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -31,7 +35,7 @@ class Profile extends React.Component {
             this.props.fetchUser(this.props.match.params.userId);
             
         }
-            this.setState({user: this.props.user})
+        this.setState({user: this.props.user})
     }
 
 
@@ -80,17 +84,73 @@ class Profile extends React.Component {
         }
               
     }
-    render() {
+    fetchLikedArtworks(){
+        let likedArr = []
+        for(let i=0;i<this.props.likes.length;i++){
+            if (this.props.likes[i].userId === this.props.user._id){
+                likedArr.push(this.props.likes[i].artworkId)
+            }
+        }
+        return likedArr;
+    }
+    toggleCreations(){
+        if(this.state.show !== 'Creations'){
+            this.setState({show: 'Creations'})
+        }
+    }
 
+    toggleLikes() {
+        if (this.state.show !== 'Likes') {
+            this.setState({ show: 'Likes' })
+        }
+    }
+    render() {
+        let likedArtworkIds
+        let likedArtworkObjs = []
+        if(this.props.likes && this.props.user){
+            likedArtworkIds = this.fetchLikedArtworks();
+        }
+        if(likedArtworkIds){
+            for (let i = 0; i < likedArtworkIds.length;i++){
+              for(let j=0; j<this.props.allArtworks.length;j++){
+                  if (likedArtworkIds[i] === this.props.allArtworks[j]._id){
+                      likedArtworkObjs.push(this.props.allArtworks[j])
+                  }
+              }  
+            }
+        }
+        let likes
+        if(likedArtworkObjs.length > 0 && this.state.show === 'likes'){
+            likes = likedArtworkObjs.map((art) => <ArtworkCard artwork={art}
+                refresh={this.refresh.bind(this)}
+                fetchArtwork={this.props.fetchArtwork}
+                updateArtwork={this.props.update}
+                deleteArtwork={this.props.deleteArtwork}
+                key={art._id}
+            />)
+
+        }
 
         if (!this.props.user) return null
-        let arts = this.props.artworks.map((art)=>  <ArtworkCard artwork={art}
+        let arts
+        if(this.state.show==='Creations'){
+             arts = this.props.artworks.map((art)=>  <ArtworkCard artwork={art}
                                                     refresh ={this.refresh.bind(this)}
                                                     fetchArtwork={this.props.fetchArtwork}
                                                     updateArtwork={this.props.update}
                                                     deleteArtwork={this.props.deleteArtwork}
                                                     key={art._id}
                                                     />)
+        }else{
+            arts = likedArtworkObjs.map((art) => <ArtworkCard artwork={art}
+                refresh={this.refresh.bind(this)}
+                fetchArtwork={this.props.fetchArtwork}
+                updateArtwork={this.props.update}
+                deleteArtwork={this.props.deleteArtwork}
+                key={art._id}
+            />)
+        }
+ 
         
         let newArt;
         if (this.props.currentUser.id === this.props.user._id){ 
@@ -146,8 +206,13 @@ class Profile extends React.Component {
                     <div className="user-bioContainer">
                         {bio}
                     </div>
+                    
                     <div className="profilePicEdit">
                         {this.returnVal()}
+                    </div>
+                     <div className="toggleLikeCreations">
+                        <button onClick={()=>this.toggleCreations()}>Creations</button>
+                        <button onClick={() => this.toggleLikes()}>Liked Posts</button>
                     </div>
                     </div>
                     {/* <div>
@@ -156,10 +221,14 @@ class Profile extends React.Component {
                             multiple={false}/> 
                     </div> */}
                 </div>
+                <h1>{this.state.show}</h1>
                 <ul className="user-arts">
                 {newArt}
                 {arts}
                 </ul>
+                {/* <ul className="user-arts"> 
+                        {likes}
+                </ul> */}
                 </div>
             );
     }
