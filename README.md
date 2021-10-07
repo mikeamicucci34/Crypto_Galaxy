@@ -43,6 +43,26 @@
  * Leave a like on artwork
  * See Art suggested price in dollars and ether
 
+## Code Snippets
+   #### Hot Value:
+ 
+  If an artwork is liked, an artwork will have an associated hot value. This hot value is calculated upon rerender and takes into account how recent each like on     the artwork is relative to current time, as well as how many likes there are on the artwork. If an artwork has a large amount of likes or a number of likes that     are recent, an associated fire symbol will appear above the artwork. In our case, the hot value (the hot variable) must be above 1 for the the fire symbol to appear.
+    
+   ```javascript
+    if(this.props.likes){
+        for(let i=0;i<this.props.likes.length;i++){
+          if (this.props.likes[i].artworkId === artworkId){
+            if (this.props.likes[i].userId === this.props.userId){
+                liked = 'liked';
+            }
+            let dateVal = new Date(this.props.likes[i].createdAt)
+            let today = new Date();
+            hot += (1/(today - dateVal))*1000000;
+            count+=1;
+          }
+        }
+    }
+   ```
 
 ## found a 🐛 ?
 
